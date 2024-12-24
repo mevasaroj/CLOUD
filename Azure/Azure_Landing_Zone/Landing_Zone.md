@@ -4,6 +4,9 @@
  - Azure uses a hierarchical subscription-based model, allowing for logical grouping and resource management.
  - Azure provides a comprehensive set of governance policies, security controls, and built-in compliance measures through Azure Policy, Azure Security Center, and Azure Blueprints.
 
+#### Architect Diagram
+https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure_LZ.jpg
+
 #### Tenant
  - A Tenant refers to a single dedicated and trusted instance of Azure Active Directory and it gets created automatically when you sign up for a Microsoft cloud service subscription.
  - The Azure AD tenant provides a single place to manage users, groups and their permissions for the applications published in the Azure AD.
@@ -23,5 +26,5 @@
 #### Resources
  - Resources are instances of services that you can create in a resource group, such as virtual machines, storage, and SQL databases.
 
-[![image](https://github.com/user-attachments/assets/91736f87-6e1a-4b71-8ca7-97bada26b1bb)](https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/azure-MG-Sub-RG.png)
+
 
