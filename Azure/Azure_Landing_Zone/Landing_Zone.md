@@ -10,9 +10,15 @@
  - Tenant can have one or more Subscriptions that depends on organizational requirements and each Subscription has a name, and like Tenants, have a unique identity, called as Subscription ID
 
 #### Subscription
- - A Subscription in Azure can be considered as a logical container into which the resources and services can be created, configured, and installed.
- - For example – Virtual Machines, Web Apps, Storage Accounts, Automations, Functions, Logic Apps, etc.
+ - Subscriptions logically associate user accounts with the resources that they create.
+ - A Subscription in Azure can be considered as a **logical container** into which the **resource group**, resource and services can be **created, configured**, and **installed**.
+ - Each subscription has limits or quotas on the amount of resources that it can create and use.
+ - Organizations can use subscriptions to manage costs and the resources that are created by users, teams, and projects.
 
 #### Resource Group
- - Resource groups (RG) in Azure is a new approach to group a collection of assets in logical groups for easy or even automatic provisioning, monitoring, and access control, and for more effective management of their costs.
- - 
+ - Resource Group is **logical groups** that can be **create in Subscription**.
+ - Resource groups are logical containers where you can deploy and manage Azure resources like virtual machines, web apps, databases, and storage accounts.
+
+
+#### Resources
+ - Resources are instances of services that you can create in a resource group, such as virtual machines, storage, and SQL databases.
