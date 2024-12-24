@@ -31,7 +31,7 @@
 
 ##### Diagram Subscription
 
-<img src="https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure-subscription.jpg" width="600" />
+<img src="https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure-subscription.jpg" width="300" />
 
 #### Resource Group
  - Resource Group is **logical groups** that can be **create in Subscription**.
