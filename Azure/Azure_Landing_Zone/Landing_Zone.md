@@ -22,3 +22,6 @@
 
 #### Resources
  - Resources are instances of services that you can create in a resource group, such as virtual machines, storage, and SQL databases.
+
+[![image](https://github.com/user-attachments/assets/91736f87-6e1a-4b71-8ca7-97bada26b1bb)](https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/azure-MG-Sub-RG.png)
+
