@@ -6,7 +6,7 @@
 
 #### Architect Diagram
 
-<img src="https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure_LZ.png" width="900" />
+<img src="https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure_LZ.png" width="600" />
 
 
 #### Tenant
