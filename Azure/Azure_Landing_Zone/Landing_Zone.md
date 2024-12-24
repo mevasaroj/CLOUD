@@ -5,6 +5,7 @@
  - Azure provides a comprehensive set of governance policies, security controls, and built-in compliance measures through Azure Policy, Azure Security Center, and Azure Blueprints.
 
 #### Architect Diagram
+
 https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure_LZ.jpg
 
 #### Tenant
