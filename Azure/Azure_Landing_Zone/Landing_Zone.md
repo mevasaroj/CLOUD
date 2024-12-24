@@ -14,6 +14,17 @@
  - The Azure AD tenant provides a single place to manage users, groups and their permissions for the applications published in the Azure AD.
  - Tenant can have one or more Subscriptions that depends on organizational requirements and each Subscription has a name, and like Tenants, have a unique identity, called as Subscription ID
 
+#### management groups
+ - Management groups is containers that help manage access, policy, and compliance across multiple Azure Subscriptions.
+ - All subscriptions within a management group automatically inherit the conditions applied to the management group.
+ - Management groups are logical containers that hold subscriptions and other management groups.
+
+<img src="Azure/Azure_Landing_Zone/Architect_Diagram/Azure%20Management.jpg" width="600" />
+
+<img src="https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure%20Management.jpg" width="600" />
+
+ - https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure%20Management.jpg
+   
 #### Subscription
  - Subscriptions logically associate user accounts with the resources that they create.
  - A Subscription in Azure can be considered as a **logical container** into which the **resource group**, resource and services can be **created, configured**, and **installed**.
