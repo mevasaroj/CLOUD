@@ -29,6 +29,10 @@
  - Each subscription has limits or quotas on the amount of resources that it can create and use.
  - Organizations can use subscriptions to manage costs and the resources that are created by users, teams, and projects.
 
+##### Diagram Subscription
+
+<img src="https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure-subscription.jpg" width="600" />
+
 #### Resource Group
  - Resource Group is **logical groups** that can be **create in Subscription**.
  - Resource groups are logical containers where you can deploy and manage Azure resources like virtual machines, web apps, databases, and storage accounts.
