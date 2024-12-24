@@ -6,4 +6,4 @@
 
 ##### Diagram Landing Zone
 
-<img src="https://github.com/mevasaroj/CLOUD/blob/main/AWS/AWS_Landing_Zone/Architect_Diagram/aws-control-tower.png" width="600" />
+<img src="https://github.com/mevasaroj/CLOUD/blob/main/AWS/AWS_Landing_Zone/Architect_Diagram/aws-control-tower.png" width="900" />
