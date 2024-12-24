@@ -6,7 +6,7 @@
 
 #### Architect Diagram
 
-https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure_LZ.jpg
+https://github.com/mevasaroj/CLOUD/blob/main/Azure/Azure_Landing_Zone/Architect_Diagram/Azure_LZ.png
 
 #### Tenant
  - A Tenant refers to a single dedicated and trusted instance of Azure Active Directory and it gets created automatically when you sign up for a Microsoft cloud service subscription.
