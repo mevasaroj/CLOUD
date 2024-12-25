@@ -26,9 +26,9 @@
  
    **$ kubectl describe daemonset aws-node --namespace kube-system | grep Image | cut -d "/" -f 2**
    ```hcl
-         amazon-k8s-cni-init:v1.18.5-eksbuild.1
-         amazon-k8s-cni:v1.18.5-eksbuild.1
-         amazon
+   amazon-k8s-cni-init:v1.18.5-eksbuild.1
+   amazon-k8s-cni:v1.18.5-eksbuild.1
+   amazon
    ```
 
    
@@ -48,14 +48,14 @@
 
    **$ kubectl describe daemonset aws-node --namespace kube-system |grep AWS_VPC_K8S**
    ```hcl
-      AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG:     **[true]**
-      AWS_VPC_K8S_CNI_EXTERNALSNAT:           **false**
-      AWS_VPC_K8S_CNI_LOGLEVEL:               DEBUG
-      AWS_VPC_K8S_CNI_LOG_FILE:               /host/var/log/aws-routed-eni/ipamd.log
-      AWS_VPC_K8S_CNI_RANDOMIZESNAT:          prng
-      AWS_VPC_K8S_CNI_VETHPREFIX:             eni
-      AWS_VPC_K8S_PLUGIN_LOG_FILE:            /var/log/aws-routed-eni/plugin.log
-      AWS_VPC_K8S_PLUGIN_LOG_LEVEL:           DEBUG
+   AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG:     **[true]**
+   AWS_VPC_K8S_CNI_EXTERNALSNAT:           **false**
+   AWS_VPC_K8S_CNI_LOGLEVEL:               DEBUG
+   AWS_VPC_K8S_CNI_LOG_FILE:               /host/var/log/aws-routed-eni/ipamd.log
+   AWS_VPC_K8S_CNI_RANDOMIZESNAT:          prng
+   AWS_VPC_K8S_CNI_VETHPREFIX:             eni
+   AWS_VPC_K8S_PLUGIN_LOG_FILE:            /var/log/aws-routed-eni/plugin.log
+   AWS_VPC_K8S_PLUGIN_LOG_LEVEL:           DEBUG
    ```
    
  - Set the **ENI_CONFIG_LABEL_DEF** environment variable to **topology.kubernetes.io/zone** to allow outside traffic.
