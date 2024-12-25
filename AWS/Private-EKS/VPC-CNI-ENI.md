@@ -33,8 +33,8 @@
       amazon
    ```
  - Set the **AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG** environment variable to **true** in the aws-node[.noloc]`DaemonSet.
-
- $ kubectl set env daemonset aws-node -n kube-system AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG=true
+ 
+   $ kubectl set env daemonset aws-node -n kube-system AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG=true
  -
  -
  - a
