@@ -23,3 +23,13 @@
 <img src="https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/Diagram-Images/VPC-EKS-ENI.jpg" width="600" />
 
 
+### 3. Enable the VPC CNI
+ - Validate the Latest Plugins must be installed
+   **$ kubectl describe daemonset aws-node --namespace kube-system | grep Image | cut -d "/" -f 2**
+   ```hcl
+       amazon-k8s-cni-init:v1.18.5-eksbuild.1
+      amazon-k8s-cni:v1.18.5-eksbuild.1
+      amazon
+   ```
+ - 
+
