@@ -64,13 +64,13 @@
   
  - Validation
 
-      **$ kubectl describe daemonset aws-node --namespace kube-system |grep ENI_CONFIG**
-    ```hcl
-        ENI_CONFIG_LABEL_DEF:                   topology.kubernetes.io/zone
+   **$ kubectl describe daemonset aws-node --namespace kube-system |grep ENI_CONFIG**
+   ```hcl
+   ENI_CONFIG_LABEL_DEF:                   topology.kubernetes.io/zone
    ```
 
     
-### 3. VPC-EKS-CNI Custom Configuration
+### 4. VPC-EKS-CNI Custom Configuration
  - Create the yaml configuration file as below.
 ```hcl
 apiVersion: crd.k8s.amazonaws.com/v1alpha1
@@ -100,8 +100,42 @@ spec:
     - sg-xxxxxxxxxxxxxxx # All Port Must allow from Self-SG
   subnet: subnet-xxxxxxxxxxxx # Secondary Subnet which having 100.x.x.x cidr
 ```
- -
- -
- -
- - a
+
+ - Apply the ENi Custom configuration
+
+   **$ kubectl apply -f eniconfig.yaml**
+   ```hcl
+   eniconfig.crd.k8s.amazonaws.com/ap-south-1a created
+   eniconfig.crd.k8s.amazonaws.com/ap-south-1b created
+   eniconfig.crd.k8s.amazonaws.com/ap-south-1c created
+   ```
+ - Validate the configuration
+
+   **$ kubectl get eniconfig**
+   ```hcl
+   NAME          AGE
+   ap-south-1a   81s
+   ap-south-1b   81s
+   ap-south-1c   81s
+   ```
+
+
+### 4. Enable Custom COnfiguration at EKS Node
+ - Kubernetes will now automatically apply the corresponding ENIConfig matching the nodes AZ, and no need to manually annotate the new EC2 instance with ENIConfig.
+
+   **$ kubectl set env daemonset aws-node -n kube-system ENI_CONFIG_LABEL_DEF=failure-domain.beta.kubernetes.io/zone**
+   ```hcl
+   daemonset.apps/aws-node env updated
+   ```
+
+   **$ kubectl set env daemonset aws-node -n kube-system ENI_CONFIG_LABEL_DEF=topology.kubernetes.io/zone**
+
+
+### 5. Restart & Rollout configuration
+ - Terminate the EKS-node from console and rollout and restart with below command.
+
+   **$ kubectl rollout restart ds aws-node -n kube-system**
+   ```hcl
+   daemonset.apps/aws-node restarted
+   ```
 
