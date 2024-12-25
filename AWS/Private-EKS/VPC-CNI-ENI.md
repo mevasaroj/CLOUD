@@ -34,8 +34,24 @@
    ```
  - Set the **AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG** environment variable to **true** in the aws-node[.noloc]`DaemonSet.
  
-   $ kubectl set env daemonset aws-node -n kube-system AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG=true
- -
- -
+   **$ kubectl set env daemonset aws-node -n kube-system AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG=true**
+   
+ - Set the **AWS_VPC_K8S_CNI_EXTERNALSNAT** environment variable to **false** to allow outside traffic
+
+   **$ kubectl set env daemonset aws-node -n kube-system AWS_VPC_K8S_CNI_EXTERNALSNAT=false**
+   
+ - Validation
+
+   **$ kubectl describe daemonset aws-node --namespace kube-system |grep AWS_VPC_K8S**
+   ```hcl
+      AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG:     **true**
+      AWS_VPC_K8S_CNI_EXTERNALSNAT:           **false**
+      AWS_VPC_K8S_CNI_LOGLEVEL:               DEBUG
+      AWS_VPC_K8S_CNI_LOG_FILE:               /host/var/log/aws-routed-eni/ipamd.log
+      AWS_VPC_K8S_CNI_RANDOMIZESNAT:          prng
+      AWS_VPC_K8S_CNI_VETHPREFIX:             eni
+      AWS_VPC_K8S_PLUGIN_LOG_FILE:            /var/log/aws-routed-eni/plugin.log
+      AWS_VPC_K8S_PLUGIN_LOG_LEVEL:           DEBUG
+   ```
  - a
 
