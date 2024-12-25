@@ -44,7 +44,7 @@
 
    **$ kubectl describe daemonset aws-node --namespace kube-system |grep AWS_VPC_K8S**
    ```hcl
-      AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG:     **true**
+      AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG:     `#true`
       AWS_VPC_K8S_CNI_EXTERNALSNAT:           **false**
       AWS_VPC_K8S_CNI_LOGLEVEL:               DEBUG
       AWS_VPC_K8S_CNI_LOG_FILE:               /host/var/log/aws-routed-eni/ipamd.log
