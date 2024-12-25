@@ -59,9 +59,47 @@
    ```
    
  - Set the **ENI_CONFIG_LABEL_DEF** environment variable to **topology.kubernetes.io/zone** to allow outside traffic.
+   
    **$ kubectl set env daemonset aws-node -n kube-system ENI_CONFIG_LABEL_DEF=topology.kubernetes.io/zone**
- -
- -
+  
+ - Validation
+
+      **$ kubectl describe daemonset aws-node --namespace kube-system |grep ENI_CONFIG**
+    ```hcl
+        ENI_CONFIG_LABEL_DEF:                   topology.kubernetes.io/zone
+   ```
+
+    
+### 3. VPC-EKS-CNI Custom Configuration
+ - Create the yaml configuration file as below.
+```hcl
+apiVersion: crd.k8s.amazonaws.com/v1alpha1
+kind: ENIConfig
+metadata:
+ name: ap-south-1a
+spec:
+  securityGroups: 
+    - sg-xxxxxxxxxxxxxxx # All Port Must allow from Self-SG
+  subnet: subnet-xxxxxxxxxxxxx  # Secondary Subnet which having 100.x.x.x cidr
+---
+apiVersion: crd.k8s.amazonaws.com/v1alpha1
+kind: ENIConfig
+metadata:
+ name: ap-south-1b
+spec:
+  securityGroups: 
+    - sg-xxxxxxxxxxxxx # All Port Must allow from Self-SG
+  subnet: subnet-xxxxxxxxxxx # Secondary Subnet which having 100.x.x.x cidr
+---
+apiVersion: crd.k8s.amazonaws.com/v1alpha1
+kind: ENIConfig
+metadata:
+ name: ap-south-1c
+spec:
+  securityGroups: 
+    - sg-xxxxxxxxxxxxxxx # All Port Must allow from Self-SG
+  subnet: subnet-xxxxxxxxxxxx # Secondary Subnet which having 100.x.x.x cidr
+```
  -
  -
  -
