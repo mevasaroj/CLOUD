@@ -24,7 +24,8 @@
 
 
 ### 3. Enable the VPC CNI
- - Validate the Latest Plugins must be installed
+ - Validate the Latest Plugins must be installed.
+ 
    **$ kubectl describe daemonset aws-node --namespace kube-system | grep Image | cut -d "/" -f 2**
    ```hcl
        amazon-k8s-cni-init:v1.18.5-eksbuild.1
