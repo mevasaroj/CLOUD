@@ -84,6 +84,6 @@
      -   Under Tags : Add require tags
      -   Click **Create endpoint**
 
-### 4. Add EFS Add-Ons.
+### 4. Create EFS
 
-### 5. Add EFS Add-Ons.
+### 5. Create Storage Class 
