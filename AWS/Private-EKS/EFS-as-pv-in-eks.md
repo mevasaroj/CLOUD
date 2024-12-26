@@ -1,6 +1,6 @@
 #  EFS as Persistent Volume in AWS EKS
 ## 1. Create EFS Role.
-###  - Create Custom EFS Policy
+###  1.1.  Create Custom EFS Policy
  - Sign in to the AWS Management Console and open the IAM console at **https://console.aws.amazon.com/iam/**
 - In the navigation pane of the IAM console, Expand __Access management__ (Left panel) choose __Policies__, and then choose __Create policy__.
 - Click on JSON 
