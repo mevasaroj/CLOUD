@@ -90,7 +90,7 @@
 
 
 
-### 5. Create a PersistentVolume
+### 6. Create a PersistentVolume
  - to create a PersistentVolume (PV) that maps to the EFS file system.
  - Use the below yaml to create PV
    ```hcl
@@ -119,7 +119,7 @@
    **$ kubectl apply -f efs-pv.yaml**
 
 
-### 5. Create a PersistentVolumeClaim
+### 7. Create a PersistentVolumeClaim
  - create a PersistentVolumeClaim (PVC) that your pods will use to request storage
    ```hcl
    apiVersion: v1
@@ -134,17 +134,38 @@
     requests:
       storage: 5Gi
    ```
- -
- -
- -
- -
- -
- -
- - a
+ - Apply this YAML file
+
+   **$ kubectl apply -f efs-pvc.yaml**
 
 
-### 5. Create Storage Class
+### 8. Mount the PVC in Pod
+ - Below is an example pod configuration that mounts the EFS-backed PVC
+   ```hcl
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: efs-app
+   spec:
+   containers:
+   - name: app
+     image: nginx
+     volumeMounts:
+     - name: efs-storage
+       mountPath: /usr/share/nginx/html
+   volumes:
+   - name: efs-storage
+     persistentVolumeClaim:
+       claimName: efs-pvc
+   ```
+ - Deploy the pod
 
+   **$ kubectl apply -f efs-app-pod.yaml**
+ 
+### 9. Validation
+ - Run the belwo command:
+
+   **$ kubectl exec -it efs-app -- df -h**
 
 
 
