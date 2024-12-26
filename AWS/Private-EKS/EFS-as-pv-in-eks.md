@@ -95,18 +95,18 @@
  - Use the below yaml to create PV
    ```hcl
    apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: efs-pv
-spec:
-  capacity:
+   kind: PersistentVolume
+   metadata:
+    name: efs-pv
+   spec:
+   capacity:
     storage: 5Gi
-  volumeMode: Filesystem
-  accessModes:
+   volumeMode: Filesystem
+   accessModes:
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: efs-sc
-  csi:
+   persistentVolumeReclaimPolicy: Retain
+   storageClassName: efs-sc
+   csi:
     driver: efs.csi.aws.com
     volumeHandle: fs-12345678
    ```
