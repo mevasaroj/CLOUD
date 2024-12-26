@@ -84,6 +84,50 @@
      -   Under Tags : Add require tags
      -   Click **Create endpoint**
 
-### 4. Create EFS
+### 4. Create EFS from AWS Console
 
-### 5. Create Storage Class 
+### 5. Create Storage Class
+
+
+
+### 5. Create a PersistentVolume
+ - to create a PersistentVolume (PV) that maps to the EFS file system.
+ - Use the below yaml to create PV
+   ```hcl
+   apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: efs-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-12345678
+   ```
+
+ - to create a PersistentVolume (PV) that maps to the EFS file system.
+ - Use the below yaml to create PV
+
+ - Apply the file
+
+$ kubectl apply -f efs-pv.yaml
+
+
+### 5. Create Storage Class
+
+
+
+
+### 5. Create Storage Class
+
+
+
+
+
+ 
