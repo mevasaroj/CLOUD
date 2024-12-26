@@ -87,8 +87,21 @@
 ### 4. Create EFS from AWS Console
 
 ### 5. Create Storage Class
-
-
+ - Create a StorageClass to define how volumes will be provisioned from EFS.
+   ```hcl
+   apiVersion: storage.k8s.io/v1
+   kind: StorageClass
+   metadata:
+     name: efs-sc
+   provisioner: efs.csi.aws.com
+   parameters:
+     directoryPerms: "700"
+     fileSystemId: fs-0400ac090973d0a92
+     provisioningMode: efs-ap
+     basePath: "/"
+   reclaimPolicy: Retain
+   volumeBindingMode: WaitForFirstConsumer
+   ```
 
 ### 6. Create a PersistentVolume
  - to create a PersistentVolume (PV) that maps to the EFS file system.
@@ -108,7 +121,7 @@
    storageClassName: efs-sc
    csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-12345678
+    volumeHandle: fs-0400ac090973d0a92
    ```
 
  - to create a PersistentVolume (PV) that maps to the EFS file system.
