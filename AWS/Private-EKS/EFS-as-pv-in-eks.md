@@ -123,10 +123,6 @@
     driver: efs.csi.aws.com
     volumeHandle: fs-0400ac090973d0a92
    ```
-
- - to create a PersistentVolume (PV) that maps to the EFS file system.
- - Use the below yaml to create PV
-
  - Apply the file
 
    **$ kubectl apply -f efs-pv.yaml**
