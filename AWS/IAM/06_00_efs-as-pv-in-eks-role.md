@@ -4,7 +4,7 @@
 - In the navigation pane of the IAM console, Expand __Access management__ (Left panel) choose __Policies__, and then choose __Create policy__.
 - Click on JSON 
 - Copy and paste the Policy from https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/06_01_efs-as-pv-in-eks-policy.tf
-- Replace the KMS Key ARN at line no. 76 and 77
+- Replace the **KMS Key ARN** at line no. 76 and 77
 - Click __Next__
 - Under **Review and create** 
    - Policy Name : **efs-as-pv-in-eks-policy**
@@ -37,7 +37,7 @@
 
 
 
-### Update the Trust relationship to terafform-role
+### Update the Trust relationship to efs-as-pv-in-eks-role
 - Sign in to the AWS Management Console and open the IAM console at **https://console.aws.amazon.com/iam/**
 - Below __Access management__ (Left Pane) --> Click **Roles**
 - Select **efs-as-pv-in-eks-role** from list
