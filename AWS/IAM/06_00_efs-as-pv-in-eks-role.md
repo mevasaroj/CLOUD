@@ -14,7 +14,7 @@
 
 
 
-### Create Terraform-role
+### Create EFS Role
 - Sign in to the AWS Management Console and open the IAM console at https://console.aws.amazon.com/iam/
 - In the navigation pane of the IAM console, Expand __Access management__ (Left panel) choose __Roles__, and then choose __Create role__.
   
