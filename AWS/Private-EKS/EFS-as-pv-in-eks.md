@@ -39,10 +39,21 @@
 
 ### 2. Add EFS Add-Ons.
  - Open the [ **Amazon EKS console.** ](https://console.aws.amazon.com/eks/home#/clusters)
- - In the left navigation pane, choose Clusters.
+ - In the left navigation pane, choose **Clusters**.
  - Choose the name of the cluster that you want to create the add-on for.
- - Choose the Add-ons tab.
- - Choose Get more add-ons.
+ - Choose the **Add-ons** tab.
+ - Choose **Get more add-ons**.
+ - On the **Select add-ons** page, choose **Amazon EFS CSI driver** --> Click **Next**
+ - On the **Configure selected add-ons settings** page
+    - Version = **Select Latest Version**
+    - At **Add-on acces** = Select **IAM roles for service accounts (IRSA)**
+    - At **Select IAM role** = Select **efs-as-pv-in-eks-role** from list
+  
+ - Expand **Optional configuration Settings**
+ - No Chnage at **Add-on configuration schema**
+ - No Chnage at **Configuration value**
+ - At **COnflict resolution method** = Tick **Override** --> Click **Next**
+ - Review and Click **Create**
 
 
 - [ **Amazon EKS console** ](https://console.aws.amazon.com/eks/home#/clusters)
