@@ -116,12 +116,31 @@
 
  - Apply the file
 
-$ kubectl apply -f efs-pv.yaml
+   **$ kubectl apply -f efs-pv.yaml**
 
 
-### 5. Create Storage Class
-
-
+### 5. Create a PersistentVolumeClaim
+ - create a PersistentVolumeClaim (PVC) that your pods will use to request storage
+   ```hcl
+   apiVersion: v1
+   kind: PersistentVolumeClaim
+   metadata:
+     name: efs-pvc
+   spec:
+   accessModes:
+    - ReadWriteMany
+   storageClassName: efs-sc
+   resources:
+    requests:
+      storage: 5Gi
+   ```
+ -
+ -
+ -
+ -
+ -
+ -
+ - a
 
 
 ### 5. Create Storage Class
