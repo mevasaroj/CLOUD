@@ -37,7 +37,7 @@
 
 
 
-### Update the Trust relationship to efs-as-pv-in-eks-role
+### Update the Trust relationship
 - Sign in to the AWS Management Console and open the IAM console at **https://console.aws.amazon.com/iam/**
 - Below __Access management__ (Left Pane) --> Click **Roles**
 - Select **efs-as-pv-in-eks-role** from list
