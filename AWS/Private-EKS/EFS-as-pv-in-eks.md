@@ -47,11 +47,10 @@
     - Version = **Select Latest Version**
     - At **Add-on acces** = Select **IAM roles for service accounts (IRSA)**
     - At **Select IAM role** = Select **efs-as-pv-in-eks-role** from list
-  
- - Expand **Optional configuration Settings**
- - No Chnage at **Add-on configuration schema**
- - No Chnage at **Configuration value**
- - At **COnflict resolution method** = Tick **Override** --> Click **Next**
+    - Expand **Optional configuration Settings**
+       - No Chnage at **Add-on configuration schema**
+       - No Chnage at **Configuration value**
+       - At **Conflict resolution method** = Tick **Override** --> Click **Next**
  - Review and Click **Create**
 
 
