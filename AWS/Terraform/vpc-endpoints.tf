@@ -7,11 +7,11 @@ data "aws_iam_policy_document" "gateway" {
 	principals {
          type = "AWS"
          identifiers = [
-	    "arn:aws:iam::686255955923:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
-		"arn:aws:iam::686255955923:role/hbl-aws-cam-role-secrete-manager-dlm-prod",
-		"arn:aws:iam::686255955923:role/hbl-aws-cam-role-tfe-dlm-prod",
-		"arn:aws:iam::686255955923:role/hbl-aws-cam-role-eks-cluster-dlm-prod",
-		"arn:aws:iam::686255955923:role/hbl-aws-cam-role-eks-workernode-dlm-prod"
+	        "arn:aws:iam::xxxxxxxxxxxx:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
+		"arn:aws:iam::xxxxxxxxxxxx:role/secrete-manager-prod",
+		"arn:aws:iam::xxxxxxxxxxxx:role/tfe-prod",
+		"arn:aws:iam::xxxxxxxxxxxx:role/eks-cluster-prod",
+		"arn:aws:iam::xxxxxxxxxxxx:role/eks-workernode-prod"
 	  ]
     }
   }
