@@ -33,7 +33,7 @@ module "prod-endpoints" {
     s3 = {
       service         = "s3"
       service_type    = "Gateway"
-      route_table_ids = ["rtb-0c051b6bbdaab04b7"]
+      route_table_ids = ["rtb-xxxxxxxxxxxxxxxxxx"]
       policy = data.aws_iam_policy_document.gateway.json
       tags  = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "s3-gateway-endpoint"]) }
     },
