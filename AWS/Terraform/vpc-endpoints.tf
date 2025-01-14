@@ -17,8 +17,8 @@ data "aws_iam_policy_document" "gateway" {
   }
 }
 
-module "hbl-aws-aps1-appname-nonpcidss-prod-endpoints" {
-  source = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-vpc-endpoints"
+module "prod-endpoints" {
+  source = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
 
   vpc_id             = var.nonpcidss-prod-vpc
   create_security_group = false
