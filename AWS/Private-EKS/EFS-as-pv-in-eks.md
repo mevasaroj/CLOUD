@@ -89,6 +89,7 @@
 ### 5. Create Storage Class
  - Create a StorageClass to define how volumes will be provisioned from EFS.
    ```hcl
+   # vi efs-storage.yaml
    apiVersion: storage.k8s.io/v1
    kind: StorageClass
    metadata:
@@ -102,11 +103,15 @@
    reclaimPolicy: Retain
    volumeBindingMode: WaitForFirstConsumer
    ```
+ - Apply the file
 
+   **$ kubectl apply -f efs-storage.yaml**
+   
 ### 6. Create a PersistentVolume
  - to create a PersistentVolume (PV) that maps to the EFS file system.
  - Use the below yaml to create PV
    ```hcl
+   # vi efs-pv.yaml
    apiVersion: v1
    kind: PersistentVolume
    metadata:
@@ -131,6 +136,7 @@
 ### 7. Create a PersistentVolumeClaim
  - create a PersistentVolumeClaim (PVC) that your pods will use to request storage
    ```hcl
+   # vi efs-pvc.yaml
    apiVersion: v1
    kind: PersistentVolumeClaim
    metadata:
@@ -151,6 +157,7 @@
 ### 8. Mount the PVC in Pod
  - Below is an example pod configuration that mounts the EFS-backed PVC
    ```hcl
+   # vi efs-app-pod.yaml
    apiVersion: v1
    kind: Pod
    metadata:
