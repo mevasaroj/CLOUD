@@ -50,7 +50,7 @@
                 "iam:PassRole"
             ],
             "Resource": [
-                "arn:aws:iam::xxxxxxxxxxxxxxxx:role/glue-role"
+                "arn:aws:iam::xxxxxxxxxxxxxxxx:role/glue-job-role"
             ]
         },
         {
