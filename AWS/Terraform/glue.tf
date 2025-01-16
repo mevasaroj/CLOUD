@@ -63,7 +63,7 @@ module "glue_connection_jdbc" {
 
   connection_properties = {
     JDBC_CONNECTION_URL = "jdbc:postgresql://postgresql-instance-01.cd3tllazsuy5.ap-south-1.rds.amazonaws.com:5433/recon" # Replace RDS Instance ARN:Port-Number/Table-name
-    SECRET_ID           = "trx-metadata-postgres" # Replace Secret ID for RDS Connection
+    SECRET_ID           = "trx-metadata-postgres" # Replace Secret ID (NAME) for RDS Connection
     JDBC_ENFORCE_SSL    = "true"
   }
 
