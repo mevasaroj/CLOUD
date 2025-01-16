@@ -2,7 +2,7 @@
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "BaseAppPermissions",
+            "Sid": "GlueJobPermissions",
             "Effect": "Allow",
             "Action": [
                 "ec2:*",
@@ -41,9 +41,7 @@
                 "databrew:ListRecipeVersions",
                 "databrew:DescribeRecipe"
             ],
-            "Resource": [
-                "*"
-            ]
+            "Resource": "*"
         },
         {
             "Sid": "AllowAWSPasssroleActions",
@@ -52,7 +50,7 @@
                 "iam:PassRole"
             ],
             "Resource": [
-                "arn:aws:iam::385089911239:role/hbl-aws-cam-role-glue-lentra-prod"
+                "arn:aws:iam::xxxxxxxxxxxxxxxx:role/glue-role"
             ]
         },
         {
@@ -66,7 +64,7 @@
                 "kms:DescribeKey"
             ],
             "Resource": [
-                "arn:aws:kms:ap-south-1:911372318716:key/3226efbd-778f-4e56-be5d-e777a438c733"
+                "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             ]
         },
         {
@@ -78,10 +76,7 @@
                 "s3:ListBucket",
                 "s3:DeleteObject"
             ],
-            "Resource": [
-                "arn:aws:s3:::hbl-aws-aps1-lentra-nonpcidss-prod-transferx-ldp-data-s3-01",
-                "arn:aws:s3:::hbl-aws-aps1-lentra-nonpcidss-prod-transferx-ldp-data-s3-01/*"
-            ]
+            "Resource": "*"
         },
         {
             "Sid": "SSMAccess",
