@@ -26,10 +26,13 @@
  - $ aws eks --region ap-south-1 update-kubeconfig --name hbl-aws-aps1-appname-prod-amazonlinux2023-cluster
    
 ### How to remove add-ons from Jump Server
- - $ aws eks delete-addon --cluster-name hbl-aws-aps1-lentra-prod-app-cluster --addon-name aws-efs-csi-driver
- - $ aws eks delete-addon --cluster-name hbl-aws-aps1-lentra-prod-app-cluster --addon-name vpc-cni
- - $ aws eks delete-addon --cluster-name hbl-aws-aps1-lentra-prod-app-cluster --addon-name coredns
- - $ aws eks delete-addon --cluster-name hbl-aws-aps1-lentra-prod-app-cluster --addon-name kube-proxy
- - $ aws eks delete-addon --cluster-name hbl-aws-aps1-lentra-prod-app-cluster --addon-name aws-ebs-csi-driver
+###### Command
+ - $ aws eks delete-addon --cluster-name cluster-name --addon-name add-ons-name
+###### Example 
+ - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name aws-efs-csi-driver
+ - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name vpc-cni
+ - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name coredns
+ - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name kube-proxy
+ - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name aws-ebs-csi-driver
 
 
