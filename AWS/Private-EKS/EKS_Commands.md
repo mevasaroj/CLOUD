@@ -16,16 +16,16 @@
  - Create a config file at user home directory
  - $ vi /home/username/.aws/config
     ```hcl
-[default]
-region = ap-south-1
-output = text
+    [default]
+    region = ap-south-1
+    output = text
 
-[profile hdfcbank]
-region = ap-south-1
-role_arn = arn:aws:iam::xxxxxxxxxxxxxxx:role/eks-cluster-role
-credential_source = Ec2InstanceMetadata
-output = text
-  ```
+    [profile hdfcbank]
+    region = ap-south-1
+    role_arn = arn:aws:iam::xxxxxxxxxxxxxxx:role/eks-cluster-role
+    credential_source = Ec2InstanceMetadata
+    output = text
+    ```
  - Validate a configuration
  - $ aws configure list
  - $ aws configure list-profiles
