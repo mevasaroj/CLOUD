@@ -27,7 +27,7 @@
    
 ### How to remove add-ons from Jump Server
 ###### Command
- - $ aws eks delete-addon --cluster-name cluster-name --addon-name add-ons-name
+ - $ aws   eks   delete-addon   --cluster-name  cluster-name   --addon-name   add-ons-name
 ###### Example 
  - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name aws-efs-csi-driver
  - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name vpc-cni
