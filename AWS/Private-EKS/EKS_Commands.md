@@ -29,10 +29,10 @@
 ###### Command
  - $ aws eks delete-addon --cluster-name cluster-name --addon-name add-ons-name
 ###### Example 
- - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name aws-efs-csi-driver
- - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name vpc-cni
- - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name coredns
- - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name kube-proxy
- - $ aws eks delete-addon --cluster-name aws-aps1-appname-prod-app-cluster --addon-name aws-ebs-csi-driver
+ - $ aws eks delete-addon --cluster-name aws-appname-prod-app-cluster --addon-name aws-efs-csi-driver
+ - $ aws eks delete-addon --cluster-name aws-appname-dev-app-cluster --addon-name vpc-cni
+ - $ aws eks delete-addon --cluster-name aws-appname-uat-app-cluster --addon-name coredns
+ - $ aws eks delete-addon --cluster-name aws-appname-prod-data-cluster --addon-name kube-proxy
+ - $ aws eks delete-addon --cluster-name aws-appname-prod-log-cluster --addon-name aws-ebs-csi-driver
 
 
