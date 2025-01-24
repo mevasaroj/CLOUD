@@ -77,8 +77,8 @@
   
  - $ kubectl get pods -n kube-system | grep -i coredns
    ```hcl
-   coredns-95c45b7d4-xk5m8               0/1     Running   0          2m5s
-   coredns-95c45b7d4-ztv4t               0/1     Running   0          2m27s
+   coredns-95c45b7d4-xk5m8               0/1     Running   0          8s
+   coredns-95c45b7d4-ztv4t               0/1     Running   0          33s
    ```
 ###### 3. Validate the coredns pods log
  - $ kubectl logs --namespace=kube-system -l k8s-app=kube-dns
