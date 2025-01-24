@@ -35,4 +35,38 @@
  - $ aws eks delete-addon --cluster-name aws-appname-prod-data-cluster --addon-name kube-proxy
  - $ aws eks delete-addon --cluster-name aws-appname-prod-log-cluster --addon-name aws-ebs-csi-driver
 
+### How to Enable coredns add-ons log
+###### 1. Connect to EKS Cluster 
+ - $ aws eks delete-addon --cluster-name aws-appname-prod-app-cluster --addon-name aws-efs-csi-driver
+
+###### 2. Edit the coredns configmap
+ - $ kubectl -n kube-system edit configmap coredns
+   ```hcl
+   # Please edit the object below. Lines beginning with a '#' will be ignored,
+   # and an empty file will abort the edit. If an error occurs while saving this fiile will be
+   # reopened with the relevant failures.
+   apiVersion: v1
+   data:
+     Corefile: |
+       .:53 {
+         log # Add this to Enabling CoreDNS Logging
+         errors
+         health {
+           lameduck 5s
+          }
+         ready
+         kubernetes cluster.local in-addr.arpa ip6.arpa {
+           pods insecure
+           fallthrough in-addr.arpa ip6.arpa
+         }
+         prometheus :9153
+         forward . /etc/resolv.conf
+         cache 30
+         loop
+   ```
+
+###### 3. Display the coredns log
+ - $ kubectl -n kube-system edit configmap coredns
+
+
 
