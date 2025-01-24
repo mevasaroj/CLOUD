@@ -65,8 +65,23 @@
          loop
    ```
 
-###### 3. Display the coredns log
- - $ kubectl -n kube-system edit configmap coredns
+###### 3. Delete the coredns pods
+ - $ kubectl get pods -n kube-system | grep -i coredns
+   ```hcl
+   coredns-95c45b7d4-xdcl4               0/1     Running   0          2m5s
+   coredns-95c45b7d4-7pmh2               0/1     Running   0          2m27s
+   ```
+
+ - $ kubectl delete pods coredns-95c45b7d4-xdcl4 -n kube-system
+ - $ kubectl delete pods coredns-95c45b7d4-7pmh2 -n kube-system
+  
+ - $ kubectl get pods -n kube-system | grep -i coredns
+   ```hcl
+   coredns-95c45b7d4-xk5m8               0/1     Running   0          2m5s
+   coredns-95c45b7d4-ztv4t               0/1     Running   0          2m27s
+   ```
+###### 3. Validate the coredns pods log
+ - $ kubectl logs --namespace=kube-system -l k8s-app=kube-dns
 
 
 
