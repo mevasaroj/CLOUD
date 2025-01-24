@@ -344,3 +344,42 @@ eks_managed_node_groups = {
 }
   
 #=================================================================================================================================================================
+# Custom Network Configuration
+
+locals { pods-subnet = { 
+    "ap-south-1a" = "subnet-0d31cf97ba9de98a0",
+    "ap-south-1b" = "subnet-01e4fee1256fed9cd",
+    "ap-south-1c" = "subnet-0dd0572cf736d0866" 
+}}
+	
+data "aws_eks_cluster" "cluster" {
+  name = module.app_eks_bottlerocket.cluster_name
+}
+
+data "aws_eks_cluster_auth" "cluster" {
+  name = module.app_eks_bottlerocket.cluster_name
+}	
+
+provider "kubectl" {
+    apply_retry_count      = 5
+    host                   = data.aws_eks_cluster.cluster.endpoint
+    cluster_ca_certificate = base64decode(module.app_eks_bottlerocket.cluster_certificate_authority_data)
+    load_config_file       = false
+    token                  = data.aws_eks_cluster_auth.cluster.token
+  }    
+	
+resource "kubectl_manifest" "cluster-eniconfig" {
+  for_each  = tomap(local.pods-subnet)
+  yaml_body = <<-YAML
+  apiVersion: crd.k8s.amazonaws.com/v1alpha1
+  kind: ENIConfig
+  metadata: 
+    name: ${each.key}
+    namespace: default
+  spec: 
+    securityGroups: 
+      - ${var.eks-cluster-workernode-sg}
+    subnet: ${each.value}
+  YAML
+}
+#=================================================================================================================================================================
