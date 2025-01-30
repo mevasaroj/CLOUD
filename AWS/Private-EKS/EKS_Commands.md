@@ -81,7 +81,43 @@
    coredns-95c45b7d4-ztv4t               0/1     Running   0          33s
    ```
 ###### 3. Validate the coredns pods log
- - $ kubectl logs --namespace=kube-system -l k8s-app=kube-dns
+ - Check CoreDNS logs.
+    - $ kubectl logs --namespace=kube-system -l k8s-app=kube-dns
+      
+ - Check if the CoreDNS logs fail or get any hits from the application pod:
+    - $ kubectl logs --follow -n kube-system --selector 'k8s-app=kube-dns'
+  
+ - Locate a worker node where a CoreDNS pod is running:
+    - $ kubectl get pod -n kube-system -l k8s-app=kube-dns -o wide
 
+###### 3. Validate the coredns Configuration
+$ kubectl describe svc kube-dns -n kube-system
+```hcl
+Name:              kube-dns
+Namespace:         kube-system
+Labels:            eks.amazonaws.com/component=kube-dns
+                   k8s-app=kube-dns
+                   kubernetes.io/cluster-service=true
+                   kubernetes.io/name=CoreDNS
+Annotations:       prometheus.io/port: 9153
+                   prometheus.io/scrape: true
+Selector:          k8s-app=kube-dns
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.199.95.10
+IPs:               10.199.95.10
+Port:              dns  53/UDP
+TargetPort:        53/UDP
+Endpoints:         
+Port:              dns-tcp  53/TCP
+TargetPort:        53/TCP
+Endpoints:         
+Port:              metrics  9153/TCP
+TargetPort:        9153/TCP
+Endpoints:         
+Session Affinity:  None
+Events:            <none>
+```
 
 
