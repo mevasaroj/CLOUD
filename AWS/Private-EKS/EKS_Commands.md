@@ -90,8 +90,8 @@
  - Locate a worker node where a CoreDNS pod is running:
     - $ kubectl get pod -n kube-system -l k8s-app=kube-dns -o wide
 
-###### 3. Validate the coredns Configuration
-$ kubectl describe svc kube-dns -n kube-system
+###### 4. Validate the coredns Configuration
+- ***$ kubectl describe svc kube-dns -n kube-system***
 ```hcl
 Name:              kube-dns
 Namespace:         kube-system
