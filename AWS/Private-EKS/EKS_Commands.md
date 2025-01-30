@@ -64,7 +64,10 @@
          cache 30
          loop
    ```
-
+   
+ - Validate the CoreDNS configmaps.
+ - $ kubectl describe configmaps --namespace kube-system coredns
+  
 ###### 3. Delete the coredns pods
  - $ kubectl get pods -n kube-system | grep -i coredns
    ```hcl
