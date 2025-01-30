@@ -86,6 +86,7 @@
 ###### 3. Validate the coredns pods log
  - Check CoreDNS logs.
     - $ kubectl logs --namespace=kube-system -l k8s-app=kube-dns
+    - $ kubectl logs --namespace kube-system -f deployment/coredns --follow
       
  - Check if the CoreDNS logs fail or get any hits from the application pod:
     - $ kubectl logs --follow -n kube-system --selector 'k8s-app=kube-dns'
