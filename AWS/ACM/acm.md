@@ -38,8 +38,8 @@
 
 ## 3.	Consolidate the Require Files
  - Certificate Creation team will revert with zip which include 3 files as below. Download zip file and unzip it.
-    - # unzip meva.cloudeng.com
-    - # cd meva.cloudeng.com
+    - $ unzip meva.cloudeng.com
+    - $ cd meva.cloudeng.com
     - $ ls -l
       ```hcl
       total 12
@@ -49,9 +49,9 @@
       ```
 
  - Rename the **meva.cloudeng_com.txt** to **meva.cloudeng_com.csr**, this file can be use for certificate_body
-    - # cd meva.cloudeng.com
-    - # mv meva.cloudeng_com.txt meva.cloudeng_com.cer
-    - # ls -l
+    - $ cd meva.cloudeng.com
+    - $ mv meva.cloudeng_com.txt meva.cloudeng_com.cer
+    - $ ls -l
       ```hcl
       total 12
       -rw-r--r-- 1 M19521 1049089 1316 Jun 12 04:28 'DigiCert Global Root G2.txt'
