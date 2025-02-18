@@ -37,6 +37,7 @@
 
 
 ## 3.	Consolidate the Require Files
+####  3.1.  Create certificate file --> CER file
  - Certificate Creation team will revert with zip which include 3 files as below. Download zip file and unzip it.
     - $ unzip meva.cloudeng.com
     - $ cd meva.cloudeng.com
@@ -48,10 +49,10 @@
       -rw-r--r-- 1 M19521 1049089 2518 Jun 12 04:28  meva.cloudeng_com.txt
       ```
 
- - Rename the **meva.cloudeng_com.txt** to **meva.cloudeng_com.csr**, this file can be use for certificate_body
+ - Rename the **meva.cloudeng_com.txt** to **meva.cloudeng_com.csr**, this file can be use for certificate_body in AWS ACM inport.
     - $ cd meva.cloudeng.com
     - $ mv meva.cloudeng_com.txt meva.cloudeng_com.cer
-    - $ ls -l
+    - $ ls -l --> Last File
       ```hcl
       total 12
       -rw-r--r-- 1 M19521 1049089 1316 Jun 12 04:28 'DigiCert Global Root G2.txt'
@@ -59,8 +60,55 @@
       -rw-r--r-- 1 M19521 1049089 2518 Jun 12 04:28  meva.cloudeng_com.cer
       ```
 
+####  3.2.  Create certificate_chain file --> crt file
+- Run the following command.
+   - $ cd meva.cloudeng.com
+   - $ ls -l 
+     ```hcl
+      total 12
+      -rw-r--r-- 1 M19521 1049089 1316 Jun 12 04:28 'DigiCert Global Root G2.txt'
+      -rw-r--r-- 1 M19521 1049089 1904 Jun 12 04:28 'GeoTrust EV RSA CA G2.txt'
+      -rw-r--r-- 1 M19521 1049089 2518 Jun 12 04:28  meva.cloudeng_com.cer
+      ```
+   - $ cat 'DigiCert Global Root G2.txt' > meva.cloudeng_com.crt
+   - $ cat 'GeoTrust EV RSA CA G2.txt' >> meva.cloudeng_com.crt
+   - $ ls -l --> Last File
+     ```hcl
+     -rw-r--r-- 1 M19521 1049089 1316 Jun 12 04:28 'DigiCert Global Root G2.txt'
+     -rw-r--r-- 1 M19521 1049089 1904 Jun 12 04:28 'GeoTrust EV RSA CA G2.txt'
+     -rw-r--r-- 1 M19521 1049089 2518 Jun 12 04:28  meva.cloudeng_com.cer
+     -rw-r--r-- 1 M19521 1049089 3220 Jun 12 18:58  meva.cloudeng_com.crt
+     ```
 
-2.	Generate the Certificate
+
+####  3.3.  Import Private Key file and above 2 files into ACM
+   - $ cd meva.cloudeng.com
+   - mv ../Y_CSR_Files/Private_Key/meva.cloudeng_com.key .
+   - $ ls -l --> Last 3 files requrie into ACM import
+     ```hcl
+     -rw-r--r-- 1 M19521 1049089 1316 Jun 12 04:28 'DigiCert Global Root G2.txt'
+     -rw-r--r-- 1 M19521 1049089 1904 Jun 12 04:28 'GeoTrust EV RSA CA G2.txt'
+     -rw-r--r-- 1 M19521 1049089 2518 Jun 12 04:28  meva.cloudeng_com.cer
+     -rw-r--r-- 1 M19521 1049089 3220 Jun 12 18:58  meva.cloudeng_com.crt
+     -rw-r--r-- 1 M19521 1049089 1704 Jun  9 15:39  meva.cloudeng_com.key
+     ```
+
+## 4.	Import into AWS ACMx
+ - Terraform Script
+   ```hcl
+   module "bre_hdfcbankapps_com" {
+       source    = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-acm"
+       name                = "meva.cloudeng.com"
+       environment         = "prod"
+       label_order         = ["name"]
+       private_key         = "../meva.cloudeng.com/meva.cloudeng_com.key"
+       certificate_body    = "../meva.cloudeng.com/meva.cloudeng_com.cer"
+       certificate_chain   = "../meva.cloudeng.com/meva.cloudeng_com.crt"
+       import_certificate  = true
+       tags                = var.additional_tags
+   }
+   ```
+   
    
  - Click __Next__
  - Under **Review and create**
