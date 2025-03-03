@@ -4,7 +4,7 @@
 #====================== COMMON DB SUBNET GROUP ==============================================================================================
 #============================================================================================================================================
 module "mysql-subnet-group" {
-  source = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-rds/modules/db_subnet_group"
+  source = "terraform-aws-rds/modules/db_subnet_group"
   name  = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "mysql-subnet-group"])
   subnet_ids = ["${var.db-subnet-aza}", "${var.db-subnet-azb}", "${var.db-subnet-azc}"]
   tags = merge( { Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "mysql-subnet-group"]), 
@@ -14,7 +14,7 @@ module "mysql-subnet-group" {
 #====================== COMMON DB PARAMETER GROUP ===========================================================================================
 #============================================================================================================================================
 module "mysql-parameter-group" {
-  source = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-rds/modules/db_parameter_group"
+  source = "terraform-aws-rds/modules/db_parameter_group"
   create = true
   name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "mysql-parameter-group"])
   description     = "mysql instance parameter group"
@@ -25,6 +25,12 @@ module "mysql-parameter-group" {
     { name  = "local_infile", value = "0" , apply_method = "immediate" }, 
     { name = "password_history", value = "5", apply_method = "immediate"  },
     { name = "password_reuse_interval", value = "365", apply_method = "immediate"  },
+	  { name = "block_encryption_mode", value = "aes-256-cbc", apply_method = "immediate"  },
+	  { name = "default_password_lifetime", value = "365", apply_method = "immediate"  },
+	  { name = "max_user_connections", value = "1000", apply_method = "immediate"  },
+	  { name = "sql_mode", value = "STRICT_ALL_TABLES", apply_method = "immediate"  },
+	  { name = "validate_password_length", value = "14", apply_method = "immediate"  },
+	  { name = "validate_password_policy", value = "STRONG", apply_method = "immediate"  },
     { name = "require_secure_transport", value = "1", apply_method = "immediate"  }
   ]  
 
@@ -39,7 +45,7 @@ module "mysql-parameter-group" {
 ########### START OF DB INSTNACE CREATION - 01    ##############################################
 #=================================================================================================================================================
 module "mysql-instance" {
-  source = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-rds"
+  source = "terraform-aws-rds/modules/aws-rds"
   identifier = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "mysql-instance"])
 
   # Engine and Family
