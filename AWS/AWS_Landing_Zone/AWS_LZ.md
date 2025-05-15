@@ -5,9 +5,14 @@
  - AWS Control Tower automates the setup of a new landing zone using best-practices blueprints for identity, federated access, and account structure.
 
 # AWS Control Tower 
-- It is a service that simplifies setting up and managing a multi-account AWS environment while adhering to AWS best practices.
-- It automates the process of creating a landing zone, which is a secure and compliant environment for enterprises, and applies controls (rules) to enforce policies and guardrails.
-- Control Tower integrates with other AWS services like AWS Organizations, AWS Service Catalog, and IAM Identity Center to streamline the process. 
+- Automated Landing Zone Setup: Control Tower automates the creation of a landing zone, which is a multi-account AWS environment configured to follow best practices.
+- Governance and Compliance: It enforces mandatory and optional controls, called "guardrails," to ensure compliance with policies and recommended practices.
+- Multi-Account Management: It helps organizations manage and govern multiple AWS accounts, ensuring they align with established compliance policies.
+- Account Provisioning: It enables end users to provision new AWS accounts quickly using configurable account templates.
+- Centralized Visibility: The Control Tower dashboard provides continuous visibility into the AWS environment, allowing for monitoring and control.
+- Security and Compliance: It helps ensure that security logs and necessary cross-account access rights are in place.
+- Integration with AWS Services: It leverages the capabilities of other AWS services like AWS Organizations, AWS Service Catalog, and IAM Identity Center.
+- Preventive and Investigative Controls: It uses preventive and investigative controls to help prevent organizations and accounts from straying from recommended practices. 
 
 ##### Diagram Landing Zone
 
