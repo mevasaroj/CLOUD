@@ -1,0 +1,169 @@
+
+##############################################################################################################################################################
+# EKS Cluster & Managed Node groups Module
+##############################################################################################################################################################
+
+module "app_eks_bottlerocket" {
+  source  = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-eks_v6"
+  create = true
+
+  name    = join("-", [local.org, local.csp, local.region, local.account, local.env, "eks-cluster"])
+  kubernetes_version = "1.33"
+
+  endpoint_public_access  = false
+  endpoint_private_access = true
+  
+
+
+create_cloudwatch_log_group     = false
+  vpc_id                                = var.nonpcidss-prod-vpc 
+  #service_ipv4_cidr             = "10.211.128.0/24"
+  control_plane_subnet_ids              = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
+  create_security_group = false  
+  additional_security_group_ids     = ["${var.eks-cluster}"]
+  #security_group_id  = ["${var.eks-cluster}"]
+  
+
+  create_node_security_group = false
+  node_security_group_id     = var.eks-cluster
+
+  enable_irsa     = true
+  create_iam_role = false
+  iam_role_arn    = "arn:aws:iam::048599826367:role/hbl-aws-cam-role-eks-cluster-eligibilityengine-uat"
+
+#===========================
+  # EKS Cluster Encryption
+  #===========================
+  create_kms_key = false
+  encryption_config = {
+    resources : [ "secrets" ],
+    provider_key_arn = "arn:aws:kms:ap-south-1:911372318716:key/mrk-0f78d2f68ed04b6e8256bf7358548a20"
+  }
+
+#cluster_encryption_config = {
+  #===========================
+  # EKS Managed Addons
+  #===========================
+
+  addons = {
+    coredns = {
+      most_recent                 = true
+      resolve_conflicts_on_create = "OVERWRITE"
+      resolve_conflicts_on_update = "PRESERVE"
+      tags = merge(var.additional_tags, {
+        Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "coredns"])})
+    }
+    kube-proxy = {
+      most_recent                 = true
+      resolve_conflicts_on_create = "OVERWRITE"
+      resolve_conflicts_on_update = "PRESERVE"
+      tags = merge(var.additional_tags, {
+        Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "kube-proxy"])})
+    }
+    vpc-cni = {
+      before_compute              = true
+      most_recent                 = true
+      resolve_conflicts_on_create = "OVERWRITE"
+      resolve_conflicts_on_update = "OVERWRITE"
+/*
+      configuration_values = jsonencode({
+        env = {
+           AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG = "true"
+           AWS_VPC_K8S_CNI_EXTERNALSNAT = "false"
+           ENI_CONFIG_LABEL_DEF = "topology.kubernetes.io/zone"
+           ENABLE_PREFIX_DELEGATION = "true"            
+           WARM_PREFIX_TARGET = "1"
+        }})
+*/
+    	tags = merge(var.additional_tags, {
+         Name = join("-", [local.org, local.csp, local.region, local.account, local.env, "vpc-cni"])})
+     }    
+    aws-efs-csi-driver = {
+       most_recent                 = true
+       resolve_conflicts_on_create = "OVERWRITE"
+       resolve_conflicts_on_update = "OVERWRITE"
+       service_account_role_arn = "arn:aws:iam::048599826367:role/hbl-aws-cam-role-eks-workernode-eligibilityengine-uat"
+       tags = merge(var.additional_tags, {
+         Name = join("-", [local.org, local.csp, local.region, local.account, local.env, "efs-csi-driver"])})
+     }
+     aws-ebs-csi-driver = {
+       most_recent                 = true
+       resolve_conflicts_on_create = "OVERWRITE"
+       resolve_conflicts_on_update = "PRESERVE"
+       service_account_role_arn = "arn:aws:iam::048599826367:role/hbl-aws-cam-role-eks-workernode-eligibilityengine-uat"
+       tags = merge(var.additional_tags, {
+         Name = join("-", [local.org, local.csp, local.region, local.account, local.env, "ebs-csi-driver"])})
+     }
+    }
+
+  #===========================
+  # EKS Managed Nodegroups
+  #===========================
+  eks_managed_node_groups = {
+   ondemand = {
+      name    = join("-", [local.org,  local.csp, local.account, local.env, "ondemand"])
+      min_size           = 1      
+      desired_size       = 1
+      max_size           = 1
+      create_iam_role    = false
+      iam_role_arn = "arn:aws:iam::048599826367:role/hbl-aws-cam-role-eks-workernode-eligibilityengine-uat"
+      ami_type       = "BOTTLEROCKET_x86_64"
+      subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
+      capacity_type      = "ON_DEMAND"
+      instance_types     = [ "c6a.2xlarge" ]
+      tags = merge(var.additional_tags, {
+        Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "ondemand"])})
+    }
+    spot = {
+       name               = join("-", [local.org, local.csp, local.region, local.vpcname, local.account, local.env, "spot"])
+       create_iam_role    = false
+       iam_role_arn = "arn:aws:iam::048599826367:role/hbl-aws-cam-role-eks-workernode-eligibilityengine-uat"
+       min_size           = 0
+       desired_size       = 0
+       max_size           = 8
+       ami_type       = "BOTTLEROCKET_x86_64"
+      instance_types =["c5.2xlarge", "c5a.2xlarge", "c5d.2xlarge", "c6a.2xlarge", "c6i.2xlarge", "c6in.2xlarge", "c7i.2xlarge"]
+       subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
+       capacity_type      = "SPOT"
+       tags = merge(var.additional_tags, {
+         Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "spot"])
+         }
+       )
+     }
+   
+
+  }
+
+# Cluster Tags
+  tags = merge(var.additional_tags, {
+    Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "bottlerocket-cluster"])
+    } )
+	   
+}
+#=======================================================================
+## VPC CNI ENI #############
+#======================================================================
+
+locals { pods-subnet = { 
+    "ap-south-1a" = "subnet-0c0119e95aa26d9b0",
+    "ap-south-1b" = "subnet-01e7d9c383d7f8519",
+    "ap-south-1c" = "subnet-09919d3d195adb829" 
+}}
+
+resource "kubectl_manifest" "eniconfig" {
+  for_each  = tomap(local.pods-subnet)
+  yaml_body = <<-YAML
+  apiVersion: crd.k8s.amazonaws.com/v1alpha1
+  kind: ENIConfig
+  metadata: 
+    name: ${each.key}
+    namespace: default
+  spec: 
+    securityGroups: 
+      - ${var.eks-cluster}
+    subnet: ${each.value}
+  YAML
+}
+#======================================================================
+## END VPC CNI ENI #############
+#======================================================================
