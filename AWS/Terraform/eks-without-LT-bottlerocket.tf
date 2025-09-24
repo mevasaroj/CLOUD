@@ -140,6 +140,32 @@ create_cloudwatch_log_group     = false
     } )
 	   
 }
+
+#===============================================================
+#### EKS ACCESS POINT 
+#=================================================================
+resource "aws_eks_access_entry" "admin" {
+  depends_on = [ module.app_eks_bottlerocket ]
+  cluster_name      = "${module.app_eks_bottlerocket.cluster_name}"
+  principal_arn     = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
+  kubernetes_groups = ["admin"]
+  type              = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "policy" {
+  depends_on = [aws_eks_access_entry.admin ]
+  cluster_name  = "${module.app_eks_bottlerocket.cluster_name}"
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
+
+access_scope {
+    type       = "namespace"
+    namespaces = ["cluster"]
+  }
+}
+#===============================================================
+#### END EKS ACCESS POINT 
+#=================================================================
 #=======================================================================
 ## VPC CNI ENI #############
 #======================================================================
