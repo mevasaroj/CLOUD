@@ -5,7 +5,7 @@ module "elasticache_valkey" {
 
   engine         = "valkey"
   engine_version = "7.2"
-  node_type      = "cache.t2g.small"
+  node_type      = "cache.t4g.small"
 
   transit_encryption_enabled = true
   auth_token                 = "PickSomethingMoreSecure123!"
@@ -25,7 +25,7 @@ module "elasticache_valkey" {
 
   # Parameter Group
   create_parameter_group      = true
-  parameter_group_name        = join("-", [local.org, local.csp, local.region, local.account, local.env, "valkey_parameter_group"])
+  parameter_group_name        = "valkey"
   parameter_group_family      = "valkey7"
   parameter_group_description = "Valkey replication group parameter group"
   parameters = [
