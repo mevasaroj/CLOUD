@@ -8,7 +8,10 @@ module "elasticache_valkey" {
   node_type      = "cache.t4g.small"
 
   transit_encryption_enabled = true
-  auth_token                 = "PickSomethingMoreSecure123!"
+kms_key_arn = "arn:aws:kms:ap-south-1:911372318716:key/1e884af2-73cd-4132-9612-d9dd72d981e0"
+  #auth_token                 = "PickSomethingMoreSecure123!"
+  auth_token                 = "HdfcBankLimited123$"
+
   maintenance_window         = "sun:05:00-sun:09:00"
   apply_immediately          = true
 
@@ -24,17 +27,7 @@ module "elasticache_valkey" {
 
   # Parameter Group
   create_parameter_group      = false
-/*  
-parameter_group_name        = "valkey"
-  parameter_group_family      = "valkey7"
-  parameter_group_description = "Valkey replication group parameter group"
-  parameters = [
-    {
-      name  = "latency-tracking"
-      value = "yes"
-    }
-  ]
-*/
+
   tags = merge(var.additional_tags, {
     Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "valkey"])
     } )
