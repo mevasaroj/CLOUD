@@ -20,11 +20,12 @@ module "elasticache_valkey" {
   # Subnet Group
   create_subnet_group = true
   subnet_group_name   = join("-", [local.org, local.csp, local.region, local.account, local.env, "valkey-subnet"])
-  subnet_ids = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
+  subnet_ids = ["${var.infra-subnet-aza}", "${var.infra-subnet-azb}", "${var.infra-subnet-azc}"]
 
   # Parameter Group
-  create_parameter_group      = true
-  parameter_group_name        = "valkey"
+  create_parameter_group      = false
+/*  
+parameter_group_name        = "valkey"
   parameter_group_family      = "valkey7"
   parameter_group_description = "Valkey replication group parameter group"
   parameters = [
@@ -33,7 +34,7 @@ module "elasticache_valkey" {
       value = "yes"
     }
   ]
-
+*/
   tags = merge(var.additional_tags, {
     Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "valkey"])
     } )
