@@ -18,10 +18,9 @@ module "elasticache_valkey" {
   security_group_name = var.elasticache-sg
 
   # Subnet Group
-  create_subnet_group = false
-  #subnet_group_name        = join("-", [local.org, local.csp, local.region, local.account, local.env, "valkey_subnet_group"])
-  #subnet_group_description = "Valkey replication group subnet group"
-  subnet_group_name   = var.infra-subnet-aza
+  create_subnet_group = true
+  subnet_group_name   = join("-", [local.org, local.csp, local.region, local.account, local.env, "valkey-subnet"])
+  subnet_ids = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
 
   # Parameter Group
   create_parameter_group      = true
