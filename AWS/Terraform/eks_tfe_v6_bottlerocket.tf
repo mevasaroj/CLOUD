@@ -123,17 +123,14 @@ module "bottlerocket_eks_cluster" {
        subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
        capacity_type      = "SPOT"
        tags = merge(var.additional_tags, {
-         Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "spot"])
-         }
-       )
+         Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "spot"])})
       }
-	 }
-  }
+    }
   
 # Cluster Tags
-  tags = merge(var.additional_tags, {
-    Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "bottlerocker_cluster"])
-    } )
+    tags = merge({ Name = join("-",[local.org, local.csp, local.region, local.vpcname, local.env, local.account, "bottlerocker_cluster"])}, 
+var.additional_tags)
+
 	   
 }
 #===============================================================
