@@ -6,7 +6,7 @@ module "bottlerocket_eks_cluster" {
   source  = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-eks_v6"
   create = true
 
-  name    = join("-", [local.org, local.csp, local.region, local.account, local.env, "bottlerocker_cluster"])
+  name    = join("-", [local.org, local.csp, local.region, local.account, local.env, "bottlerocker-cluster"])
   kubernetes_version = "1.33"
 
   endpoint_public_access  = false
@@ -128,7 +128,7 @@ module "bottlerocket_eks_cluster" {
     }
   
 # Cluster Tags
-    tags = merge({ Name = join("-",[local.org, local.csp, local.region, local.vpcname, local.env, local.account, "bottlerocker_cluster"])}, 
+    tags = merge({ Name = join("-",[local.org, local.csp, local.region, local.vpcname, local.env, local.account, "bottlerocker-cluster"])}, 
 var.additional_tags)
 
 	   
