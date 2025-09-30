@@ -97,24 +97,24 @@ module "bottlerocket_eks_cluster" {
   # EKS Managed Nodegroups
   #===========================
  eks_managed_node_groups = {
-   ondemand = {
-      name    = join("-", [local.org,  local.csp, local.account, local.env, "ondemand"])
+   ondemand-ng = {
+      name    = join("-", [local.org,  local.csp, local.account, local.env, "ondemand-ng"])
       min_size           = 1      
       desired_size       = 1
       max_size           = 1
       create_iam_role    = false
-      iam_role_arn = "arn:aws:iam::048599826367:role/hbl-aws-cam-role-eks-workernode-eligibilityengine-uat"
+      iam_role_arn = "arn:aws:iam::216066832707:role/hbl-aws-aps1-appname-uat-eks-workernode-role"
       ami_type       = "BOTTLEROCKET_x86_64"
       subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
       capacity_type      = "ON_DEMAND"
       instance_types     = [ "c6a.2xlarge" ]
       tags = merge(var.additional_tags, {
-        Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "ondemand"])})
+        Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "ondemand-ng"])})
     }
-    spot = {
-       name               = join("-", [local.org, local.csp, local.region, local.vpcname, local.account, "spot"])
+    spot-ng = {
+       name               = join("-", [local.org, local.csp, local.region, local.vpcname, local.account, "spot-ng"])
        create_iam_role    = false
-       iam_role_arn = "arn:aws:iam::048599826367:role/hbl-aws-cam-role-eks-workernode-eligibilityengine-uat"
+       iam_role_arn = "arn:aws:iam::216066832707:role/hbl-aws-aps1-appname-uat-eks-workernode-role"
        min_size           = 0
        desired_size       = 0
        max_size           = 8
@@ -123,7 +123,7 @@ module "bottlerocket_eks_cluster" {
        subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
        capacity_type      = "SPOT"
        tags = merge(var.additional_tags, {
-         Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, "spot"])})
+         Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, "spot-ng"])})
       }
     }
   
@@ -164,7 +164,7 @@ access_scope {
 #=======================================================================
 ## VPC CNI ENI #############
 #======================================================================
-
+/*
 locals { pods-subnet = { 
     "ap-south-1a" = "subnet-0c0119e95aa26d9b0",
     "ap-south-1b" = "subnet-01e7d9c383d7f8519",
@@ -188,3 +188,4 @@ resource "kubectl_manifest" "eniconfig" {
 #======================================================================
 ## END VPC CNI ENI #############
 #======================================================================
+*/
