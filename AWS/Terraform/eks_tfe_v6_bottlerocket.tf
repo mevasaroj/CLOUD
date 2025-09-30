@@ -112,7 +112,7 @@ module "bottlerocket_eks_cluster" {
         Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "ondemand"])})
     }
     spot = {
-       name               = join("-", [local.org, local.csp, local.region, local.vpcname, local.account, local.env, "spot"])
+       name               = join("-", [local.org, local.csp, local.region, local.vpcname, local.account, "spot"])
        create_iam_role    = false
        iam_role_arn = "arn:aws:iam::048599826367:role/hbl-aws-cam-role-eks-workernode-eligibilityengine-uat"
        min_size           = 0
