@@ -112,7 +112,7 @@ module "bottlerocket_eks_cluster" {
         Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "ondemand-ng"])})
     }
     spot-ng = {
-       name               = join("-", [local.org, local.csp, local.region, local.vpcname, local.account, "spot-ng"])
+       name             =  join("-", [local.org, local.csp, local.region, local.account, local.env, "spot"])
        create_iam_role    = false
        iam_role_arn = "arn:aws:iam::216066832707:role/hbl-aws-aps1-appname-uat-eks-workernode-role"
        min_size           = 0
@@ -123,7 +123,7 @@ module "bottlerocket_eks_cluster" {
        subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
        capacity_type      = "SPOT"
        tags = merge(var.additional_tags, {
-         Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, "spot-ng"])})
+         Name = join("-", [local.org, local.csp, local.region, local.account, local.env, "spot"])})
       }
     }
   
@@ -159,7 +159,6 @@ access_scope {
 #===============================================================
 #### END EKS ACCESS POINT 
 #=================================================================
-
 
 #=======================================================================
 ## VPC CNI ENI #############
