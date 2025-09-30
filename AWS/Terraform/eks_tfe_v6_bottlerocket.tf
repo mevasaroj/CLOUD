@@ -138,7 +138,7 @@ var.additional_tags)
 #=================================================================
 
 resource "aws_eks_access_entry" "admin" {
-  depends_on = [ module.app_eks_bottlerocket ]
+  depends_on = [ module.bottlerocket_eks_cluster ]
   cluster_name      = "${module.bottlerocket_eks_cluster.cluster_name}"
   principal_arn     = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
   kubernetes_groups = ["admin"]
