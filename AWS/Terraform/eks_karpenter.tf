@@ -2,22 +2,20 @@
 # EKS Cluster & Managed Node groups Module
 ##############################################################################################################################################################
 
-module "app_eks_bottlerocket" {
+module "karpenter_eks_bottlerocket" {
   source  = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-eks_v6"
   create = true
 
-  name    = join("-", [local.org, local.csp, local.region, local.account, local.env, "cluster"])
+  name    = join("-", [local.org, local.csp, local.region, local.account, local.env, "karpenter-cluster"])
   kubernetes_version = "1.33"
 
   endpoint_public_access  = false
   endpoint_private_access = true
-  
 
-
-create_cloudwatch_log_group     = false
+  create_cloudwatch_log_group     = false
   vpc_id                                = var.nonpcidss-prod-vpc
   #service_ipv4_cidr             = "10.211.128.0/24"
-  control_plane_subnet_ids              = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
+  subnet_ids              = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
   create_security_group = false  
   additional_security_group_ids     = ["${var.eks-cluster-workernode-sg}"]
   #security_group_id  = ["${var.eks-cluster-workernode-sg}"]
@@ -30,19 +28,37 @@ create_cloudwatch_log_group     = false
   create_iam_role = false
   iam_role_arn    = "arn:aws:iam::216066832707:role/hbl-aws-aps1-application-uat-eks-cluster-role"
 
-#===========================
-  # EKS Cluster Encryption
-  #===========================
+#--------------------------------------------
+# EKS Cluster Encryption
+#--------------------------------------------
   create_kms_key = false
   encryption_config = {
     resources : [ "secrets" ],
     provider_key_arn = "arn:aws:kms:ap-south-1:911372318716:key/1e884af2-73cd-4132-9612-d9dd72d981e0"
   }
 
-#cluster_encryption_config = {
-  #===========================
+#--------------------------------------------
+# Acccess entries to accesss cluster
+#--------------------------------------------
+access_entries = {
+    # One access entry with a policy associated
+    admin = {
+      principal_arn = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
+
+      policy_associations = {
+        policy = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            #namespaces = ["default"]
+            type       = "cluster"
+          }
+        }
+      }
+    }
+  }
+  #--------------------------------------------
   # EKS Managed Addons
-  #===========================
+  #--------------------------------------------
 
   addons = {
     coredns = {
@@ -59,12 +75,12 @@ create_cloudwatch_log_group     = false
       tags = merge(var.additional_tags, {
         Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "kube-proxy"])})
     }
-    
     vpc-cni = {
       before_compute              = true
       most_recent                 = true
       resolve_conflicts_on_create = "OVERWRITE"
       resolve_conflicts_on_update = "OVERWRITE"
+/*
       configuration_values = jsonencode({
         env = {
            AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG = "true"
@@ -73,10 +89,10 @@ create_cloudwatch_log_group     = false
            ENABLE_PREFIX_DELEGATION = "true"            
            WARM_PREFIX_TARGET = "1"
         }})
+*/
     	tags = merge(var.additional_tags, {
          Name = join("-", [local.org, local.csp, local.region, local.account, local.env, "vpc-cni"])})
-     }
-     
+     }    
     aws-efs-csi-driver = {
        most_recent                 = true
        resolve_conflicts_on_create = "OVERWRITE"
@@ -93,71 +109,47 @@ create_cloudwatch_log_group     = false
        tags = merge(var.additional_tags, {
          Name = join("-", [local.org, local.csp, local.region, local.account, local.env, "ebs-csi-driver"])})
      }
-     
     }
 
-  #===========================
+  #--------------------------------------------
   # EKS Managed Nodegroups
-  #===========================
+  #--------------------------------------------
   eks_managed_node_groups = {
-   ondemand = {
-      name    = join("-", [local.org,  local.csp, local.account, local.env, "ondemand"])
-      min_size           = 1      
-      desired_size       = 1
-      max_size           = 1
+    karpenter = {
+      ami_type       = "BOTTLEROCKET_x86_64"
+      instance_types = ["m5a.large"]
       create_iam_role    = false
       iam_role_arn = "arn:aws:iam::216066832707:role/hbl-aws-aps1-appname-uat-eks-workernode-role"
-      ami_type       = "BOTTLEROCKET_x86_64"
-      #create_launch_template = true
-      #use_custom_launch_template = true
-      #launch_template_id = module.bottlerocket-lt.launch_template_id
-      subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
+      subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]
       capacity_type      = "ON_DEMAND"
-      instance_types     = [ "c5.xlarge" ]
+      min_size     = 2
+      max_size     = 3
+      desired_size = 2
       tags = merge(var.additional_tags, {
         Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "ondemand"])})
-    }
 
+      labels = {
+        # Used to ensure Karpenter runs on nodes that it does not manage
+        "karpenter.sh/controller" = "true"
+      }
+    }
   }
 
 # Cluster Tags
   tags = merge(var.additional_tags, {
-    Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "bottlerocket-cluster"])
+    Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "karpenter-cluster"])
     } )
-	   
-}
-#===============================================================
-#### EKS ACCESS POINT 
-#=================================================================
 
-resource "aws_eks_access_entry" "admin" {
-  depends_on = [ module.app_eks_bottlerocket ]
-  cluster_name      = "${module.app_eks_bottlerocket.cluster_name}"
-  principal_arn     = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
-  kubernetes_groups = ["admin"]
-  type              = "STANDARD"
 }
 
-resource "aws_eks_access_policy_association" "policy" {
-  depends_on = [aws_eks_access_entry.admin ]
-  cluster_name  = "${module.app_eks_bottlerocket.cluster_name}"
-  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-  principal_arn = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
 
-access_scope {
-    type       = "namespace"
-    namespaces = ["cluster"]
-  }
-}
-#===============================================================
-#### END EKS ACCESS POINT 
 #=================================================================
 # START of Karpenter Model
 #=================================================================
 module "karpenter" {
   source  = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-eks_v6/modules/karpenter"
-  depends_on = [ module.app_eks_bottlerocket ]
-  cluster_name = module.app_eks_bottlerocket.cluster_name
+  depends_on = [ module.karpenter_eks_bottlerocket ]
+  cluster_name = module.karpenter_eks_bottlerocket.cluster_name
 
   # Name needs to match role name passed to the EC2NodeClass  
   create_iam_role      = false
@@ -169,6 +161,7 @@ module "karpenter" {
   tags = merge({Name = join("-", [local.org, local.csp, local.region, local.account, local.vpcname, local.env, "karpenter-ng"])},
       var.additional_tags,)
 }
+
 #=================================================================
 # END of Kerpenter Model
 #=================================================================
@@ -194,8 +187,8 @@ resource "helm_release" "karpenter" {
       karpenter.sh/controller: 'true'
     dnsPolicy: Default
     settings:
-      clusterName: ${module.app_eks_bottlerocket.cluster_name}
-      clusterEndpoint: ${module.app_eks_bottlerocket.cluster_endpoint}
+      clusterName: ${module.karpenter_eks_bottlerocket.cluster_name}
+      clusterEndpoint: ${module.karpenter_eks_bottlerocket.cluster_endpoint}
       interruptionQueue: ${module.karpenter.queue_name}
     webhook:
       enabled: false
