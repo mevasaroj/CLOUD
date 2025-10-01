@@ -28,20 +28,37 @@ module "bottlerocket_eks_cluster" {
   create_iam_role = false
   iam_role_arn    = "arn:aws:iam::216066832707:role/hbl-aws-aps1-application-uat-eks-cluster-role"
 
-#===========================
-  # EKS Cluster Encryption
-  #===========================
+#--------------------------------------------
+# EKS Cluster Encryption
+#--------------------------------------------
   create_kms_key = false
   encryption_config = {
     resources : [ "secrets" ],
     provider_key_arn = "arn:aws:kms:ap-south-1:911372318716:key/1e884af2-73cd-4132-9612-d9dd72d981e0"
   }
 
-#cluster_encryption_config = {
-  #===========================
-  # EKS Managed Addons
-  #===========================
+#--------------------------------------------
+# Acccess entries to accesss cluster
+#--------------------------------------------
+access_entries = {
+    # One access entry with a policy associated
+    admin = {
+      principal_arn = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
 
+      policy_associations = {
+        policy = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            #namespaces = ["default"]
+            type       = "cluster"
+          }
+        }
+      }
+    }
+  }
+  #--------------------------------------------
+  # EKS Managed Addons
+  #--------------------------------------------
   addons = {
     coredns = {
       most_recent                 = true
@@ -93,9 +110,9 @@ module "bottlerocket_eks_cluster" {
      }
     }
 
-  #===========================
-  # EKS Managed Nodegroups
-  #===========================
+#--------------------------------------------
+# EKS Managed Nodegroups
+#--------------------------------------------
  eks_managed_node_groups = {
    ondemand-ng = {
       name    = join("-", [local.org,  local.csp, local.account, local.env, "ondemand-ng"])
@@ -133,32 +150,6 @@ var.additional_tags)
 
 	   
 }
-#===============================================================
-#### EKS ACCESS POINT 
-#=================================================================
-
-resource "aws_eks_access_entry" "admin" {
-  depends_on = [ module.bottlerocket_eks_cluster ]
-  cluster_name      = "${module.bottlerocket_eks_cluster.cluster_name}"
-  principal_arn     = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
-  kubernetes_groups = ["admin"]
-  type              = "STANDARD"
-}
-
-resource "aws_eks_access_policy_association" "policy" {
-  depends_on = [aws_eks_access_entry.admin ]
-  cluster_name  = "${module.bottlerocket_eks_cluster.cluster_name}"
-  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-  principal_arn = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
-
-access_scope {
-    type       = "namespace"
-    namespaces = ["cluster"]
-  }
-}
-#===============================================================
-#### END EKS ACCESS POINT 
-#=================================================================
 
 #=======================================================================
 ## VPC CNI ENI #############
