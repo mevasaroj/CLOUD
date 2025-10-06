@@ -110,3 +110,6 @@
 
 ### Create Following Security Group
 - Create eks security group with all traffic allow from entire vpc cidr (Primary and Secodary Boht)
+
+### Cretae the KMS Key using JSON like https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/kms_key_policy
+
