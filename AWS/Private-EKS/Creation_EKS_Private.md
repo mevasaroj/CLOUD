@@ -113,6 +113,17 @@
 
 ##### Cretae the KMS Key using JSON like https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/kms_key_policy
 
+##### Run the following command during terraform run once clester is created
+
+```hcl
+aws kms create-grant \
+--region ap-south-1 \
+--key-id "arn:aws:kms:ap-south-1:911372318716:key/mrk-0f78d2f68ed04b6e8256bf7358548a20" \
+--grantee-principal arn:aws:iam::048599826367:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling \
+--operations "Encrypt" "Decrypt" "ReEncryptFrom" "ReEncryptTo" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "DescribeKey" "CreateGrant"
+```
+  
+
 ##### Cretae the EKS Cluster with Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks-cluster-with-lt-bottlerocket.tf
 
 ##### Cretae the EKS Cluster without Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks_cluster_without-lt-v6_bottlerocket.tf
