@@ -108,3 +108,5 @@
 7. com.amazonaws.region-code.eks-auth
 
 
+### Create Following Security Group
+- Create eks security group with all traffic allow from entire vpc cidr (Primary and Secodary Boht)
