@@ -98,7 +98,7 @@
 ```
 
 ### Following VPC ENDPOINTS Require.
- - Create Following VPC EndPoints with SG - 443 Must Allow
+- Create the following VPC Endpoint with security Group 443 port must allow from entire vpc cidr (Primary and Secodary Boht)
 1. com.amazonaws.region.s3 - (Gateway Type)
 2. com.amazonaws.region.ec2
 3. com.amazonaws.region.ecr.api
