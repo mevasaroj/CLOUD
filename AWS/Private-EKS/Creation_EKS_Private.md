@@ -73,3 +73,27 @@
 
 4. TFE Role
    - Create the policy using policy define in folder https://github.com/mevasaroj/CLOUD/tree/main/AWS/Private-EKS/TFE_Policy
+   - Create Role
+     	- __Create role__.
+     	- Under : **Select Trusted entity type**
+     	- Trusted entity type : **AWS service**
+     	- Use cases : type __"ec2"__ --> Select __"ec2"__ --> First Option
+     	- Click __Next__
+     	- Add Permission = Add both policy created above.
+     	- 
+   - Create TFE Trust relationship
+     ```hcl
+     {
+    "Version": "2012-10-17",
+    "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::516664790770:user/hbl-aws-user-tfeappinfra-sharedservices-infra-uat"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+
+```
