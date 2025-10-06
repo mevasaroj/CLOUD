@@ -1,5 +1,5 @@
 # How to create Private EKS Cluster
-## Following Roles Require.
+### Following Roles Require.
 1. AWSServiceRoleForAmazonEKS
    - Create as follow
    ```hcl
@@ -96,3 +96,15 @@
      ]
      }
 ```
+
+### Following VPC ENDPOINTS Require.
+ - Create Following VPC EndPoints with SG - 443 Must Allow
+1. com.amazonaws.region.s3 - (Gateway Type)
+2. com.amazonaws.region.ec2
+3. com.amazonaws.region.ecr.api
+4. com.amazonaws.region.ecr.dkr
+5. com.amazonaws.region.sts
+6. com.amazonaws.region-code.eks
+7. com.amazonaws.region-code.eks-auth
+
+
