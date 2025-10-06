@@ -84,7 +84,7 @@
      -   Under Tags : Add require tags
      -   Click **Create endpoint**
 
-### 4. Create EFS from AWS Console
+### 4. Create EFS from [AWS Console](https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/efs.tf)
 
 ### 5. Create Storage Class
  - Create a StorageClass to define how volumes will be provisioned from EFS.
