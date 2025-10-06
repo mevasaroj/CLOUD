@@ -113,3 +113,6 @@
 
 ### Cretae the KMS Key using JSON like https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/kms_key_policy
 
+### Cretae the EKS Cluster with Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks-cluster-with-lt-bottlerocket.tf
+
+### Cretae the EKS Cluster without Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks_cluster_without-lt-v6_bottlerocket.tf
