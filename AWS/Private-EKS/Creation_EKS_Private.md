@@ -84,16 +84,15 @@
    - Create TFE Trust relationship
      ```hcl
      {
-    "Version": "2012-10-17",
-    "Statement": [
-          {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::516664790770:user/hbl-aws-user-tfeappinfra-sharedservices-infra-uat"
-            },
-            "Action": "sts:AssumeRole"
-        }
-    ]
-}
-
+     "Version": "2012-10-17",
+     "Statement": [
+     {
+     "Effect": "Allow",
+     "Principal": {
+     "AWS": "arn:aws:iam::516664790770:user/hbl-aws-user-tfeappinfra-sharedservices-infra-uat"
+     },
+     "Action": "sts:AssumeRole"
+     }
+     ]
+     }
 ```
