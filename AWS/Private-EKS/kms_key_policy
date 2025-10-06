@@ -1,43 +1,27 @@
 {
-    "Version": "2012-10-17",
     "Id": "key-consolepolicy-3",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Sid": "Enable IAM User Permissions",
+            "Action": "kms:*",
             "Effect": "Allow",
+            "Resource": "*",
             "Principal": {
                 "AWS": "arn:aws:iam::911372318716:root"
-            },
-            "Action": "kms:*",
-            "Resource": "*"
+            }
         },
         {
             "Sid": "Enable IAM User Permission",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::288761758050:root"
-            },
             "Action": "kms:*",
-            "Resource": "*"
+            "Effect": "Allow",
+            "Resource": "*",
+            "Principal": {
+                "AWS": "arn:aws:iam::593793066189:root"
+            }
         },
         {
             "Sid": "Allow use of the key",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": [
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-env-efs-vkyc-uat",
-                    "arn:aws:iam::812695736854:role/aws-reserved/sso.amazonaws.com/ap-south-1/AWSReservedSSO_hbl-aws-lz-uadmin-permission-set_9e2e0142b5a95c98",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-ec2-start-stop-vkyc-uat",
-                    "arn:aws:iam::812695736854:role/aws-reserved/sso.amazonaws.com/ap-south-1/AWSReservedSSO_hbl-aws-lz-cinfra-permission-set_c84e5a6f3ddd70e8",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-ami-backup-vkyc-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-cluster-loadbalancer-vkyc-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-tfe-vkyc-uat",
-                    "arn:aws:iam::812695736854:role/hbl-aws-cam-role-tfe-vkyc-nwinfra-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-eks-cluster-vkyc-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-secret-manager-vkyc-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-eks-workernode-vkyc-uat"
-                ]
-            },
             "Action": [
                 "kms:Encrypt",
                 "kms:Decrypt",
@@ -45,32 +29,37 @@
                 "kms:GenerateDataKey*",
                 "kms:DescribeKey"
             ],
-            "Resource": "*"
+            "Effect": "Allow",
+            "Resource": "*",
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::593793066189:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
+					"arn:aws:iam::593793066189:role/hbl-aws-cam-role-eks-cluster-dlm-uat",
+					"arn:aws:iam::593793066189:role/hbl-aws-cam-role-eks-workernode-dlm-uat",
+					"arn:aws:iam::593793066189:role/hbl-aws-cam-role-secret-manager-dlm-uat",
+					"arn:aws:iam::593793066189:role/hbl-aws-cam-role-tfe-dlm-uat"
+                ]
+            }
         },
         {
             "Sid": "Allow attachment of persistent resources",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": [
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-env-efs-vkyc-uat",
-                    "arn:aws:iam::812695736854:role/aws-reserved/sso.amazonaws.com/ap-south-1/AWSReservedSSO_hbl-aws-lz-uadmin-permission-set_9e2e0142b5a95c98",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-ec2-start-stop-vkyc-uat",
-                    "arn:aws:iam::812695736854:role/aws-reserved/sso.amazonaws.com/ap-south-1/AWSReservedSSO_hbl-aws-lz-cinfra-permission-set_c84e5a6f3ddd70e8",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-ami-backup-vkyc-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-cluster-loadbalancer-vkyc-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-tfe-vkyc-uat",
-                    "arn:aws:iam::812695736854:role/hbl-aws-cam-role-tfe-vkyc-nwinfra-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-eks-cluster-vkyc-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-secret-manager-vkyc-uat",
-                    "arn:aws:iam::288761758050:role/hbl-aws-cam-role-eks-workernode-vkyc-uat"
-                ]
-            },
             "Action": [
                 "kms:CreateGrant",
                 "kms:ListGrants",
                 "kms:RevokeGrant"
             ],
-            "Resource": "*"
+            "Effect": "Allow",
+            "Resource": "*",
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::593793066189:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
+					"arn:aws:iam::593793066189:role/hbl-aws-cam-role-eks-cluster-dlm-uat",
+					"arn:aws:iam::593793066189:role/hbl-aws-cam-role-eks-workernode-dlm-uat",
+					"arn:aws:iam::593793066189:role/hbl-aws-cam-role-secret-manager-dlm-uat",
+					"arn:aws:iam::593793066189:role/hbl-aws-cam-role-tfe-dlm-uat"
+                ]
+            }
         }
+      
     ]
 }
