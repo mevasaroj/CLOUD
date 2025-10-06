@@ -36,6 +36,32 @@
 4. Worker Node Role
    - Follow the below steps
      ```hcl
+     1. Click on Roles
+     2. Click on Create Role
+     
+     3. Select the Following : 
+	      Trusted entity type : AWS Service
+	      Use case : EC2
+     
+     4. Under Add Permissison : Following AWS Permission --> Click Next
+	      AmazonEKSWorkerNodePolicy
+	      AmazonEC2ContainerRegistryReadOnly
+	      AmazonSSMManagedInstanceCore
+	      AmazonEKS_CNI_Policy
+	      AmazonEC2RoleforSSM
+          AmazonEFSCSIDriverPolicy
+          AmazonEBSCSIDriverPolicy
+
+     5.  Also Add  KMS Key Permission --> Create Custom KMS Key Policy
+     
+     6. Name, review, and create	
+	      Role name : hbl-aws-cam-role-eks-workernode-dlm-prod
+	      Tags:
+	         Name : hbl-aws-cam-role-eks-workernode-dlm-prod
+	         Environment : uat
+	         ProjectID :
+     
+     7. Click Create Roles
 
 
      ```
