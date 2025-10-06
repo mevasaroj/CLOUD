@@ -15,7 +15,7 @@
    7. Create
    ```
    
-3. EKS Cluster Role
+2. EKS Cluster Role
    - Follow the below steps
      ```hcl
      1. Click on Roles
@@ -38,7 +38,8 @@
      
      8. Click Create Roles
    ```
-4. Worker Node Role
+   
+3. Worker Node Role
    - Follow the below steps
      ```hcl
      1. Click on Roles
@@ -67,9 +68,8 @@
 	         ProjectID :
      
      7. Click Create Roles
-
-
      ```
 
 
-6. TFE Role
+4. TFE Role
+   - Create the policy using policy define in folder https://github.com/mevasaroj/CLOUD/tree/main/AWS/Private-EKS/TFE_Policy
