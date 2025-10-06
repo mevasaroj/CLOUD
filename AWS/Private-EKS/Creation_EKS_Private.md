@@ -98,7 +98,7 @@
      ```
 
 ### Following VPC ENDPOINTS Require.
-- Create the following VPC Endpoint with security Group 443 port must allow from entire vpc cidr (Primary and Secodary Boht)
+- Create the following VPC Endpoint with security Group 443 port must allow from entire vpc cidr (Primary and Secodary Both)
 1. com.amazonaws.region.s3 - (Gateway Type)
 2. com.amazonaws.region.ec2
 3. com.amazonaws.region.ecr.api
@@ -109,10 +109,10 @@
 
 
 ### Create Following Security Group
-- Create eks security group with all traffic allow from entire vpc cidr (Primary and Secodary Boht)
+- Create eks security group with all traffic allow from entire vpc cidr (Primary and Secodary Both)
 
-### Cretae the KMS Key using JSON like https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/kms_key_policy
+##### Cretae the KMS Key using JSON like https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/kms_key_policy
 
-### Cretae the EKS Cluster with Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks-cluster-with-lt-bottlerocket.tf
+##### Cretae the EKS Cluster with Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks-cluster-with-lt-bottlerocket.tf
 
-### Cretae the EKS Cluster without Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks_cluster_without-lt-v6_bottlerocket.tf
+##### Cretae the EKS Cluster without Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks_cluster_without-lt-v6_bottlerocket.tf
