@@ -161,6 +161,22 @@ locals { pods-subnet = {
     "ap-south-1c" = "subnet-09919d3d195adb829" 
 }}
 
+data "aws_eks_cluster" "cluster" {
+  name = module.app_eks_bottlerocket.cluster_name
+}
+
+data "aws_eks_cluster_auth" "cluster" {
+  name = module.app_eks_bottlerocket.cluster_name
+}
+
+provider "kubectl" {
+    apply_retry_count      = 5
+    host                   = data.aws_eks_cluster.cluster.endpoint
+    cluster_ca_certificate = base64decode(module.app_eks_bottlerocket.cluster_certificate_authority_data)
+    load_config_file       = false
+    token                  = data.aws_eks_cluster_auth.cluster.token
+  }
+
 resource "kubectl_manifest" "eniconfig" {
   for_each  = tomap(local.pods-subnet)
   yaml_body = <<-YAML
