@@ -7,7 +7,7 @@ terraform {
   aws = {
       source  = "hashicorp/aws"
       version = ">= 6.0"
-      #configuration_aliases = [ aws.nwinfra ]
+      configuration_aliases = [ aws.nwinfra ]
     }
    tls = {
       source  = "hashicorp/tls"
@@ -49,5 +49,13 @@ provider "aws" {
   region = "ap-south-1"
   assume_role {
     role_arn = "arn:aws:iam::216066832707:role/hbl-aws-role-tfeappinfra-sharedservices-infra-uat"
+  }
+}
+
+provider "aws" {
+  alias  = "nwinfra"
+  region = "ap-south-1"
+  assume_role {
+    role_arn = "arn:aws:iam::635001148637:role/hbl-aws-cam-role-tfe-vkyc-nwinfra-prod"
   }
 }
