@@ -27,6 +27,7 @@ module "bottlerocket_eks_cluster" {
   enable_irsa     = true
   create_iam_role = false
   iam_role_arn    = "arn:aws:iam::216066832707:role/hbl-aws-aps1-application-uat-eks-cluster-role"
+enabled_log_types=["audit", "api", "authenticator", "controllerManager", "scheduler"]
 
 #--------------------------------------------
 # EKS Cluster Encryption
