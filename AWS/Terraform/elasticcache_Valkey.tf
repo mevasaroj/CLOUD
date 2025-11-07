@@ -18,7 +18,7 @@ kms_key_arn = "arn:aws:kms:ap-south-1:911372318716:key/mrk-d77d91e1dca246c6a8d53
   # Security Group
   vpc_id = var.ee-nonpcidss-vpc
   create_security_group = false
-  security_group_name = "sg-0c2c865bc29bbd47f"
+  security_group_name = ["${var.infra-sg}"]
   # Subnet Group
   create_subnet_group = true
   subnet_group_name   = join("-", [local.org, local.csp, local.region, local.account, local.env, "valkey-subnet"])
