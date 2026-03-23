@@ -36,16 +36,14 @@
             "Resource": [
                 "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxx",
                 "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxx"
-            ]
-        }
-   ]
+        ]
+      }
+    ]
   }
 ```
 
 - 1.C. Trustrelationship for role **AWSServiceRoleForAmazonEKS** by defualt - Don't change
 
-4. Worker **Node Role**
-- Select
 
 3. EKS Cluster Role
 - Follow the below steps
