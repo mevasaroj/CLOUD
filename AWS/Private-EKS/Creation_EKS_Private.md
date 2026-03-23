@@ -44,11 +44,12 @@
 
 - 1.C. Trustrelationship for role **AWSServiceRoleForAmazonEKS** by defualt - Don't change
 
-
+4. Worker **Node Role**
+- Select
 
 3. EKS Cluster Role
-   - Follow the below steps
-     ```hcl
+- Follow the below steps
+```hcl
      1. Click on Roles
      2. Click on Create Role
      
@@ -68,9 +69,9 @@
 	          ProjectID :
      
      8. Click Create Roles
-   ```
+```
    
-4. Worker Node Role
+4. Worker **Node Role**
    - Follow the below steps
      ```hcl
      1. Click on Roles
