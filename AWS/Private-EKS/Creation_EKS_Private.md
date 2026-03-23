@@ -39,7 +39,7 @@
         }
    ]
 }
-  ```
+```
    
 3. EKS Cluster Role
    - Follow the below steps
