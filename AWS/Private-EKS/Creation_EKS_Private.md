@@ -1,7 +1,7 @@
 # How to create Private EKS Cluster
 ### Following Roles Require.
-1. AWSServiceRoleForAmazonEKS
-   - Create as follow
+1. Create as follow AWSServiceRoleForAmazonEKS
+   -
    ```hcl
    1. Open IAM --> Roles
    2. Create Role
@@ -14,8 +14,8 @@
    6. Name = Default = AWSServiceRoleForAmazonEKS
    7. Create
    ```
-   
-2. EKS Cluster Role
+   5.  Also Add  KMS Key Permission --> Create Custom KMS Key Policy
+3. EKS Cluster Role
    - Follow the below steps
      ```hcl
      1. Click on Roles
@@ -39,7 +39,7 @@
      8. Click Create Roles
    ```
    
-3. Worker Node Role
+4. Worker Node Role
    - Follow the below steps
      ```hcl
      1. Click on Roles
@@ -71,7 +71,7 @@
      ```
 
 
-4. TFE Role
+5. TFE Role
    - Create the policy using policy define in folder https://github.com/mevasaroj/CLOUD/tree/main/AWS/Private-EKS/TFE_Policy
    - Create ***Role***
      	- __Create role__.
