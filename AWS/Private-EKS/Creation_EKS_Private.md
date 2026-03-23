@@ -38,7 +38,7 @@
             ]
         }
    ]
-}
+  }
 ```
    
 3. EKS Cluster Role
