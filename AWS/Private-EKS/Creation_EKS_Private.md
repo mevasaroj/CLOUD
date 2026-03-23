@@ -1,7 +1,6 @@
 # How to create Private EKS Cluster
 ### Following Roles Require.
-1. Create as follow AWSServiceRoleForAmazonEKS
-   -
+- 1.A. Create as follow AWSServiceRoleForAmazonEKS
    ```hcl
    1. Open IAM --> Roles
    2. Create Role
@@ -14,7 +13,34 @@
    6. Name = Default = AWSServiceRoleForAmazonEKS
    7. Create
    ```
-   5.  Also Add  KMS Key Permission --> Create Custom KMS Key Policy
+- 1.B. Also Add  KMS Key Permission --> Create Custom KMS Key Policy as below
+  ```hcl
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "KMSAccess",
+            "Effect": "Allow",
+            "Action": [
+                "kms:ListGrants",
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey",
+                "kms:GenerateDataKeyWithoutPlaintext",
+                "kms:DescribeKey",
+                "kms:CreateGrant",
+                "kms:ListAliases"
+            ],
+            "Resource": [
+                "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxx",
+                "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxx"
+            ]
+        }
+   ]
+}
+  ```
+   
 3. EKS Cluster Role
    - Follow the below steps
      ```hcl
