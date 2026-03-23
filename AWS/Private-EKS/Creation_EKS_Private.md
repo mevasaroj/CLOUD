@@ -41,7 +41,10 @@
    ]
   }
 ```
-- 1.C. Trustrelationship for role AWSServiceRoleForAmazonEKS by defualt - Don't change
+
+- 1.C. Trustrelationship for role **AWSServiceRoleForAmazonEKS** by defualt - Don't change
+
+
 
 3. EKS Cluster Role
    - Follow the below steps
