@@ -250,6 +250,42 @@
 }
 ```
 
+### B. Create Following Security Group.
+#### 1. vpc-endpoint-security-group -- Compulsory
+| Security Group Name | Type    | Protocol |Port | Source | Description |
+|:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
+|vpc-endpoint-sg|HTTPS|TCP|443|VPC CIDR|Open for Entire VPC CIDR|
+
+
+#### 2. Create Following 2 SG as mentioned below
+- 1. eks-cluster-addition-sg
+| Security Group Name | Type    | Protocol |Port | Source | Description |
+|:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
+|eks-cluster-addition-sg | HTTPS | TCP | 443 | VPC CIDR | Open for Entire VPC CIDR |
+
+- AND
+
+- 1. eks-cluster-workernode-sg
+
+| Security Group Name | Type    | Protocol |Port | Source | Description |
+|:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
+|eks-cluster-workernode-sg| HTTPS | TCP | 443 | VPC CIDR | Open for Entire VPC CIDR |
+|                                     | TCP | TCP | 9443 | CP CIDR | Open for Webhook |
+|                                     | TCP | TCP | 10250 | CP CIDR | Open for Kubelet API |
+|                                     | TCP | TCP | 53 | CP CIDR | Open for DNS |
+|                                     | UDP | UDP | 53 | CP CIDR | Open for DNS |
+|                                     | ALL Traffic | ALL | ALL Traffic | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
+
+OR -- > **Create Single SG as mentioned below**
+
+| Security Group Name | Type    | Protocol |Port | Source | Description |
+|:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
+|eks-cluster-sg | ALL Traffic | ALL | ALL Ports | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
+
+
+
+
+
 ### Following VPC ENDPOINTS Require.
 - Create the following VPC Endpoint with security Group 443 port must allow from entire vpc cidr (Primary and Secodary Both)
 1. com.amazonaws.region.s3 - (Gateway Type)
