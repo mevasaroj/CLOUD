@@ -1,6 +1,6 @@
 # How to Change Hostname of Windows2019 & Windows2022 at restart
-### A. Create the .bat file at C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\hostname.bat
-- vi C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup
+### A. Create the .bat file at C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\
+- vi C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\hostname.bat
 ```hcl
 @echo off
 REM Use "IPv4 Address" for Windows 7+ or "IP Address" for older versions if needed
