@@ -16,41 +16,29 @@ USERDATA
 [settings.network]
 https-proxy = "awsappproxy.corp.hdfcbank.com:3128"
 no-proxy = ["localhost", "127.0.0.1", "172.20.0.0/16", ".internal", "github.hdfcbank.com", ".hbctxdom.com", "10.226.72.255", "10.*", "100.*", "169.254.169.254", ".hdfcbankapps.com", "api.serviceurl.in", "staticdownloads.site24x7.in", "staticdownloads.site24x7.com", "hdplus.site24x7.in", "hdlogu.site24x7.in", "hdplus2.site24x7.in", "hdplusinsight.site24x7.in"]
-*/
-#######################################################################################################################
-# Custom Launch Template for Managed Node groups
-#######################################################################################################################
-
-module "bottlerocket-lt" {
- # source  = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-autoscaling"
-  source  = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-autoscaling_v6"
-  create = false   # AUTOSCALING GROUP
-  
-  name                   = join("-", [local.org, local.csp, local.account, local.vpcname, local.env, "bottlerocket-lt"])
-  user_data              = base64encode(local.userdata-bottlerocket)
-  update_default_version = true
-  security_groups        = ["${var.eks-cluster-workernode-sg}"]
-  enable_monitoring      = false
-  
-  block_device_mappings = [
-    { # Root volume
+*/  block_device_mappings = [
+    {
+      # Root volume
       device_name = "/dev/xvda"
       ebs = {
         encrypted    = true
-        volume_size           = 2
+        #volume_size           = 2
         volume_type           = "gp3"
         delete_on_termination = true
-        kms_key_id   = "arn:aws:kms:ap-south-1:911372318716:key/1e884af2-73cd-4132-9612-d9dd72d981e0"
-      }},
-      {  # Root volume 
+        kms_key_id   = "arn:aws:kms:ap-south-1:911372318716:key/17cbe4eb-fe74-49ed-a177-72bf19a0734c"
+      }      
+    },
+    {
+      # Root volume
       device_name = "/dev/xvdb"
       ebs = {
         encrypted    = true
-        volume_size           = 20
+        #volume_size           = 20
         volume_type           = "gp3"
         delete_on_termination = true
-        kms_key_id   = "arn:aws:kms:ap-south-1:911372318716:key/1e884af2-73cd-4132-9612-d9dd72d981e0"
-      }}
+        kms_key_id   = "arn:aws:kms:ap-south-1:911372318716:key/17cbe4eb-fe74-49ed-a177-72bf19a0734c"
+      }      
+    }
   ]
    
   metadata_options       = {
@@ -94,20 +82,17 @@ module "app_eks_bottlerocket" {
   create = true
 
   name    = join("-", [local.org, local.csp, local.region, local.account, local.env, "cluster"])
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.35"
 
   endpoint_public_access  = false
   endpoint_private_access = true
-  
+  create_cloudwatch_log_group   = false
 
-
-create_cloudwatch_log_group     = false
-  vpc_id                                = var.nonpcidss-prod-vpc
-  #service_ipv4_cidr             = "10.211.128.0/24"
-  control_plane_subnet_ids              = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
+  vpc_id                        = var.nonpcidss-prod-vpc
+  service_ipv4_cidr             = "10.199.88.0/24"
+  subnet_ids              = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
   create_security_group = false  
-  additional_security_group_ids     = ["${var.eks-cluster-workernode-sg}"]
-  #security_group_id  = ["${var.eks-cluster-workernode-sg}"]
+  additional_security_group_ids     = ["${var.eks-cluster-sg}"]
   
 
   create_node_security_group = false
@@ -116,7 +101,9 @@ create_cloudwatch_log_group     = false
   enable_irsa     = true
   create_iam_role = false
   iam_role_arn    = "arn:aws:iam::216066832707:role/hbl-aws-aps1-application-uat-eks-cluster-role"
-enabled_log_types=["audit", "api", "authenticator", "controllerManager", "scheduler"]
+
+  # Control PLane Logging 
+  enabled_log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
 
 #--------------------------------------------
 # EKS Cluster Encryption
@@ -149,8 +136,6 @@ access_entries = {
   #--------------------------------------------
   # EKS Managed Addons
   #--------------------------------------------
- 
-
   addons = {
     coredns = {
       most_recent                 = true
@@ -214,14 +199,28 @@ access_entries = {
       create_iam_role    = false
       iam_role_arn = "arn:aws:iam::216066832707:role/hbl-aws-aps1-appname-uat-eks-workernode-role"
       ami_type       = "BOTTLEROCKET_x86_64"
+      instance_types     = [ "c6a.2xlarge" ]
+      launch_template_id = module.bottlerocket-lt.launch_template_id
+      subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
+      capacity_type      = "ON_DEMAND"      
+      tags = merge(var.additional_tags, {
+        Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "ondemand-ng"])})
+    },
+   spot-ng = {
+      name    = join("-", [local.org,  local.csp, local.account, local.env, "spot-ng"])
+      min_size           = 0    
+      desired_size       = 0
+      max_size           = 10
+      create_iam_role    = false
+      iam_role_arn = "arn:aws:iam::216066832707:role/hbl-aws-aps1-appname-uat-eks-workernode-role"
+      ami_type       = "BOTTLEROCKET_x86_64"
+     instance_types     = [ "c5.xlarge","c5a.xlarge","c5d.xlarge","c6a.xlarge","c6i.xlarge","c6in.xlarge","c7i.xlarge","c7i-flex.xlarge","inf1.xlarge" ]
       launch_template_id = module.bottlerocket-lt.launch_template_id
       subnet_ids         = ["${var.dp-subnet-aza}", "${var.dp-subnet-azb}", "${var.dp-subnet-azc}"]   
       capacity_type      = "ON_DEMAND"
-      instance_types     = [ "c6a.2xlarge" ]
       tags = merge(var.additional_tags, {
-        Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "ondemand-ng"])})
+        Name = join("-", [local.org,  local.csp, local.account, local.vpcname, local.env, "spot-ng"])})
     }
-
   }
 
 # Cluster Tags
