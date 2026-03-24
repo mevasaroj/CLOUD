@@ -45,6 +45,7 @@
 
 #### 2. Create EKS Cluster Role and Add KMS Policy and Update Trusrelationship
 - 2.A. Create **eks-cluster-role**
+```hcl
 - In the navigation pane of the IAM console, Expand __Access management__ (Left panel) choose __Roles__, and then choose __Create role__.
   
 - Under : **Select Trusted entity type**
@@ -61,7 +62,7 @@
    - Step 3: Add Tags : Add the require tags
      
  - Click **Create role**
-
+```
 - 2.B. Also Add Below **KMS Key Permission** --> Create Custom KMS Key Policy as below
   ```hcl
   {
