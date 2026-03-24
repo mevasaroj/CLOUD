@@ -28,8 +28,8 @@ wmic computersystem where name="%computername%" call rename name="%NEW_HOSTNAME%
       - Scrit Name = **C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\hostname.bat**
       - Script Parameters = **Hostname**
     
-  4. Click on **OK**
-  5. Click on **Apply** --> Click **OK**
-  6. Close the gpedit.msc
-  7. Reboot Server twice to change the hostname.
+- 4. Click on **OK**
+- 5. Click on **Apply** --> Click **OK**
+- 6. Close the gpedit.msc
+- 7. Reboot Server twice to change the hostname.
 
