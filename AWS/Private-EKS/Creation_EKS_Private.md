@@ -162,7 +162,7 @@
   }
   ```
 
-- 3.C. Change the **Trustrelationship** for role **eks-cluster-role** as below
+- 3.C. Change the **Trustrelationship** for role **eks-workernode-role** as below
 ```hcl
 {
     "Version": "2012-10-17",
@@ -170,9 +170,26 @@
         {
             "Effect": "Allow",
             "Principal": {
-                "Service": "eks.amazonaws.com"
+                "Service": "ec2.amazonaws.com"
             },
             "Action": "sts:AssumeRole"
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::281845296445:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/F1DAD3723D26A9A90485AE47616D1F37"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "oidc.eks.ap-south-1.amazonaws.com/id/F1DAD3723D26A9A90485AE47616D1F37:sub": [
+                        "system:serviceaccount:kube-system:efs-csi-controller-sa",
+                        "system:serviceaccount:kube-system:ebs-csi-controller-sa",
+                        "system:serviceaccount:kube-system:efs-csi-node-sa"
+						],
+                    "oidc.eks.ap-south-1.amazonaws.com/id/F1DAD3723D26A9A90485AE47616D1F37:aud": "sts.amazonaws.com"
+                }
+            }
         }
     ]
 }
