@@ -276,7 +276,7 @@
 |                                     | TCP | TCP | 10250 | CP CIDR | Open for Kubelet API |
 |                                     | TCP | TCP | 53 | CP CIDR | Open for DNS |
 |                                     | UDP | UDP | 53 | CP CIDR | Open for DNS |
-|                                     | ALL Traffic | ALL | ALL  | Entire VPC CIDR (Primary and Secondary) | VPC CIDR |
+|                                     | ALL Traffic | ALL | ALL  | Self SG | Self SG |
 
 **OR**
 
