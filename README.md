@@ -1,2 +1,0 @@
-# CLOUD
-Cloud_SOP
