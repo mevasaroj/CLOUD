@@ -16,7 +16,9 @@ USERDATA
 [settings.network]
 https-proxy = "awsappproxy.corp.hdfcbank.com:3128"
 no-proxy = ["localhost", "127.0.0.1", "172.20.0.0/16", ".internal", "github.hdfcbank.com", ".hbctxdom.com", "10.226.72.255", "10.*", "100.*", "169.254.169.254", ".hdfcbankapps.com", "api.serviceurl.in", "staticdownloads.site24x7.in", "staticdownloads.site24x7.com", "hdplus.site24x7.in", "hdlogu.site24x7.in", "hdplus2.site24x7.in", "hdplusinsight.site24x7.in"]
-*/  block_device_mappings = [
+*/  
+
+block_device_mappings = [
     {
       # Root volume
       device_name = "/dev/xvda"
