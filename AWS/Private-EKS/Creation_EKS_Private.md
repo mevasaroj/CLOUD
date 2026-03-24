@@ -108,36 +108,77 @@
 ```
 
 
-#### 3. Create WorkerNode Role and Add KMS Policy and Update Trusrelationship
-   - Follow the below steps
-     ```hcl
-     1. Click on Roles
-     2. Click on Create Role
-     
-     3. Select the Following : 
-	      Trusted entity type : AWS Service
-	      Use case : EC2
-     
-     4. Under Add Permissison : Following AWS Permission --> Click Next
+#### 3. Create eks WorkerNode Role and Add KMS Policy and Update Trusrelationship
+- 3.A. Create **eks-workernode-role**
+```hcl
+1. Open IAM --> Roles
+2. Create Role
+3. Select the Following - Under : **Trusted entity type**
+   - Trusted entity type : **AWS service**
+   - Use cases : type **"EC2"** --> Select __"EC2"__ --> First Option
+
+4. Under Add Permissison : Add Following AWS Permission --> Click Next
 	      AmazonEKSWorkerNodePolicy
 	      AmazonEC2ContainerRegistryReadOnly
 	      AmazonSSMManagedInstanceCore
 	      AmazonEKS_CNI_Policy
-	      AmazonEC2RoleforSSM
-          AmazonEFSCSIDriverPolicy
+	      AmazonEFSCSIDriverPolicy
           AmazonEBSCSIDriverPolicy
 
-     5.  Also Add  KMS Key Permission --> Create Custom KMS Key Policy
-     
-     6. Name, review, and create	
-	      Role name : hbl-aws-cam-role-eks-workernode-dlm-prod
-	      Tags:
-	         Name : hbl-aws-cam-role-eks-workernode-dlm-prod
-	         Environment : uat
-	         ProjectID :
-     
-     7. Click Create Roles
-     ```
+5. Under **Name, review, and create**
+   - Role Name : **eks-workernode-role**
+   - Description : __No Changes__
+   - Step 1: Select trusted entities : __No Changes__
+   - Step 2: Add permissions: __No Changes__
+   - Step 3: Add Tags : Add the require tags
+
+6. Click **Create role**
+```
+- 3.B. Also Add Below **KMS Key Permission** --> Create Custom KMS Key Policy as below
+  ```hcl
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "KMSAccess",
+            "Effect": "Allow",
+            "Action": [
+                "kms:ListGrants",
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey",
+                "kms:GenerateDataKeyWithoutPlaintext",
+                "kms:DescribeKey",
+                "kms:CreateGrant",
+                "kms:ListAliases"
+            ],
+            "Resource": [
+                "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxx",
+                "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxx"
+        ]
+      }
+    ]
+  }
+  ```
+
+- 3.C. Change the **Trustrelationship** for role **eks-cluster-role** as below
+```hcl
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "eks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+
+
 #### 4. Create Terraform Role and Add KMS Policy and Update Trusrelationship
    - Create the policy using policy define in folder https://github.com/mevasaroj/CLOUD/tree/main/AWS/Private-EKS/TFE_Policy
    - Create ***Role***
