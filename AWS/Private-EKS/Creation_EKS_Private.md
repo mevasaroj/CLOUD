@@ -277,6 +277,7 @@
 |                                     | TCP | TCP | 53 | CP CIDR | Open for DNS |
 |                                     | UDP | UDP | 53 | CP CIDR | Open for DNS |
 |                                     | ALL Traffic | ALL | ALL  | Self SG | Self SG |
+|                                     | ALL Traffic | ALL | ALL  | eks-cluster-addition-sg | eks-cluster-addition-sg |
 
 **OR**
 
