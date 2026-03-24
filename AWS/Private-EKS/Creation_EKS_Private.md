@@ -186,8 +186,7 @@
                     "oidc.eks.ap-south-1.amazonaws.com/id/5A5574B41EFF82372B5AF52452E9D9BC:sub": [
                         "system:serviceaccount:kube-system:efs-csi-controller-sa",
                         "system:serviceaccount:kube-system:ebs-csi-controller-sa",
-                        "system:serviceaccount:kube-system:efs-csi-node-sa",
-                        "system:serviceaccount:eks-test:xcl-app-eks-test"
+                        "system:serviceaccount:kube-system:efs-csi-node-sa"
                     ],
                     "oidc.eks.ap-south-1.amazonaws.com/id/5A5574B41EFF82372B5AF52452E9D9BC:aud": "sts.amazonaws.com"
                 }
