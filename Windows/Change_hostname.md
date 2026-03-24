@@ -1,5 +1,5 @@
 # How to Change Hostname of Windows2019 & Windows2022 at restart
-### A. Create the .bat file at C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\
+#### A. Create the .bat file at C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\
 - vi C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\hostname.bat
 ```hcl
 @echo off
@@ -21,7 +21,7 @@ set NEW_HOSTNAME=ip-%FORMATTED_IP%
 wmic computersystem where name="%computername%" call rename name="%NEW_HOSTNAME%"
 ```
 
-### A. Set the .bat file at strtup menu
+#### B. Set the .bat file at strtup menu
 - 1. Press the **Windows Key + R** --> Type **gpedit.msc** --> Please enter
 - 2. In the left pane, navigate to **Computer Configuration** --> Click **Windows Settings** --> Click **Scripts (Startup/Shutdown)** --> Double click **Startup**
 - 3. Click on **Add**
