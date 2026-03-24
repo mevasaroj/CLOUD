@@ -256,17 +256,18 @@
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
 |vpc-endpoint-sg|HTTPS|TCP|443|VPC CIDR|Open for Entire VPC CIDR|
 
+.
+#### 2. Create Following 2 SG as mentioned 2.1.A & 2.1.B below OR Sinble Security mentioned in 2.2
 
-#### 2. Create Following 2 SG as mentioned below
-- 1. eks-cluster-addition-sg
+- 2.1.A. Create **eks-cluster-addition-sg**
      
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
 |eks-cluster-addition-sg | HTTPS | TCP | 443 | VPC CIDR | Open for Entire VPC CIDR |
 
-- AND
+**AND**
 
-- 2. eks-cluster-workernode-sg
+- 2.1.B. Create **eks-cluster-workernode-sg**
 
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
@@ -277,7 +278,9 @@
 |                                     | UDP | UDP | 53 | CP CIDR | Open for DNS |
 |                                     | ALL Traffic | ALL | ALL Traffic | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
 
-OR -- > **Create Single SG as mentioned below**
+**OR**
+
+- 2.2. Create Single SG Name **eks-cluster-sg** as mentioned below
 
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
