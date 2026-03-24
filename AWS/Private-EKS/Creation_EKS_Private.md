@@ -288,10 +288,7 @@
 |eks-cluster-sg | ALL Traffic | ALL | ALL  | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
 
 
-
-
-
-### Following VPC ENDPOINTS Require.
+### C. Create Following VPC ENDPOINTS.
 - Create the following VPC Endpoint with security Group 443 port must allow from entire vpc cidr (Primary and Secodary Both)
 1. com.amazonaws.region.s3 - (Gateway Type)
 2. com.amazonaws.region.ec2
@@ -301,6 +298,133 @@
 6. com.amazonaws.region-code.eks
 7. com.amazonaws.region-code.eks-auth
 
+- Use Following terraform Code to Provision the all Endpoints.
+```hcl
+###################################################################################################################
+############# IAM POLICY for GATEWAY ENDPOINT ####################
+#==================================================================================================================
+data "aws_iam_policy_document" "endpoint_policy" {
+  statement {
+    effect    = "Allow"
+    actions   = ["*"]
+    resources = ["*"]
+
+    principals {
+      type = "AWS"
+      identifiers = ["*"]
+    }
+
+    condition {
+      test     = "StringLike"
+      variable = "aws:PrincipalArn"
+
+      values = ["arn:aws:iam::*:role/storage-access-role-prod-ap-south-1",
+                "arn:aws:iam::*"]
+    }
+  }
+}
+#========================================================================================================================
+############# END IAM POLICY for GATEWAY ENDPOINT ####################
+###########################################################################################################################
+############# START VPC ENDPOINT ####################
+#========================================================================================================================
+module "hbl-aws-aps1-appname-nonpcidss-prod-endpoints" {
+  source = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-vpc-endpoints"
+
+  vpc_id             = var.nonpcidss-prod-vpc
+  create_security_group = false
+  security_group_ids = ["${var.vpc-endpoints-sg}" ]
+  subnet_ids         = ["${var.infra-subnet-aza}", "${var.infra-subnet-azb}","${var.infra-subnet-azc}"]
+
+  endpoints = {
+    #-------------------------------------------------
+    # START = for EKS Cluster -  Endpoints
+    #-------------------------------------------------
+    # Gateway endpoint
+    s3 = {
+      service         = "s3"
+      service_type    = "Gateway"
+      route_table_ids = ["rtb-0c699b7a34323e3a5"]
+      policy          = data.aws_iam_policy_document.endpoint_policy.json
+      tags            = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "s3-gateway-endpoint"]) }
+    },
+    # interface endpoint
+    ec2 = {
+      service = "ec2"
+      private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "ec2-endpoint"]) }
+    },
+    ecr-api = {
+      service = "ecr.api"
+      private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "ecr-api-endpoint"]) }
+    },
+    ecr-dkr = {
+      service = "ecr.dkr"
+      private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "ecr-dkr-endpoint"]) }
+    },
+    sts = {
+      service = "sts"
+      private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "sts-endpoint"]) }
+    },
+    eks = {
+      service = "eks"
+      private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "eks-endpoint"]) }
+    },
+    eks-auth = {
+      service = "eks-auth"
+      private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "eks-auth-endpoint"]) }
+    },
+    #-------------------------------------------------
+    # END = for EKS Cluster-  Endpoints
+    #-------------------------------------------------
+    rds = {
+      service = "rds"
+      private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "rds-endpoint"]) }
+    },
+    #-------------------------------------------------
+    # START - For Private Load Balancer
+    #-------------------------------------------------
+    elasticloadbalancing = {
+      service = "elasticloadbalancing"
+	  private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "elasticloadbalancing-endpoint"]) }
+    },
+    acm-pca = {
+      service = "acm-pca"
+	  private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "acm-pca-endpoint"]) }
+    },
+    #-------------------------------------------------
+    # End for Private Load Balancer
+    #-------------------------------------------------
+    # START  for Secret Manager
+    #-------------------------------------------------
+    secretsmanager = {
+      service = "secretsmanager"
+	  private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "secretsmanager-endpoint"]) }
+    },
+    #-------------------------------------------------
+    # START  for autoscaling - EKS
+    #-------------------------------------------------
+    autoscaling = {
+      service = "autoscaling"
+      private_dns_enabled = true
+      tags    = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "autoscaling-endpoint"]) }
+    },
+  }
+ tags = merge(var.additional_tags)  
+}
+#========================================================================================================================
+############# END VPC ENDPOINT ####################
+##########################################################################################################################
+```
 
 ### Create Following Security Group
 - Create eks security group with all traffic allow from entire vpc cidr (Primary and Secodary Both)
