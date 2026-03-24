@@ -207,8 +207,8 @@
      	- Click __Next__
     
    - Add Following 2 Custom Policies
-      - [Policy 1](https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/04_01-A_policy_terraform_role.tf)
-      - [Policy 2](https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/04_01-B_policy_terraform_role.tf)
+      - [Policy 1](https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/TFE_Policy/01-A_policy_terraform_role.json)
+      - [Policy 2](https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/TFE_Policy/01-B_policy_terraform_role.json)
     
    - Under **Name, review, and create**
       - Role Name : **tfe-role**
