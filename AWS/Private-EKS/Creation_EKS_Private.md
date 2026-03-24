@@ -170,24 +170,26 @@
         {
             "Effect": "Allow",
             "Principal": {
-                "Service": "ec2.amazonaws.com"
+                "Service": "ec2.amazonaws.com",
+                "AWS": "arn:aws:iam::972742752662:role/eks-workernode-role"
             },
             "Action": "sts:AssumeRole"
         },
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "arn:aws:iam::281845296445:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/F1DAD3723D26A9A90485AE47616D1F37"
+                "Federated": "arn:aws:iam::972742752662:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/5A5574B41EFF82372B5AF52452E9D9BC"
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "oidc.eks.ap-south-1.amazonaws.com/id/F1DAD3723D26A9A90485AE47616D1F37:sub": [
+                    "oidc.eks.ap-south-1.amazonaws.com/id/5A5574B41EFF82372B5AF52452E9D9BC:sub": [
                         "system:serviceaccount:kube-system:efs-csi-controller-sa",
                         "system:serviceaccount:kube-system:ebs-csi-controller-sa",
-                        "system:serviceaccount:kube-system:efs-csi-node-sa"
-						],
-                    "oidc.eks.ap-south-1.amazonaws.com/id/F1DAD3723D26A9A90485AE47616D1F37:aud": "sts.amazonaws.com"
+                        "system:serviceaccount:kube-system:efs-csi-node-sa",
+                        "system:serviceaccount:eks-test:xcl-app-eks-test"
+                    ],
+                    "oidc.eks.ap-south-1.amazonaws.com/id/5A5574B41EFF82372B5AF52452E9D9BC:aud": "sts.amazonaws.com"
                 }
             }
         }
@@ -197,6 +199,7 @@
 
 
 #### 4. Create Terraform Role attached 2 Custom Policies and Update Trusrelationship
+- 4.A. Create **tfe-role**
    - Open AWS IAM --> Roles
    - Create ***Role***
    - Under : **Select Trusted entity type**
@@ -205,29 +208,48 @@
      	- Click __Next__
     
    - Add Following 2 Custom Policies
-   - [Policy 1](https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/04_01-A_policy_terraform_role.tf)
-   - [Policy 1](https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/04_01-B_policy_terraform_role.tf)
+      - [Policy 1](https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/04_01-A_policy_terraform_role.tf)
+      - [Policy 2](https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/04_01-B_policy_terraform_role.tf)
+    
+   - Under **Name, review, and create**
+      - Role Name : **tfe-role**
+      - Description : __No Changes__
+      - Step 1: Select trusted entities : __No Changes__
+      - Step 2: Add permissions: __No Changes__
+      - Step 3: Add Tags : Add the require tags
+    
+   - Click **Create role**
 
 
-
-
-
-
-   - Create TFE ***Trust relationship***
-     ```hcl
-     {
-     "Version": "2012-10-17",
-     "Statement": [
-     {
-     "Effect": "Allow",
-     "Principal": {
-     "AWS": "arn:aws:iam::516664790770:user/hbl-aws-user-tfeappinfra-sharedservices-infra-uat"
-     },
-     "Action": "sts:AssumeRole"
-     }
-     ]
-     }
-     ```
+- 4.B. Change the **Trustrelationship** for role **tfe-role** as below
+```hcl
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com",
+                "AWS": "arn:aws:iam::516664790770:user/tfe-role"
+            },
+            "Action": "sts:AssumeRole"
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::972742752662:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/5A5574B41EF82372B5AF52452E9D9BC"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "oidc.eks.ap-south-1.amazonaws.com/id/5A5574B41EF82372B5AF52452E9D9BC:aud": "sts.amazonaws.com",
+                    "oidc.eks.ap-south-1.amazonaws.com/id/5A5574B41EF82372B5AF52452E9D9BC:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller"
+                }
+            }
+        }
+    ]
+}
+```
 
 ### Following VPC ENDPOINTS Require.
 - Create the following VPC Endpoint with security Group 443 port must allow from entire vpc cidr (Primary and Secodary Both)
