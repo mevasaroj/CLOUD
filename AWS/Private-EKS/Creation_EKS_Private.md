@@ -257,7 +257,7 @@
 |vpc-endpoint-sg|HTTPS|TCP|443|Entire VPC CIDR (Primary and Secondary)| VPC CIDR |
 
 .
-#### 2. Create Following 2 SG as mentioned 2.1.A & 2.1.B below OR Sinble Security mentioned in 2.2
+#### 2. Create Following 2 SG as mentioned 2.1.A & 2.1.B below -- OR -- Single Security mentioned in 2.2
 
 - 2.1.A. Create **eks-cluster-addition-sg**
      
