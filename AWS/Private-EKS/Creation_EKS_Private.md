@@ -254,7 +254,7 @@
 #### 1. vpc-endpoint-security-group -- Compulsory
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
-|vpc-endpoint-sg|HTTPS|TCP|443|VPC CIDR|Open for Entire VPC CIDR|
+|vpc-endpoint-sg|HTTPS|TCP|443|VPC CIDR|Entire VPC CIDR (Primary and Secondary)|
 
 .
 #### 2. Create Following 2 SG as mentioned 2.1.A & 2.1.B below OR Sinble Security mentioned in 2.2
@@ -263,7 +263,7 @@
      
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
-|eks-cluster-addition-sg | HTTPS | TCP | 443 | VPC CIDR | Open for Entire VPC CIDR |
+|eks-cluster-addition-sg | HTTPS | TCP | 443 | VPC CIDR | Entire VPC CIDR (Primary and Secondary) |
 
 **AND**
 
@@ -271,12 +271,12 @@
 
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
-|eks-cluster-workernode-sg| HTTPS | TCP | 443 | VPC CIDR | Open for Entire VPC CIDR |
+|eks-cluster-workernode-sg| HTTPS | TCP | 443 | VPC CIDR | Entire VPC CIDR (Primary and Secondary) |
 |                                     | TCP | TCP | 9443 | CP CIDR | Open for Webhook |
 |                                     | TCP | TCP | 10250 | CP CIDR | Open for Kubelet API |
 |                                     | TCP | TCP | 53 | CP CIDR | Open for DNS |
 |                                     | UDP | UDP | 53 | CP CIDR | Open for DNS |
-|                                     | ALL Traffic | ALL | ALL  | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
+|                                     | ALL Traffic | ALL | ALL  | Entire VPC CIDR (Primary and Secondary) | Entire VPC CIDR |
 
 **OR**
 
