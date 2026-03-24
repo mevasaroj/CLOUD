@@ -1,6 +1,6 @@
 # How to create Private EKS Cluster
 ### A. Create Following 4 Roles.
-##### 1. Create  **AWSServiceRoleForAmazonEKS** role
+#### 1. Create  **AWSServiceRoleForAmazonEKS** role
 - 1.A. Create as **AWSServiceRoleForAmazonEKS**
    ```hcl
    1. Open IAM --> Roles
@@ -43,7 +43,7 @@
 
 - 1.C. Don't change **Trustrelationship** for role **AWSServiceRoleForAmazonEKS** by defualt.
 
-##### 2. Create EKS Cluster Role and Add KMS Policy and Update Trusrelationship
+#### 2. Create EKS Cluster Role and Add KMS Policy and Update Trusrelationship
 - 2.A. Create **eks-cluster-role**
 - In the navigation pane of the IAM console, Expand __Access management__ (Left panel) choose __Roles__, and then choose __Create role__.
   
@@ -107,32 +107,7 @@
 ```
 
 
-##### 3. Create WorkerNode Role and Add KMS Policy and Update Trusrelationship
-
-
-
-```hcl
-     1. Click on Roles
-     2. Click on Create Role
-     
-     3. Select the Following : 
-	        Trusted entity type : AWS Service
-	        Use case : under Use cases for other AWS services: Type EKS
-     
-     4. Select "EKS Cluster" - 2nd Option --> Click Next
-     5. Under Add Permissison : Default - AmazonEKSClusterPolicy --> Click Next
-     6. Also Add  KMS Key Permission --> Create Custom KMS Key Policy
-     
-     7. Name, review, and create	
-	      Role name : hbl-aws-aps1-appname-uat-eks-cluster-role
-	        Tags:
-	          Name : hbl-aws-aps1-appname-uat-eks-cluster-role
-	          Environment : uat
-	          ProjectID :
-     
-     8. Click Create Roles
-   
-##### 4. Worker **Node Role**
+#### 3. Create WorkerNode Role and Add KMS Policy and Update Trusrelationship
    - Follow the below steps
      ```hcl
      1. Click on Roles
@@ -162,9 +137,7 @@
      
      7. Click Create Roles
      ```
-
-
-5. TFE Role
+#### 4. Create Terraform Role and Add KMS Policy and Update Trusrelationship
    - Create the policy using policy define in folder https://github.com/mevasaroj/CLOUD/tree/main/AWS/Private-EKS/TFE_Policy
    - Create ***Role***
      	- __Create role__.
