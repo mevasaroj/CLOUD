@@ -328,7 +328,7 @@ data "aws_iam_policy_document" "endpoint_policy" {
 ###########################################################################################################################
 ############# START VPC ENDPOINT ####################
 #========================================================================================================================
-module "hbl-aws-aps1-appname-nonpcidss-prod-endpoints" {
+module "vpc-prod-endpoints" {
   source = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-vpc-endpoints"
 
   vpc_id             = var.nonpcidss-prod-vpc
@@ -426,13 +426,12 @@ module "hbl-aws-aps1-appname-nonpcidss-prod-endpoints" {
 ##########################################################################################################################
 ```
 
-### Create Following Security Group
-- Create eks security group with all traffic allow from entire vpc cidr (Primary and Secodary Both)
+### D. Create the private eks cluster using terraform code as below
+- [Use terraform script to create **amazon linux** eks cluster](https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks_cluster_al2023.tf)
+- [Use terraform script to create **bottle rocket** eks cluster](https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks-cluster-bottlerocket.tf)
 
-##### Cretae the KMS Key using JSON like https://github.com/mevasaroj/CLOUD/blob/main/AWS/Private-EKS/kms_key_policy
 
-##### Run the following command during terraform run once clester is created
-
+### E. Run the following command during terraform run once clester is created
 ```hcl
 aws kms create-grant \
 --region ap-south-1 \
@@ -442,6 +441,6 @@ aws kms create-grant \
 ```
   
 
-##### Cretae the EKS Cluster with Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks-cluster-with-lt-bottlerocket.tf
+
 
 ##### Cretae the EKS Cluster without Launch Template https://github.com/mevasaroj/CLOUD/blob/main/AWS/Terraform/eks_cluster_without-lt-v6_bottlerocket.tf
