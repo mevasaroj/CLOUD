@@ -259,13 +259,14 @@
 
 #### 2. Create Following 2 SG as mentioned below
 - 1. eks-cluster-addition-sg
+     
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
 |eks-cluster-addition-sg | HTTPS | TCP | 443 | VPC CIDR | Open for Entire VPC CIDR |
 
 - AND
 
-- 1. eks-cluster-workernode-sg
+- 2. eks-cluster-workernode-sg
 
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
