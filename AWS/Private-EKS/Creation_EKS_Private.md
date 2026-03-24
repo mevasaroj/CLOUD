@@ -46,7 +46,7 @@
 #### 2. Create EKS Cluster Role and Add KMS Policy and Update Trusrelationship
 - 2.A. Create **eks-cluster-role**
 ```hcl
-- In the navigation pane of the IAM console, Expand __Access management__ (Left panel) choose __Roles__, and then choose __Create role__.
+- IAM console, Expand __Access management__ (Left panel) choose __Roles__, and then choose __Create role__.
   
 - Under : **Select Trusted entity type**
    - Trusted entity type : **AWS service**
