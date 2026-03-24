@@ -28,7 +28,7 @@ provider "kubernetes"{
 
 locals {
 
-  al2023-userdata = <<USERDATA
+al2023-userdata = <<USERDATA
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
 
@@ -151,11 +151,12 @@ module "al2023-eks-cluster" {
   cluster_endpoint_private_access = true
   create_cloudwatch_log_group     = false
 
-  vpc_id                                = var.nonpcidss-prod-vpc
-  control_plane_subnet_ids              = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
-  create_cluster_security_group         = false
-  cluster_security_group_id             = var.eks-cluster-sg
-  cluster_additional_security_group_ids = ["${var.eks-cluster-sg}"]
+  create_cloudwatch_log_group   = false
+  vpc_id                        = var.nonpcidss-prod-vpc
+  service_ipv4_cidr             = "10.199.88.0/24"
+  subnet_ids              = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
+  create_security_group = false  
+  additional_security_group_ids     = ["${var.eks-cluster-sg}"]
 
   create_node_security_group = false
   node_security_group_id     = var.eks-cluster-sg
@@ -260,22 +261,7 @@ module "al2023-eks-cluster" {
   #===========================
   # EKS Managed Nodegroups
   #===========================
-  eks_managed_node_group_defaults = {
-    cluster_version                 = null
-    use_name_prefix                 = false
-    use_custom_launch_template      = true
-    create_launch_template          = false
-    launch_template_use_name_prefix = false
-    create_iam_role                 = false
-    iam_role_arn                    = "<EKS-WorkerNode-Role-ARN>"  # # REPLACE WITH EKS-Cluster-WorkerNode-Role ARN
-    force_update_version            = true
-    update_config = {
-      max_unavailable_percentage = "10"
-    }
-  }
-
-  eks_managed_node_groups = {
-
+ eks_managed_node_groups = {
   ondemand = {
       name               = join("-", [local.org, local.csp, local.region, local.vpcname, local.account, local.env, "ondemand-ng"])
 	  ami_type           = "AL2023_x86_64_STANDARD"
