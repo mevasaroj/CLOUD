@@ -8,6 +8,8 @@
                 "acm:DescribeCertificate",
                 "acm:Get*",
                 "acm:List*",
+                "acm:ImportCertificate",
+                "acm:AddTagsToCertificate",
                 "lambda:AddLayerVersionPermission",
                 "lambda:Create*",
                 "lambda:Get*",
@@ -17,7 +19,6 @@
                 "lambda:TagResource",
                 "lambda:UntagResource",
                 "lambda:Update*",
-                "lambda:DeleteFunction",
                 "rds:Add*",
                 "rds:AuthorizeDBSecurityGroupIngress",
                 "rds:Copy*",
@@ -55,6 +56,7 @@
                 "secretsmanager:Stop*",
                 "secretsmanager:TagResource",
                 "secretsmanager:UntagResource",
+                "secretsmanager:CancelRotateSecret",
                 "ssmmessages:Create*",
                 "ssmmessages:Open*",
                 "sts:DecodeAuthorizationMessage",
@@ -78,12 +80,12 @@
                 "kms:GenerateDataKeyWithoutPlaintext",
                 "kms:DescribeKey",
                 "kms:CreateGrant",
-                "kms:ListAliases",
-                "kms:TagResource"
+                "kms:ListAliases"
             ],
             "Resource": [
-                "arn:aws:kms:ap-south-1:911372318716:key/1e884af2-73cd-4132-9612-d9dd72d981e0",
-                "arn:aws:kms:ap-south-1:911372318716:key/mrk-62981b3189ca460facce77ff358971cc"
+                "arn:aws:kms:ap-south-1:911372318716:key/17cbe4eb-fe74-49ed-a177-72bf19a0734c",
+                "arn:aws:kms:ap-south-1:911372318716:key/mrk-62981b3189ca460facce77ff358971cc",
+                "arn:aws:kms:ap-south-1:281845296445:key/39941a3e-d510-42ca-ad6f-0710b76fbb85"
             ]
         },
         {
@@ -94,58 +96,14 @@
             "Condition": {
                 "StringEquals": {
                     "iam:AWSServiceName": [
-                        "autoscaling.amazonaws.com",
-                        "ec2scheduled.amazonaws.com",
-                        "elasticloadbalancing.amazonaws.com",
-                        "eks.amazonaws.com",
-                        "eks-fargate-pods.amazonaws.com",
-                        "eks-nodegroup.amazonaws.com",
-                        "spot.amazonaws.com",
-                        "spotfleet.amazonaws.com",
-                        "transitgateway.amazonaws.com",
-                        "rds.application-autoscaling.amazonaws.com",
-                        "rds.amazonaws.com",
-                        "acm.amazonaws.com",
-                        "ssm.amazonaws.com",
-                        "elasticache.amazonaws.com",
-                        "replication.dynamodb.amazonaws.com",
-                        "dynamodb.application-autoscaling.amazonaws.com",
-                        "contributorinsights.dynamodb.amazonaws.com",
-                        "kinesisreplication.dynamodb.amazonaws.com",
-                        "elasticfilesystem.amazonaws.com",
-                        "globalaccelerator.amazonaws.com",
-                        "mq.amazonaws.com",
-                        "kafka.amazonaws.com",
-                        "glue.amazonaws.com",
-                        "lambda.amazonaws.com",
-                        "events.amazonaws.com",
-                        "memorydb.amazonaws.com"
-                    ]
-                }
-            }
-        },
-        {
-            "Sid": "BedrockAccess",
-            "Effect": "Allow",
-            "Action": [
-                "cloudformation:CreateResource"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "IAMPassRole",
-            "Effect": "Allow",
-            "Resource": "*",
-            "Action": "iam:PassRole",
-            "Condition": {
-                "StringLike": {
-                    "iam:PassedToService": [
                         "acm.amazonaws.com",
                         "application-autoscaling.amazonaws.com",
                         "application-autoscaling.amazonaws.com.cn",
+                        "apigateway.amazonaws.com",
                         "autoscaling.amazonaws.com",
                         "contributorinsights.dynamodb.amazonaws.com",
                         "cloudwatch.amazonaws.com",
+                        "dax.amazonaws.com",
                         "dynamodb.application-autoscaling.amazonaws.com",
                         "ec2.amazonaws.com",
                         "ec2scheduled.amazonaws.com",
@@ -165,12 +123,55 @@
                         "kinesisreplication.dynamodb.amazonaws.com",
                         "elasticfilesystem.amazonaws.com",
                         "globalaccelerator.amazonaws.com",
+                        "monitoring.rds.amazonaws.com",
                         "mq.amazonaws.com",
                         "kafka.amazonaws.com",
-                        "lambda.amazonaws.com",
-                        "glue.amazonaws.com",
-                        "events.amazonaws.com",
-                        "memorydb.amazonaws.com"
+                        "opensearchservice.amazonaws.com",
+                        "elasticloadbalancing.amazonaws.com"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "IAMPassAccess",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "*",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": [
+                        "acm.amazonaws.com",
+                        "apigateway.amazonaws.com",
+                        "application-autoscaling.amazonaws.com",
+                        "application-autoscaling.amazonaws.com.cn",
+                        "autoscaling.amazonaws.com",
+                        "contributorinsights.dynamodb.amazonaws.com",
+                        "cloudwatch.amazonaws.com",
+                        "dax.amazonaws.com",
+                        "dynamodb.application-autoscaling.amazonaws.com",
+                        "ec2.amazonaws.com",
+                        "ec2scheduled.amazonaws.com",
+                        "elasticloadbalancing.amazonaws.com",
+                        "eks.amazonaws.com",
+                        "eks-fargate-pods.amazonaws.com",
+                        "eks-nodegroup.amazonaws.com",
+                        "es.amazonaws.com",
+                        "elasticache.amazonaws.com",
+                        "spot.amazonaws.com",
+                        "spotfleet.amazonaws.com",
+                        "transitgateway.amazonaws.com",
+                        "rds.application-autoscaling.amazonaws.com",
+                        "rds.amazonaws.com",
+                        "ssm.amazonaws.com",
+                        "replication.dynamodb.amazonaws.com",
+                        "kinesisreplication.dynamodb.amazonaws.com",
+                        "elasticfilesystem.amazonaws.com",
+                        "globalaccelerator.amazonaws.com",
+                        "monitoring.rds.amazonaws.com",
+                        "mq.amazonaws.com",
+                        "kafka.amazonaws.com",
+                        "opensearchservice.amazonaws.com",
+                        "elasticloadbalancing.amazonaws.com"
                     ]
                 }
             }
@@ -194,20 +195,10 @@
                 "iam:List*",
                 "iam:Tag*",
                 "iam:Untag*",
-                "iam:Put*",
-                "iam:DeleteInstanceProfile",
-                "iam:RemoveRoleFromInstanceProfile",
-                "iam:AttachRolePolicy",
-                "iam:AddRoleToInstanceProfile",
-                "iam:DeleteServiceLinkedRole"
+                "iam:SimulateCustomPolicy",
+                "iam:SimulatePrincipalPolicy"
             ],
             "Resource": "*"
-        },
-        {
-            "Sid": "LocalAccountAWSManageKMSAccess",
-            "Effect": "Allow",
-            "Action": "kms:DescribeKey",
-            "Resource": "arn:aws:kms:ap-south-1:216066832707:key/7a4424ed-384a-4e04-80ec-03f30fcf5ee5"
         },
         {
             "Effect": "Allow",
@@ -236,8 +227,7 @@
             "Resource": "arn:aws:ec2:*:*:instance/*",
             "Condition": {
                 "StringNotEquals": {
-                    "ec2:MetadataHttpTokens": "required",
-                    "ec2:VolumeType": "gp3"
+                    "ec2:MetadataHttpTokens": "required"
                 }
             }
         },
