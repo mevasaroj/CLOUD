@@ -276,7 +276,7 @@
 |                                     | TCP | TCP | 10250 | CP CIDR | Open for Kubelet API |
 |                                     | TCP | TCP | 53 | CP CIDR | Open for DNS |
 |                                     | UDP | UDP | 53 | CP CIDR | Open for DNS |
-|                                     | ALL Traffic | ALL | ALL Traffic | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
+|                                     | ALL Traffic | ALL | ALL  | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
 
 **OR**
 
@@ -284,7 +284,7 @@
 
 | Security Group Name | Type    | Protocol |Port | Source | Description |
 |:---------------------|:---------:|:---------:|:-----:|:--------:|:-------------|
-|eks-cluster-sg | ALL Traffic | ALL | ALL Ports | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
+|eks-cluster-sg | ALL Traffic | ALL | ALL  | Open for Entire VPC CIDR | Open for Entire VPC CIDR |
 
 
 
