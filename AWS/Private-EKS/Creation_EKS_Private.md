@@ -55,8 +55,8 @@
 4. Under Add permission : **(Default)** --> No Changes --> Click Next
 
 5. Under **Name, review, and create**
-    - Role Name : **eks-cluster-role**
-    - Description : __No Changes__
+   - Role Name : **eks-cluster-role**
+   - Description : __No Changes__
    - Step 1: Select trusted entities : __No Changes__
    - Step 2: Add permissions: __No Changes__
    - Step 3: Add Tags : Add the require tags
