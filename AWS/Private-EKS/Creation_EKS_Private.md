@@ -51,14 +51,14 @@
    - Trusted entity type : **AWS service**
    - Use cases : type **"EKS"** --> Select __"EKS Cluster"__ --> Second Option
 
-4. Under Add permission : **(Default)** --> No Changes
+4. Under Add permission : **(Default)** --> No Changes --> Click Next
 5. Under **Name, review, and create**
-6. Role Name : **eks-cluster-role**
-7. Description : __No Changes__
+    - Role Name : **eks-cluster-role**
+    - Description : __No Changes__
    - Step 1: Select trusted entities : __No Changes__
    - Step 2: Add permissions: __No Changes__
    - Step 3: Add Tags : Add the require tags
-8. Click **Create role**
+6. Click **Create role**
 ```
 - 2.B. Also Add Below **KMS Key Permission** --> Create Custom KMS Key Policy as below
   ```hcl
