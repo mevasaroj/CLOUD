@@ -196,16 +196,23 @@
 ```
 
 
-#### 4. Create Terraform Role and Add KMS Policy and Update Trusrelationship
-   - Create the policy using policy define in folder https://github.com/mevasaroj/CLOUD/tree/main/AWS/Private-EKS/TFE_Policy
+#### 4. Create Terraform Role attached 2 Custom Policies and Update Trusrelationship
+   - Open AWS IAM --> Roles
    - Create ***Role***
-     	- __Create role__.
-     	- Under : **Select Trusted entity type**
+   - Under : **Select Trusted entity type**
      	- Trusted entity type : **AWS service**
      	- Use cases : type __"ec2"__ --> Select __"ec2"__ --> First Option
      	- Click __Next__
-     	- Add Permission = Add both policy created above --> Create
-     	- 
+    
+   - Add Following 2 Custom Policies
+   - [Policy 1](https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/04_01-A_policy_terraform_role.tf)
+   - [Policy 1](https://github.com/mevasaroj/CLOUD/blob/main/AWS/IAM/04_01-B_policy_terraform_role.tf)
+
+
+
+
+
+
    - Create TFE ***Trust relationship***
      ```hcl
      {
