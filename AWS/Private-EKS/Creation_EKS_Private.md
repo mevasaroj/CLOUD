@@ -40,7 +40,7 @@
       }
     ]
   }
-```
+  ```
 
 ##### 1. Create  **AWSServiceRoleForAmazonEKS** role
 
