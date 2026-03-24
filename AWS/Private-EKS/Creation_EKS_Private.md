@@ -10,6 +10,7 @@
         - Use cases : type **"EKS"** --> Select __"EKS"__ --> First Option
 
    4. Add permission : (Default) --> No Change --> Click Next
+   
    5. Under Name, review, and create = Default = No Change --> Click Create Role
    ```
 - 1.B. Also Add  KMS Key Permission --> Create Custom KMS Key Policy as below
@@ -52,12 +53,14 @@
    - Use cases : type **"EKS"** --> Select __"EKS Cluster"__ --> Second Option
 
 4. Under Add permission : **(Default)** --> No Changes --> Click Next
+
 5. Under **Name, review, and create**
     - Role Name : **eks-cluster-role**
     - Description : __No Changes__
    - Step 1: Select trusted entities : __No Changes__
    - Step 2: Add permissions: __No Changes__
    - Step 3: Add Tags : Add the require tags
+
 6. Click **Create role**
 ```
 - 2.B. Also Add Below **KMS Key Permission** --> Create Custom KMS Key Policy as below
