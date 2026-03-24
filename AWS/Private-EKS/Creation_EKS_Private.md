@@ -4,8 +4,7 @@
 - 1.A. Create as **AWSServiceRoleForAmazonEKS**
    ```hcl
    1. Open IAM --> Roles
-   2. Create Role
-   
+   2. Create Role   
    3. Select the Following
          Use cases for other AWS services: type "EKS"
    
@@ -42,8 +41,96 @@
   }
   ```
 
-##### 1. Create  **AWSServiceRoleForAmazonEKS** role
+- 1.C. Don't change **Trustrelationship** for role **AWSServiceRoleForAmazonEKS** by defualt.
 
+##### 2. Create EKS Cluster Role and Add KMS Policy and Update Trusrelationship
+- 2.A. Create **eks-cluster-role**
+- In the navigation pane of the IAM console, Expand __Access management__ (Left panel) choose __Roles__, and then choose __Create role__.
+  
+- Under : **Select Trusted entity type**
+   - Trusted entity type : **AWS service**
+   - Use cases : type **"EKS"** --> Select __"EKS Cluster"__ --> Second Option
+   
+ - Under Add permission : **(Default)** --> No Changes
+   
+ - Under **Name, review, and create**
+   - Role Name : **eks-cluster-role**
+   - Description : __No Changes__
+   - Step 1: Select trusted entities : __No Changes__
+   - Step 2: Add permissions: __No Changes__
+   - Step 3: Add Tags : Add the require tags
+     
+ - Click **Create role**
+
+- 2.B. Also Add Below **KMS Key Permission** --> Create Custom KMS Key Policy as below
+  ```hcl
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "KMSAccess",
+            "Effect": "Allow",
+            "Action": [
+                "kms:ListGrants",
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey",
+                "kms:GenerateDataKeyWithoutPlaintext",
+                "kms:DescribeKey",
+                "kms:CreateGrant",
+                "kms:ListAliases"
+            ],
+            "Resource": [
+                "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxx",
+                "arn:aws:kms:ap-south-1:xxxxxxxxxxxxxxx:key/xxxxxxxxxxxxxxx"
+        ]
+      }
+    ]
+  }
+  ```
+
+- 2.C. Change the **Trustrelationship** for role **eks-cluster-role** as below
+```hcl
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "eks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+
+
+##### 3. Create WorkerNode Role and Add KMS Policy and Update Trusrelationship
+
+
+
+```hcl
+     1. Click on Roles
+     2. Click on Create Role
+     
+     3. Select the Following : 
+	        Trusted entity type : AWS Service
+	        Use case : under Use cases for other AWS services: Type EKS
+     
+     4. Select "EKS Cluster" - 2nd Option --> Click Next
+     5. Under Add Permissison : Default - AmazonEKSClusterPolicy --> Click Next
+     6. Also Add  KMS Key Permission --> Create Custom KMS Key Policy
+     
+     7. Name, review, and create	
+	      Role name : hbl-aws-aps1-appname-uat-eks-cluster-role
+	        Tags:
+	          Name : hbl-aws-aps1-appname-uat-eks-cluster-role
+	          Environment : uat
+	          ProjectID :
+     
+     8. Click Create Roles
    
 ##### 4. Worker **Node Role**
    - Follow the below steps
