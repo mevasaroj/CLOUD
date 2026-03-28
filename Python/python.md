@@ -21,6 +21,22 @@
 •	print("Good" + <Variable Containing the String>)
 •	print("Good %s" % <variable containing the string>)
 ```
+### 2.1. Quotes Use
+- In Python, single, double and triple quotes are used to denote a string.
+    - Most use single quotes when declaring a single character.
+    - Double quotes when declaring a line and
+    - Triple quotes when declaring a paragraph/multiple lines.
+ 
+- Example : Single Quotes
+    -  # vi hello.py
+      ```hcl
+         print('Hello')
+      ```
+  - Output
+# ./hello.py
+Hello
+
+
 
 
 
