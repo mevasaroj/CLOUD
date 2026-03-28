@@ -32,11 +32,11 @@
   $ vi hello.py
   print('Hello')
   ```
-  - Output
-    ```hcl
-    $ ./hello.py
-    Hello
-    ```
+- Output
+  ```hcl
+  $ py ./hello.py  OR ./hello.py
+  Hello
+  ```
 
 
 
