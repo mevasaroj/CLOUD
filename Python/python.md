@@ -27,14 +27,16 @@
     - Double quotes when declaring a line and
     - Triple quotes when declaring a paragraph/multiple lines.
  
-- Example : Single Quotes
-    -  # vi hello.py
-      ```hcl
-         print('Hello')
-      ```
+- Example : __Single Quotes__
+  ```hcl
+  $ vi hello.py
+  print('Hello')
+  ```
   - Output
-# ./hello.py
-Hello
+    ```hcl
+    $ ./hello.py
+    Hello
+    ```
 
 
 
