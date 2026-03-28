@@ -32,7 +32,7 @@
   $ vi hello.py
   print('Hello')
   ```
-- Output
+  - Output
   ```hcl
   $ py ./hello.py  OR ./hello.py
   Hello
@@ -43,7 +43,7 @@
   $ vi hello.py
   print("Python is very simple language")
   ```
-- Output
+  - Output
   ```hcl
   $ py ./hello.py  OR ./hello.py
   Python is very simple language
@@ -55,7 +55,7 @@
   print("""Python is very popular language.
   It is also friendly language.""")
   ```
-- Output
+  - Output
   ```hcl
   $ py ./hello.py  OR ./hello.py
   Python is very popular language.
