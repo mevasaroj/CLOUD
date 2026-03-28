@@ -23,7 +23,7 @@
 ```
 ### 2.1. Quotes Use
 - In Python, single, double and triple quotes are used to denote a string.
-    - Most use single quotes when declaring a single character.
+    - Single quotes when declaring a single character.
     - Double quotes when declaring a line and
     - Triple quotes when declaring a paragraph/multiple lines.
  
@@ -38,7 +38,29 @@
   Hello
   ```
 
+- Example : __Double Quotes__
+  ```hcl
+  $ vi hello.py
+  print("Python is very simple language")
+  ```
+- Output
+  ```hcl
+  $ py ./hello.py  OR ./hello.py
+  Python is very simple language
+  ```
 
+- Example : __Triple Quotes__
+  ```hcl
+$ vi hello.py
+print("""Python is very popular language.
+It is also friendly language.""")
+```
+- Output
+  ```hcl
+  $ py ./hello.py  OR ./hello.py
+  Python is very popular language.
+  It is also friendly language.
+  ```
 
 
 
