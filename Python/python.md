@@ -96,10 +96,45 @@
   str1 = 'World'
   str2 = ':'
   print("Python %s %s" %(str1,str2))
-
   ```
-    - Output
+  - Output
   ```hcl
   $ py ./var.py  OR ./var.py
   Python World :
   ```
+
+### 2.3. String Concatenation:
+- String concatenation is the "addition" of two strings.
+  ```hcl
+  $ vi var.py
+  str1 = 'Python'
+  str2 = ':'
+  print('Welcome' + str1 + str2)
+  ```
+  - Output
+  ```hcl
+  $ py ./var.py  OR ./var.py
+  WelcomePython:
+  ```
+
+- __%s__ is used to refer to a variable which contains a string.
+  ```hcl
+  $ vi var.py
+  str1 = 'Python'
+  print("Welcome %s" % str1)
+  ```
+  - Output
+  ```hcl
+  $ py ./var.py  OR ./var.py
+  Welcome Python
+  ```
+
+
+
+
+
+
+
+
+
+
