@@ -62,5 +62,44 @@
   It is also friendly language.
   ```
 
+### 2.2. Variable Use
+- Strings can be assigned to variable say string1 and string2 which can call when using the print statement
 
+- 2.2.1. Example : __Single Variable__
+  ```hcl
+  $ vi var.py
+  str1 = 'Wel'
+  print(str1,'come')
+  ```
+  - Output
+  ```hcl
+  $ py ./var.py  OR ./var.py
+  Wel come
+  ```
 
+- 2.2.2. Example : __Two Variable__
+  ```hcl
+  $ vi var.py
+  str1 = "Welcome"
+  str2 = "Python"
+  print(str1, str2)
+  ```
+    - Output
+  ```hcl
+  $ py ./var.py  OR ./var.py
+  Welcome Python
+  ```
+
+  - 2.2.3. Example : __Multiple Variable__
+  ```hcl
+  $ vi var.py
+  str1 = 'World'
+  str2 = ':'
+  print("Python %s %s" %(str1,str2))
+
+  ```
+    - Output
+  ```hcl
+  $ py ./var.py  OR ./var.py
+  Python World :
+  ```
