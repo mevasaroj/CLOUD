@@ -27,7 +27,7 @@
     - Double quotes when declaring a line and
     - Triple quotes when declaring a paragraph/multiple lines.
  
-- Example : __Single Quotes__
+- 2.1.1. Example : __Single Quotes__
   ```hcl
   $ vi hello.py
   print('Hello')
@@ -38,7 +38,7 @@
   Hello
   ```
 
-- Example : __Double Quotes__
+- 2.1.2. Example : __Double Quotes__
   ```hcl
   $ vi hello.py
   print("Python is very simple language")
@@ -49,12 +49,12 @@
   Python is very simple language
   ```
 
-- Example : __Triple Quotes__
+- 2.1.3. Example : __Triple Quotes__
   ```hcl
-$ vi hello.py
-print("""Python is very popular language.
-It is also friendly language.""")
-```
+  $ vi hello.py
+  print("""Python is very popular language.
+  It is also friendly language.""")
+  ```
 - Output
   ```hcl
   $ py ./hello.py  OR ./hello.py
