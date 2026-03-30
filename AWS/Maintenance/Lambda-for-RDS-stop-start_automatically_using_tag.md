@@ -91,7 +91,7 @@
 ### 4.1. To stop the RDS instance / cluster
    1. Open the **Amazon Console** --> Type **Event** in Search --> Open **Amazon EventBridge**
    2. Click **Schedules** --> Click **Create schedule**
-   4. Under **Specify schedule detail**
+   3. Under **Specify schedule detail**
        - Under **Schedule name and description**
           - Schedule name = **rds_stop_rule**
           - Description - optional = **Type Description**
@@ -102,22 +102,34 @@
            - Time zone = **(UTC +5:30) Asia/Culcutta**
            - Schedule type = **Cron-based schedule**
               - For Daily Rule **Day of the week** = **?** OR For any Days of Week **Day of month** = **?**
-              - **cron** (00  05  ?  *  2-6  *) --> This will run (Monday - Friday @5.00 IST)
-              - **cron** (00  05  ?  *  2  *) --> This will run Only on Monday  @5.00 IST
-              - **cron** (00  05  *  *  ?  *) --> This will run Daily - @5.00 IST
+              - **cron** (00  05  ?  *  2-6  *) --> From Monday - To Friday @5.00 IST)
+              - **cron** (00  05  ?  *  2,6  *) --> Monday and Friday @5.00 IST)
+              - **cron** (00  05  ?  *  2  *) --> Only on Monday  @5.00 IST
+              - **cron** (00  05  *  *  ?  *) --> Daily - @5.00 IST
            - Flexible time window =**Off**
-           -
-           - a
-       - Event bus name = **Default**
-       - Activation = **Active**
-       - Tags - optional = **Add Require Tags**
+           - Timeframe = **No Changes**
+       - Click = **Next**
+     
+   4. Under **Select target**
+       - Target detail
+          - Target API = **Templated targets**
+          - Select = **AWS Lambda**
+        
+       - Invoke
+          - Lambda function = **rds_stop_lambda_function**
+        
+       - Click --> **Next**
+     
+   5. Under **Settings - optional**
+      - Schedule state = **Enable**
+      - Action after schedule completion = **NONE**
+      - Retry policy and dead-letter queue (DLQ) = **No Changes**
+      - Encryption = **Define Customer KMS Key**
+      - Permissions = Select **Use existing role** --> Browse and Select **rds_stop_start_role**
+      - Click --> **Next**
+     
+   6. Under **Review and create schedule** --> Click **Create schedule**
 
-
-   5.
-   6.
-   7.
-   8.
-   9. a
       
 ### 4.2. To start the RDS instance / cluster
    1.
