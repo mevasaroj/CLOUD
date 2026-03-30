@@ -1,10 +1,10 @@
 # How_to_Schedule_Lambda-for-RDS-stop-start_automatically_using_tag
-### 1. Apply the following tag to RDS instance / cluster.
+## 1. Apply the following tag to RDS instance / cluster.
 - Please add below tag to all RDS instances / cluster .
   - Key = AutoRestart
   - Value = True
 
-### 2. Create Lamdba Role.
+## 2. Create Lamdba Role.
 - 2.1. Create Custom Policy
    1. Open **IAM** --> Click **Policies**
    2. Click **Create Policies**
@@ -41,9 +41,9 @@
      6. Click Create Role
    
 
-### 3. Create 2 Lamdba Function.
-#### 3.1. To stop the RDS instance / cluster
-##### 3.1.1. Create Lamdba Function - To Stop RDS
+## 3. Create 2 Lamdba Function.
+### 3.1. To stop the RDS instance / cluster
+#### 3.1.1. Create Lamdba Function - To Stop RDS
    1. Open **AWS Console** --> Type **Lambda** in Search --> Click on **Lambda** to Open Dashboard
    2. Click **Function** --> Click **Create function**
    3. Under Create function
@@ -56,7 +56,7 @@
    4. Click Create Function
    
 
-##### 3.1.2. Update Lamdba Function Code as below - To Stop RDS
+#### 3.1.2. Update Lamdba Function Code as below - To Stop RDS
  - To Stop **RDS Cluster** Update the below Code
       - [rds-cluster-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-cluster-stop.py)
    
@@ -65,8 +65,8 @@
       - [rds-instance-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-instance-stop.py)
    
 
-##### 3.2. To start the RDS instance / cluster
-##### 3.2.1. Create Lamdba Function - To Start RDS
+### 3.2. To start the RDS instance / cluster
+#### 3.2.1. Create Lamdba Function - To Start RDS
    1. Open **AWS Console** --> Type **Lambda** in Search --> Click on **Lambda** to Open Dashboard
    2. Click **Function** --> Click **Create function**
    3. Under Create function
@@ -79,7 +79,7 @@
    4. Click Create Function
    
 
-##### 3.2.2. Update Lamdba Function Code as below - To Start RDS
+#### 3.2.2. Update Lamdba Function Code as below - To Start RDS
   - To Start **RDS Cluster** Update the below Code
       - [rds-cluster-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-cluster-start.py)
    
