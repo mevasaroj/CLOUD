@@ -101,9 +101,10 @@
            - Occurrence = Select **Recurring schedule**
            - Time zone = **(UTC +5:30) Asia/Culcutta**
            - Schedule type = **Cron-based schedule**
-              - **cron** (Minutes = 00,  Hours = 05, Day of month = ?, Month = *,  Day of the week= 2-6,  Year = *) --> This will run (Monday - Friday @5.00 IST)
-              - **cron** (00 05 ? * 2 *) --> This will run Only on Monday  @5.00 IST
-              - **cron** (00 05 * * ? *) --> This will run Daily - @5.00 IST
+              - For Daily Rule **Day of the week** = **?** OR For any Days of Week **Day of month** = **?**
+              - **cron** (00  05  ?  *  2-6  *) --> This will run (Monday - Friday @5.00 IST)
+              - **cron** (00  05  ?  *  2  *) --> This will run Only on Monday  @5.00 IST
+              - **cron** (00  05  *  *  ?  *) --> This will run Daily - @5.00 IST
            - Flexible time window =**Off**
            -
            - a
