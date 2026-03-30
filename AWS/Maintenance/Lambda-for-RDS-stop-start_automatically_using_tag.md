@@ -44,7 +44,6 @@
     ]
    }
 
-
    4. Click Next
    
    5. Under **Review and create**
@@ -52,8 +51,9 @@
         - Description - optional = Type Description
         - Add tags - optional = Type the require tags
 
-   5. Click **Create Policy**
+   6. Click **Create Policy**
    ```
+   
 - 2.2. Create Custom Role
    ```hcl
    1. Open IAM --> Roles
