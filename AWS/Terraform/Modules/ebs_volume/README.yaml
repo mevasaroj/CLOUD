@@ -1,0 +1,55 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name : Terraform Aws EBS
+
+# License of this project
+license: "HDFC BANK"
+
+# Canonical GitHub repo
+github_repo: clouddrove/terraform-aws-acm
+
+# Badges to display
+badges:
+  - name: "Terraform"
+    image: "https://img.shields.io/badge/Terraform-v1.1.7-green"
+    url: "https://terraform.hdfcbank.com/app/HDFCBANK/registry/modules/private/HDFCBANK/module/aws/1.0.6"
+  - name: "Licence"
+    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
+    url: "LICENSE.md"
+  - name: "tfsec"
+    image: "https://github.com/clouddrove/terraform-aws-acm/actions/workflows/tfsec.yml/badge.svg"
+    url: "https://github.com/clouddrove/terraform-aws-acm/actions/workflows/tfsec.yml"
+  - name: "static-checks"
+    image: "https://github.com/clouddrove/terraform-aws-acm/actions/workflows/terraform.yml/badge.svg"
+    url: "https://github.com/clouddrove/terraform-aws-acm/actions/workflows/terraform.yml"
+
+#  description of this project
+description: |-
+  This terraform module is used for requesting or importing SSL/TLS certificate with validation.
+
+# extra content
+include:
+  - "terraform.md"
+
+# How to use this project
+usage : |-
+  Here are some examples of how you can use this module in your inventory structure:
+
+  ### EBS
+  ```hcl
+  module "ebs" {
+    source                = "terraform.hdfcbank.com/HDFCBANK/module/aws//modules/aws-ebs"
+    availability_zone = var.availability_zone
+    size              = var.size
+    snapshot_id       = var.snapshot_id
+    type              = var.volume_type
+    tags              = var.tags
+    encrypted         = var.encrypted
+    kms_key_id        = var.kms_key_id
+  }
+  ```
