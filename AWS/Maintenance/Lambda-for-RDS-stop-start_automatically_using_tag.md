@@ -60,9 +60,17 @@
    2. Create Role   
    3. Select the Following - Under : **Trusted entity type**
         - Trusted entity type : **AWS service**
-        - Use cases : type **"EKS"** --> Select __"EKS"__ --> First Option
+        - Use cases : type **"Lambda"** --> Select __"Lambda"__ --> First Option
 
-   4. Add permission : (Default) --> No Change --> Click Next
+   4. Add permission :
+       - Search above custom Policy = **rds_stop_start_policy** --> Click Next
    
-   5. Under Name, review, and create = Default = No Change --> Click Create Role
+   5. Under Name, review, and create 
+      - Role name = **rds_stop_start_role**
+      - Description = Default
+      - Step 1: Select trusted entities = No Change
+      - Step 2: Add permissions = No Change
+      - Step 3: Add tags = Add require tags
+
+   6. Click Create Role
    ```
