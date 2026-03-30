@@ -22,7 +22,7 @@
         "rds:Stop*",
         "rds:List*",
         "rds:Reboot*",
-		    "logs:CreateLogGroup",
+        "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents"
     ],
