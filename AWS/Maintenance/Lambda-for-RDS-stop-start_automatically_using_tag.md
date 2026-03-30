@@ -60,7 +60,7 @@
    2. Create Role   
    3. Select the Following - Under : **Trusted entity type**
         - Trusted entity type : **AWS service**
-        - Use cases : type **"Lambda"** --> Select __"Lambda"__ --> First Option
+        - Use cases : type **"Lambda"** --> Select **Lambda** --> First Option
 
    4. Add permission :
        - Search above custom Policy = **rds_stop_start_policy** --> Click Next
@@ -88,7 +88,6 @@
     - Change default execution role = Select **Use another role** --> Browse the Lambda Role Name **rds_stop_start_role**
 
 4. Click Create Function
-
 ```
 
 
