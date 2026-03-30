@@ -6,9 +6,16 @@
             "Effect": "Allow",
             "Action": [
                 "ec2:Describe*",
-                "ec2:StartInstances",
-                "logs:*",
-                "ec2:StopInstances"
+                "ec2:Start*",
+                "ec2:Stop*",
+                "ec2:CreateImage",
+                "ec2:CreateSnapshot",
+                "ec2:DeleteSnapshot",
+                "ec2:ModifySnapshotAttribute",
+                "ec2:DeleteVolume",
+                "ec2:CreateTags",
+				"logs:*"
+
             ],
             "Resource": "*",
         },
