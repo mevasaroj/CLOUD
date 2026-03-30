@@ -74,3 +74,21 @@
 
    6. Click Create Role
    ```
+
+### 3. Create 2 Lamdba Function.
+##### 3.1. Lamdba Function to stop the RDS instance / cluster
+```hcl
+1. Open **AWS Console** --> Type **Lambda** in Search --> Click on **Lambda** to Open Dashboard
+2. Click **Function** --> Click **Create function**
+3. Under Create function
+    - Choose one of the following options to create your function. = **Author from scratch**
+    - Function name = **rds_stop_lambda_function**
+    - Runtime = **Python 3.14**
+    - Architecture = **x86_64**
+    - Change default execution role = Select **Use another role** --> Browse the Lambda Role Name **rds_stop_start_role**
+
+4. Click Create Function
+
+```
+
+
