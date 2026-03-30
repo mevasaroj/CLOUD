@@ -117,7 +117,7 @@
           - Select = **AWS Lambda**
         
        - Invoke
-          - Lambda function = **rds_stop_lambda_function**
+          - Lambda function = Select **rds_stop_lambda_function**
         
        - Click --> **Next**
      
@@ -161,7 +161,7 @@
           - Select = **AWS Lambda**
         
        - Invoke
-          - Lambda function = **rds_start_lambda_function**
+          - Lambda function = Select **rds_start_lambda_function**
         
        - Click --> **Next**
      
