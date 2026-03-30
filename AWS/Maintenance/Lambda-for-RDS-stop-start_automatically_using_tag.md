@@ -53,7 +53,16 @@
      - Add tags - optional = Type the require tags
 
 5. Click **Create Policy**
+```
+- 2.2. Create Custom Role
+   ```hcl
+   1. Open IAM --> Roles
+   2. Create Role   
+   3. Select the Following - Under : **Trusted entity type**
+        - Trusted entity type : **AWS service**
+        - Use cases : type **"EKS"** --> Select __"EKS"__ --> First Option
 
-```
-- 1.B. Also Add  KMS Key Permission --> Create Custom KMS Key Policy as below
-```
+   4. Add permission : (Default) --> No Change --> Click Next
+   
+   5. Under Name, review, and create = Default = No Change --> Click Create Role
+   ```
