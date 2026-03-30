@@ -7,15 +7,53 @@
 ### 2. Create Lamdba Role.
 - 2.1. Create Custom Policy
 ```hcl
-1. Open IAM --> Roles
-2. Create Role
-3. Select the Following - Under : **Trusted entity type**
-       - Trusted entity type : **AWS service**
-        - Use cases : type **"EKS"** --> Select __"EKS"__ --> First Option
+1. Open IAM --> Policies
+2. Create Policies
+3. Select JSON -->Type the Below Policy
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+    "Sid": "RDSSTOPSTART",
+    "Effect": "Allow",
+    "Action": [
+        "rds:Describe*",
+        "rds:Start*",
+        "rds:Stop*",
+        "rds:List*",
+        "rds:Reboot*",
+		    "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+    ],
+      "Resource": "*"
+    },
+    {
+    "Sid": "KMSAccess",
+    "Effect": "Allow",
+    "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:CreateGrant"
+    ],
+    "Resource": [
+		"arn:aws:kms:ap-south-1:911372318716:key/53e2f350-8bed-4d34-bac9-4fb92ea9d8de"
+	]
+    }
+  ]
+}
 
-4. Add permission : (Default) --> No Change --> Click Next
+
+4. Click Next
    
-5. Under Name, review, and create = Default = No Change --> Click Create Role
-   ```
+5. Under **Review and create**
+     - Policy name = **rds_stop_start_policy**
+     - Description - optional = Type Description
+     - Add tags - optional = Type the require tags
+
+5. Click **Create Policy**
+
+```
 - 1.B. Also Add  KMS Key Permission --> Create Custom KMS Key Policy as below
 ```
