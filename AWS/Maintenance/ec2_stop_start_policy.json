@@ -1,0 +1,29 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "EC2Access",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:Describe*",
+                "ec2:StartInstances",
+                "logs:*",
+                "ec2:StopInstances"
+            ],
+            "Resource": "*",
+        },
+		{
+            "Sid": "KMSAccess",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:CreateGrant"
+            ],
+            "Resource": [
+				"arn:aws:kms:ap-south-1:911372318716:key/53e2f350-8bed-4d34-bac9-4fb92ea9d8de"
+			]
+        }
+    ]
+}
