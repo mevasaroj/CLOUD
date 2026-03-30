@@ -44,7 +44,6 @@
 ### 3. Create 2 Lamdba Function.
 #### 3.1. To stop the RDS instance / cluster
 ##### 3.1.1. Create Lamdba Function - To Stop RDS
-   ```hcl
    1. Open **AWS Console** --> Type **Lambda** in Search --> Click on **Lambda** to Open Dashboard
    2. Click **Function** --> Click **Create function**
    3. Under Create function
@@ -55,77 +54,19 @@
        - Change default execution role = Select **Use another role** --> Browse the Lambda Role Name **rds_stop_start_role**
 
    4. Click Create Function
-   ```
+   
 
 ##### 3.1.2. Update Lamdba Function Code as below - To Stop RDS
- - To Stop **RDS Cluster**
-    ```hcl
-    import boto3
-
-    # Initialize RDS client
-    rds = boto3.client('rds')
-
-    def lambda_handler(event, context):
-       # Describe all DB clusters
-       clusters = rds.describe_db_clusters()
-    
-       for cluster in clusters['DBClusters']:
-           cluster_id = cluster['DBClusterIdentifier']
-           cluster_arn = cluster['DBClusterArn']
-           cluster_status = cluster['Status']
-        
-        # Check if DB cluster is available
-        if cluster_status == 'available':
-            try:
-                # Retrieve tags for the cluster
-                tags = rds.list_tags_for_resource(ResourceName=cluster_arn)['TagList']
-                
-                # Check for the 'autostop' tag
-                should_stop = any(tag['Key'] == 'AutoRestart' and tag['Value'] == 'True' for tag in tags)
-                
-                if should_stop:
-                    # Stop the DB cluster
-                    result = rds.stop_db_cluster(DBClusterIdentifier=cluster_id)
-                    print(f"Stopping cluster: {cluster_id}.")
-                    
-            except Exception as e:
-                print(f"Cannot stop cluster {cluster_id}.")
-                print(e)
-
-    if __name__ == "__main__":
-    lambda_handler(None, None)
-    ```
-    
- - To Stop **RDS Instance**
-   ```hcl
-   import boto3
-   rds = boto3.client('rds')
+ - To Stop **RDS Cluster** Update the below Code
+      - [rds-cluster-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-cluster-stop.py)
    
-   def lambda_handler(event, context):
-      #Stop DB instances
-      dbs = rds.describe_db_instances()
-      for db in dbs['DBInstances']:
-        #Check if DB instance is not already stopped
-        if (db['DBInstanceStatus'] == 'available'):
-            try:
-                GetTags=rds.list_tags_for_resource(ResourceName=db['DBInstanceArn'])['TagList']
-                for tags in GetTags:
-                #if tag "autostop=yes" is set for instance, stop it
-                    if(tags['Key'] == 'AutoRestart' and tags['Value'] == 'True'):
-                        result = rds.stop_db_instance(DBInstanceIdentifier=db['DBInstanceIdentifier'])
-                        print ("Stopping instance: {0}.".format(db['DBInstanceIdentifier']))
-            except Exception as e:
-                print ("Cannot stop instance {0}.".format(db['DBInstanceIdentifier']))
-                print(e)
-                
-    if __name__ == "__main__":
-    lambda_handler(None, None)
-   ```
- 
+    
+ - To Stop **RDS Instance** Update the below Code
+      - [rds-instance-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-instance-stop.py)
+   
 
 ##### 3.2. To start the RDS instance / cluster
 ##### 3.2.1. Create Lamdba Function - To Start RDS
-   ```hcl
    1. Open **AWS Console** --> Type **Lambda** in Search --> Click on **Lambda** to Open Dashboard
    2. Click **Function** --> Click **Create function**
    3. Under Create function
@@ -136,70 +77,17 @@
        - Change default execution role = Select **Use another role** --> Browse the Lambda Role Name **rds_stop_start_role**
 
    4. Click Create Function
-   ```
+   
 
 ##### 3.2.2. Update Lamdba Function Code as below - To Start RDS
- - To Start **RDS Cluster**
-   ```hcl
-   import boto3
-
-   # Initialize RDS client
-   rds = boto3.client('rds')
-
-   def lambda_handler(event, context):
-    # Describe all DB clusters
-    clusters = rds.describe_db_clusters()
+  - To Start **RDS Cluster** Update the below Code
+      - [rds-cluster-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-cluster-start.py)
+   
     
-    for cluster in clusters['DBClusters']:
-        cluster_id = cluster['DBClusterIdentifier']
-        cluster_arn = cluster['DBClusterArn']
-        cluster_status = cluster['Status']
-        
-        # Check if DB cluster is stopped
-        if cluster_status == 'stopped':
-            try:
-                # Retrieve tags for the cluster
-                tags = rds.list_tags_for_resource(ResourceName=cluster_arn)['TagList']
-                
-                # Check for the 'autostart' tag
-                should_start = any(tag['Key'] == 'AutoRestart' and tag['Value'] == 'True' for tag in tags)
-                
-                if should_start:
-                    # Start the DB cluster
-                    result = rds.start_db_cluster(DBClusterIdentifier=cluster_id)
-                    print(f"Starting cluster: {cluster_id}.")
-                    
-            except Exception as e:
-                print(f"Cannot start cluster {cluster_id}.")
-                print(e)
+  - To Start **RDS Instance** Update the below Code
+      - [rds-instance-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-instance-start.py)
+   
 
-    if __name__ == "__main__":
-    lambda_handler(None, None)
-   ```
 
- - To Start **RDS Instance**
-   ```hcl
-   def lambda_handler(event, context):
-
-    #Start DB Instances
-    dbs = rds.describe_db_instances()
-    for db in dbs['DBInstances']:
-        #Check if DB instance stopped. Start it if eligible.
-        if (db['DBInstanceStatus'] == 'stopped'):
-            try:
-                GetTags=rds.list_tags_for_resource(ResourceName=db['DBInstanceArn'])['TagList']
-                for tags in GetTags:
-                #if tag "autostart=yes" is set for instance, start it
-                    if(tags['Key'] == 'AutoRestart' and tags['Value'] == 'True'):
-                        result = rds.start_db_instance(DBInstanceIdentifier=db['DBInstanceIdentifier'])
-                        print ("Starting instance: {0}.".format(db['DBInstanceIdentifier']))
-            except Exception as e:
-                print ("Cannot start instance {0}.".format(db['DBInstanceIdentifier']))
-                print(e)
-
-    if __name__ == "__main__":
-    lambda_handler(None, None)
-
-   ```
 
 
