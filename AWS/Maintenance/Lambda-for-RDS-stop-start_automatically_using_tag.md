@@ -22,25 +22,24 @@
    
    
 - 2.2. Create Custom Role
-   ```hcl
-   1. Open IAM --> Roles
-   2. Create Role   
-   3. Select the Following - Under : **Trusted entity type**
-        - Trusted entity type : **AWS service**
-        - Use cases : type **"Lambda"** --> Select **Lambda** --> First Option
+     1. Open IAM --> Roles
+     2. Create Role   
+     3. Select the Following - Under : **Trusted entity type**
+          - Trusted entity type : **AWS service**
+          - Use cases : type **"Lambda"** --> Select **Lambda** --> First Option
 
-   4. Add permission :
-       - Search above custom Policy = **rds_stop_start_policy** --> Click Next
+     4. Add permission :
+         - Search above custom Policy = **rds_stop_start_policy** --> Click Next
    
-   5. Under Name, review, and create 
-      - Role name = **rds_stop_start_role**
-      - Description = Default
-      - Step 1: Select trusted entities = No Change
-      - Step 2: Add permissions = No Change
-      - Step 3: Add tags = Add require tags
+     5. Under Name, review, and create 
+        - Role name = **rds_stop_start_role**
+       - Description = Default
+        - Step 1: Select trusted entities = No Change
+        - Step 2: Add permissions = No Change
+        - Step 3: Add tags = Add require tags
 
-   6. Click Create Role
-   ```
+     6. Click Create Role
+   
 
 ### 3. Create 2 Lamdba Function.
 #### 3.1. To stop the RDS instance / cluster
