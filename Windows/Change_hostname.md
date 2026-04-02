@@ -21,7 +21,7 @@ set NEW_HOSTNAME=ip-%FORMATTED_IP%
 wmic computersystem where name="%computername%" call rename name="%NEW_HOSTNAME%"
 ```
 
-#### B. Set the .bat file at strtup menu
+#### B. Set the .bat file at startup menu
 - 1. Press the **Windows Key + R** --> Type **gpedit.msc** --> Please enter
 - 2. In the left pane, navigate to **Computer Configuration** --> Click **Windows Settings** --> Click **Scripts (Startup/Shutdown)** --> Double click **Startup**
 - 3. Click on **Add**
