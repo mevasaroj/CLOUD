@@ -6,7 +6,7 @@
 REM Use "IPv4 Address" for Windows 7+ or "IP Address" for older versions if needed
 for /f "tokens=2 delims=:" %%a in ('ipconfig ^| find "IPv4 Address"') do (
     set "IP_LINE=%%a"
-)Hos
+)
 
 REM The extracted line will have a leading space, this removes it
 set "IP_ADDR=%IP_LINE: =%"
