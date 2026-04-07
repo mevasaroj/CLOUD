@@ -23,3 +23,11 @@
  - **Hybrid Identity**: Organizations can synchronize on-premises Active Directory with Entra ID to allow users to use the same credentials for both on-premises and cloud resources.
  - **Tenant & Domain**: When signing up for Azure, a dedicated, default tenant domain (e.g., test.onmicrosoft.com) is created, acting as the central container for your identity resources.
  
+## Set Up Azure Entra ID:
+ - In the Azure Portal, search for **Entra ID** or go to Microsoft Entra ID.
+ - Click on **+ Create a tenant**
+ - Choose **Microsoft Entra ID** (not B2C).
+ - Enter Org Name (e.g.,"my Lab")
+ - Enter Initial Domain Name (mydevlab.onmicrosoft.com)
+ - Choose a region - **India**
+ - Click Review + Create → then Create.
