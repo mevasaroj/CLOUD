@@ -25,7 +25,7 @@
  - **Mixing Tabs and Spaces in Indentation**: Mixing tabs and spaces can result in an “IndentationError: inconsistent use of tabs and spaces in indentation” error.
    
 ### 3.4. Python Indentation Examples
- - **Proper Indentation in if-else**
+ ##### **Proper Indentation in if-else**
 ```hcl
 number =  20
 if number > 0:
