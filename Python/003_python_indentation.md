@@ -37,22 +37,57 @@ else:
 ```hcl
 Positive number
 ```
-
-- Code
+ - **Nested Indentation**
+ - example 1
 ```hcl
-if 5 > 2:
-    print("Five is greater than two!") # Indented 4 spaces
-    if True:
-        print("Nested block")        # Indented 8 spaces
-print("Outside the if statement")     # No indentation - Outside Block
+number = 4
+if number > 0:
+    print("Positive number")
+    if number % 2 == 0:
+        print("Even number")
+    else:
+        print("Odd number")
+else:
+    print("Negative Number")
 ```
-
-- Output
-  ```hcl
-  Five is greater than two!
-  Nested block
-  Outside the if statement
-  ```
+ - output
+```hcl
+Positive number
+Even number
+```
+ - example 2
+ ```hcl
+number = 7
+if number > 0:
+    print("Positive number")
+    if number % 2 == 0:
+        print("Even number")
+    else:
+        print("Odd number")
+else:
+    print("Negative Number")
+```
+ - output
+```hcl
+Positive number
+Odd number
+```
+- example 3
+ ```hcl
+number = -10
+if number > 0:
+    print("Positive number")
+    if number % 2 == 0:
+        print("Even number")
+    else:
+        print("Odd number")
+else:
+    print("Negative Number")
+```
+ - output
+```hcl
+Negative Number
+```
 
 ### 3.5. Indentation in Conditional Statements
  - The code below demonstrate how we use indentation to define seperate scopes of if-else statements:
