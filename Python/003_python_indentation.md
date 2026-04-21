@@ -40,15 +40,15 @@ Positive number
  - **Nested Indentation**
  - example 1
 ```hcl
-number = 4
-if number > 0:
-    print("Positive number")
-    if number % 2 == 0:
-        print("Even number")
-    else:
-        print("Odd number")
-else:
-    print("Negative Number")
+number = 4                   # No Indendation - Start
+if number > 0:               # No Indendation - if Statement
+    print("Positive number") # Indented 4 spaces
+    if number % 2 == 0:      # Indented 4 spaces
+        print("Even number") # Indented 8 spaces
+    else:                    # Indented 4 spaces
+        print("Odd number")  # Indented 8 spaces
+else:                        # No Indendation
+    print("Negative Number") # Indented 4 spaces
 ```
  - output
 ```hcl
