@@ -29,9 +29,9 @@
   ```hcl
 number =  20
 if number > 0:
-  print('Positive number') # Indented 4 spaces
+    print('Positive number') # Indented 4 spaces
 else:
-  print('Non-positive number') # Indented 4 spaces
+    print('Non-positive number') # Indented 4 spaces
 ```
  - Output
 ```hcl
