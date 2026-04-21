@@ -25,7 +25,7 @@ if 5 > 2:
     print("Five is greater than two!") # Indented 4 spaces
     if True:
         print("Nested block")        # Indented 8 spaces
-print("Outside the if statement")     # No indentation
+print("Outside the if statement")     # No indentation - Outside Block
 ```
 
 - Output
@@ -40,26 +40,32 @@ print("Outside the if statement")     # No indentation
 ```hcl
 a =  20
 if a >= 18:
-    print('18 is Less than or equial to 20...')
+    print('18 is Less than or equial to 20...') # Indented 4 spaces
 else:
-    print('retype the Number.')
-print('All set !')
+    print('retype the Number.') # Indented 4 spaces
+print('All set !') # No indentation - Outside Block
 ```
  - Output
 ```hcl
 18 is Less than or equial to 20...
 All set !
 ```
- -
- -
- -
- -
- -
- -
- -
- - a
- - \
-
-
-
+ 
  ### 3.5. Indentation in Loops
+  - Indentation defines the set of statements that are executed repeatedly inside a loop.
+  - Code
+```hcl
+j = 1
+while(j<= 5): 
+     print(j) 
+     j = j + 1
+```
+  - Output
+```hcl
+1
+2
+3
+4
+5
+```
+
