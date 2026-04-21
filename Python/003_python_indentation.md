@@ -26,7 +26,7 @@
    
 ### 3.4. Python Indentation Examples
  - **Proper Indentation in if-else**
-  ```hcl
+```hcl
 number =  20
 if number > 0:
     print('Positive number') # Indented 4 spaces
@@ -55,8 +55,9 @@ else:                        # No Indendation
 Positive number
 Even number
 ```
+
  - example 2
- ```hcl
+```hcl
 number = 7
 if number > 0:
     print("Positive number")
@@ -72,8 +73,9 @@ else:
 Positive number
 Odd number
 ```
+
 - example 3
- ```hcl
+```hcl
 number = -10
 if number > 0:
     print("Positive number")
@@ -87,6 +89,159 @@ else:
  - output
 ```hcl
 Negative Number
+```
+
+- **Indentation in Loops**
+- Example 1
+```hcl
+for i in range(1):                # No Indendation - Start of loop
+    print(f"Outer Loop: {i}")     # Indented: part of the loop
+print("Loop finished")            # Not indented: outside the loop
+```
+- Output
+```hcl
+Outer Loop: 0
+Loop finished
+```
+
+- Example 2
+```hcl
+for i in range(2):                # No Indendation - Start of loop
+    print(f"Outer Loop: {i}")     # Indented: part of the loop
+print("Loop finished")            # Not indented: outside the loop
+```
+- Output
+```hcl
+Outer Loop: 0
+Outer Loop: 1
+Loop finished
+```
+
+
+- Example 3
+```hcl
+for i in range(2):                # No Indendation - Start of loop
+    print(f"Outer Loop: {i}")     # Indented: part of the loop
+print("Loop finished")            # Not indented: outside the loop
+```
+- Output
+```hcl
+Outer Loop: 0
+Outer Loop: 1
+Outer Loop: 2
+Loop finished
+```
+
+
+- Example 4
+```hcl
+for i in range(1):                # No Indendation - Start of loop
+    print(f"Outer Loop: {i}")     # Indented: part of the loop
+    for j in range(1):            # Indented: Nested loop
+        print(f"Inner Loop: {j}") # Indented: part of Nested loop
+    print("Back to Outer Loop")   # Indented: part of the loop
+print("Loop finished")     # Not indented: outside the loop
+```
+ - Output
+```hcl
+Outer Loop: 0
+Inner Loop: 0
+Back to Outer Loop
+Loop finished
+```
+
+- Example 5
+```hcl
+for i in range(2):                # No Indendation - Start of loop
+    print(f"Outer Loop: {i}")     # Indented: part of the loop
+    for j in range(1):            # Indented: Nested loop
+        print(f"Inner Loop: {j}") # Indented: part of Nested loop
+    print("Back to Outer Loop")   # Indented: part of the loop
+print("Loop finished")     # Not indented: outside the loop
+```
+ - output
+```hcl
+Outer Loop: 0
+Inner Loop: 0
+Back to Outer Loop
+Outer Loop: 1
+Inner Loop: 0
+Back to Outer Loop
+Loop finished
+```
+
+
+- Example 6
+```hcl
+for i in range(2):                # No Indendation - Start of loop
+    print(f"Outer Loop: {i}")     # Indented: part of the loop
+    for j in range(2):            # Indented: Nested loop
+        print(f"Inner Loop: {j}") # Indented: part of Nested loop
+    print("Back to Outer Loop")   # Indented: part of the loop
+print("Loop finished")     # Not indented: outside the loop
+```
+ - output
+```hcl
+Outer Loop: 0
+Inner Loop: 0
+Inner Loop: 1
+Back to Outer Loop
+Outer Loop: 1
+Inner Loop: 0
+Inner Loop: 1
+Back to Outer Loop
+Loop finished
+```
+
+
+- Example 7
+```hcl
+for i in range(3):                # No Indendation - Start of loop
+    print(f"Outer Loop: {i}")     # Indented: part of the loop
+    for j in range(1):            # Indented: Nested loop
+        print(f"Inner Loop: {j}") # Indented: part of Nested loop
+    print("Back to Outer Loop")   # Indented: part of the loop
+print("Loop finished")     # Not indented: outside the loop
+```
+ - output
+```hcl
+Outer Loop: 0
+Inner Loop: 0
+Back to Outer Loop
+Outer Loop: 1
+Inner Loop: 0
+Back to Outer Loop
+Outer Loop: 2
+Inner Loop: 0
+Back to Outer Loop
+Loop finished
+```
+
+
+- Example 8
+```hcl
+for i in range(3):                # No Indendation - Start of loop
+    print(f"Outer Loop: {i}")     # Indented: part of the loop
+    for j in range(2):            # Indented: Nested loop
+        print(f"Inner Loop: {j}") # Indented: part of Nested loop
+    print("Back to Outer Loop")   # Indented: part of the loop
+print("Loop finished")     # Not indented: outside the loop
+```
+ - output
+```hcl
+Outer Loop: 0
+Inner Loop: 0
+Inner Loop: 1
+Back to Outer Loop
+Outer Loop: 1
+Inner Loop: 0
+Inner Loop: 1
+Back to Outer Loop
+Outer Loop: 2
+Inner Loop: 0
+Inner Loop: 1
+Back to Outer Loop
+Loop finished
 ```
 
 ### 3.5. Indentation in Conditional Statements
