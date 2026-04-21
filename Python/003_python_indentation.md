@@ -6,3 +6,23 @@
  - All statements with the same level of indentation are treated as part of the same code block.
  - Indentation is created using tabs or spaces and the commonly accepted convention is to use four spaces.
  - Python expects the indentation level to be consistent within the same block.
+
+### 3.1. Key Rules
+ - **Mandatory Syntax**: Indentation is not optional; it is a requirement of the language. Failing to indent or using inconsistent levels will result in an IndentationError.
+ - **Block Definition**: All statements within the same code block (e.g., the body of a loop, function, or if statement) must have exactly the same level of indentation.
+ - **First Line**: The first line of a Python script cannot be indented.
+ - **Minimum Requirement**: An indented block must contain at least one space
+ 
+### 3.2. Best Practices
+ - **Standard Size**: The official PEP 8 Style Guide recommends using 4 spaces per indentation level.
+ - **Spaces over Tabs**: It is highly recommended to use spaces exclusively rather than tabs to ensure consistency across different editors.
+ - **No Mixing**: Never mix tabs and spaces in the same file. Modern Python versions (Python 3+) will raise an error if they are mixed.
+
+### 3.3. Example Code
+```hcl
+if 5 > 2:
+    print("Five is greater than two!") # Indented 4 spaces
+    if True:
+        print("Nested block")        # Indented 8 spaces
+print("Outside the if statement")     # No indentation
+```
