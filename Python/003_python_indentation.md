@@ -34,3 +34,32 @@ print("Outside the if statement")     # No indentation
   Nested block
   Outside the if statement
   ```
+
+### 3.4. Indentation in Conditional Statements
+ - The code below demonstrate how we use indentation to define seperate scopes of if-else statements:
+```hcl
+a =  20
+if a >= 18:
+    print('18 is Less than or equial to 20...')
+else:
+    print('retype the Number.')
+print('All set !')
+```
+ - Output
+```hcl
+18 is Less than or equial to 20...
+All set !
+```
+ -
+ -
+ -
+ -
+ -
+ -
+ -
+ - a
+ - \
+
+
+
+ ### 3.5. Indentation in Loops
