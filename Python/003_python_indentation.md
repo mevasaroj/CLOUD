@@ -132,8 +132,8 @@ Outer Loop: 2
 Loop finished
 ```
 
-
-- Example 4
+- **Indentation in Nested Loops**
+- Example 1
 ```hcl
 for i in range(1):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -150,7 +150,7 @@ Back to Outer Loop
 Loop finished
 ```
 
-- Example 5
+- Example 2
 ```hcl
 for i in range(2):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -171,7 +171,7 @@ Loop finished
 ```
 
 
-- Example 6
+- Example 3
 ```hcl
 for i in range(2):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -194,7 +194,7 @@ Loop finished
 ```
 
 
-- Example 7
+- Example 4
 ```hcl
 for i in range(3):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -218,7 +218,7 @@ Loop finished
 ```
 
 
-- Example 8
+- Example 5
 ```hcl
 for i in range(3):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
