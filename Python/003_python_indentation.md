@@ -14,11 +14,30 @@
  - **Minimum Requirement**: An indented block must contain at least one space
  
 ### 3.2. Best Practices
+ - **Basic Indentation Rules**: In Python, each line of code within a block must be indented by the same number of spaces or tabs.
  - **Standard Size**: The official PEP 8 Style Guide recommends using 4 spaces per indentation level.
  - **Spaces over Tabs**: It is highly recommended to use spaces exclusively rather than tabs to ensure consistency across different editors.
  - **No Mixing**: Never mix tabs and spaces in the same file. Modern Python versions (Python 3+) will raise an error if they are mixed.
 
-### 3.3. Example Code
+### 3.3. Common Indentation Errors
+ - **Missing Indentation**: Forgetting to indent code blocks can result in a “IndentationError: expected an indented block” error.
+ - **Incorrect Indentation Levels**: Using inconsistent or incorrect indentation levels can lead to syntax errors or logical errors in the code.
+ - **Mixing Tabs and Spaces in Indentation**: Mixing tabs and spaces can result in an “IndentationError: inconsistent use of tabs and spaces in indentation” error.
+   
+### 3.4. Python Indentation Examples
+ - **Proper Indentation in if-else**
+  ```hcl
+number =  20
+if number > 0:
+  print('Positive number') # Indented 4 spaces
+else:
+  print('Non-positive number') # Indented 4 spaces
+```
+ - Output
+```hcl
+Positive number
+```
+
 - Code
 ```hcl
 if 5 > 2:
@@ -35,7 +54,7 @@ print("Outside the if statement")     # No indentation - Outside Block
   Outside the if statement
   ```
 
-### 3.4. Indentation in Conditional Statements
+### 3.5. Indentation in Conditional Statements
  - The code below demonstrate how we use indentation to define seperate scopes of if-else statements:
 ```hcl
 a =  20
@@ -51,7 +70,7 @@ print('All set !') # No indentation - Outside Block
 All set !
 ```
  
- ### 3.5. Indentation in Loops
+ ### 3.6. Indentation in Loops
   - Indentation defines the set of statements that are executed repeatedly inside a loop.
   - Code
 ```hcl
