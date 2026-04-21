@@ -19,6 +19,7 @@
  - **No Mixing**: Never mix tabs and spaces in the same file. Modern Python versions (Python 3+) will raise an error if they are mixed.
 
 ### 3.3. Example Code
+- Code
 ```hcl
 if 5 > 2:
     print("Five is greater than two!") # Indented 4 spaces
@@ -26,3 +27,10 @@ if 5 > 2:
         print("Nested block")        # Indented 8 spaces
 print("Outside the if statement")     # No indentation
 ```
+
+- Output
+  ```hcl
+  Five is greater than two!
+  Nested block
+  Outside the if statement
+  ```
