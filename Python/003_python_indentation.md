@@ -37,8 +37,8 @@ else:
 ```hcl
 Positive number
 ```
- #### 3.4.2. Nested Indentation
- - **Exampe 1 - Nested Indentation**
+ #### 3.4.2. Nested If-else Indentation
+ - **Exampe 1 - Nested If-else Indentation**
 ```hcl
 number = 4                   # No Indendation - Start
 if number > 0:               # No Indendation - if Statement
@@ -56,7 +56,7 @@ Positive number
 Even number
 ```
 
- - **Exampe 2 - Nested Indentation**
+ - **Exampe 2 - Nested If-else Indentation**
 ```hcl
 number = 7
 if number > 0:
@@ -74,7 +74,7 @@ Positive number
 Odd number
 ```
 
- - **Exampe 3 - Nested Indentation**
+ - **Exampe 3 - Nested If-else Indentation**
 ```hcl
 number = -10
 if number > 0:
@@ -192,7 +192,6 @@ Back to Outer Loop
 Loop finished
 ```
 
-
 - **Exampe 4 - Nested Loop Indentation**
 ```hcl
 for i in range(3):                # No Indendation - Start of loop
@@ -242,25 +241,10 @@ Back to Outer Loop
 Loop finished
 ```
 
-### 3.5. Indentation in Conditional Statements
- - The code below demonstrate how we use indentation to define seperate scopes of if-else statements:
-```hcl
-a =  20
-if a >= 18:
-    print('18 is Less than or equial to 20...') # Indented 4 spaces
-else:
-    print('retype the Number.') # Indented 4 spaces
-print('All set !') # No indentation - Outside Block
-```
- - Output
-```hcl
-18 is Less than or equial to 20...
-All set !
-```
- 
- ### 3.6. Indentation in Loops
-  - Indentation defines the set of statements that are executed repeatedly inside a loop.
-  - Code
+#### 3.4.5. Indentation in while Loops
+- Indentation defines the set of statements that are executed repeatedly inside a loop.
+- **Exampe 1 - whil Loop Indentation**
+
 ```hcl
 j = 1
 while(j<= 5): 
@@ -276,3 +260,38 @@ while(j<= 5):
 5
 ```
 
+
+#### 3.4.6. Indentation in Function
+
+- **Exampe 1 - whil Loop Indentation**
+```hcl
+def add_numbers(a, b):
+    result = a + b
+    print(f"Sum of {a} and {b} is {result}")
+    return result
+
+add_numbers(3, 4)
+```
+
+- Output
+```hcl
+Sum of 3 and 4 is 7
+```
+
+
+#### 3.4.6. Indentation in Class Definitions
+```hcl
+class MyClass:
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        print(f"Hello, {self.name}!")
+
+obj = MyClass("Python")
+obj.greet()
+```
+- Output
+```hcl
+Hello, Python!
+```
