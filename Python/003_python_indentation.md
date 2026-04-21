@@ -57,8 +57,8 @@ All set !
 ```hcl
 j = 1
 while(j<= 5): 
-     print(j) 
-     j = j + 1
+    print(j)  # Indented 4 spaces
+    j = j + 1 # Indented 4 spaces
 ```
   - Output
 ```hcl
