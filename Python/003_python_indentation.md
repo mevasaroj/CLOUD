@@ -91,8 +91,8 @@ else:
 Negative Number
 ```
 
-#### 3.4.3. Indentation in Loops
- - **Exampe 1 - Loop Indentation**
+#### 3.4.3. Indentation in for Loops
+ - **Exampe 1 - for Loop Indentation**
 ```hcl
 for i in range(1):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -104,7 +104,7 @@ Outer Loop: 0
 Loop finished
 ```
 
- - **Exampe 2 - Loop Indentation**
+ - **Exampe 2 - for Loop Indentation**
 ```hcl
 for i in range(2):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -118,7 +118,7 @@ Loop finished
 ```
 
 
- - **Exampe 3 - Loop Indentation**
+ - **Exampe 3 - for Loop Indentation**
 ```hcl
 for i in range(2):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -132,8 +132,8 @@ Outer Loop: 2
 Loop finished
 ```
 
-#### 3.4.4. Indentation in Nested Loops
-- **Exampe 1 - Nested Loop Indentation**
+#### 3.4.4. Indentation in Nested for Loops
+- **Exampe 1 - Nested for Loop Indentation**
 ```hcl
 for i in range(1):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -150,7 +150,7 @@ Back to Outer Loop
 Loop finished
 ```
 
-- **Exampe 2 - Nested Loop Indentation**
+- **Exampe 2 - Nested for Loop Indentation**
 ```hcl
 for i in range(2):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -170,7 +170,7 @@ Back to Outer Loop
 Loop finished
 ```
 
-- **Exampe 3 - Nested Loop Indentation**
+- **Exampe 3 - Nested for Loop Indentation**
 ```hcl
 for i in range(2):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -192,7 +192,7 @@ Back to Outer Loop
 Loop finished
 ```
 
-- **Exampe 4 - Nested Loop Indentation**
+- **Exampe 4 - Nested for Loop Indentation**
 ```hcl
 for i in range(3):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -215,7 +215,7 @@ Back to Outer Loop
 Loop finished
 ```
 
-- **Exampe 5 - Nested Loop Indentation**
+- **Exampe 5 - Nested for Loop Indentation**
 ```hcl
 for i in range(3):                # No Indendation - Start of loop
     print(f"Outer Loop: {i}")     # Indented: part of the loop
@@ -242,9 +242,9 @@ Loop finished
 ```
 
 #### 3.4.5. Indentation in while Loops
-- Indentation defines the set of statements that are executed repeatedly inside a loop.
-- **Exampe 1 - whil Loop Indentation**
-
+- In Python, a while loop repeatedly executes a block of code as long as a specified condition evaluates to *True*
+- If the condition never becomes False, the loop will run forever.
+- **Exampe 1 - while Loop Indentation**
 ```hcl
 j = 1
 while(j<= 5): 
@@ -258,6 +258,75 @@ while(j<= 5):
 3
 4
 5
+```
+
+- **Exampe 2 - while Loop Indentation with break**
+```hcl
+i = 1
+while i < 10:
+    if i == 4:
+        break  # Stops the loop when i is 4
+    print(i)
+    i += 1
+```
+  - Output
+```hcl
+1
+2
+3
+```
+
+- **Exampe 3 - while Loop Indentation with continue**
+```hcl
+i = 0
+while i < 5:
+    i += 1
+    if i == 3:
+        continue  # Skips the rest of the code when i is 3
+    print(i)
+```
+  - Output
+```hcl
+1
+2
+3
+4
+5
+```
+
+- **Exampe 4 - while Loop Indentation - User Input Validation**
+```hcl
+password = ""
+while password != "secret":
+    password = input("Enter the correct password: ") # Only Secret word accepted - otherwise will repeat asking password
+
+print("Access Granted!")
+```
+  - Output
+```hcl
+Enter the correct password: secret
+Access Granted!
+OR
+Enter the correct password: password
+Enter the correct password: 
+```
+
+
+- **Exampe 5 - while Loop Indentation - with else statement**
+```hcl
+count = 0
+while count < 3:
+    print(count)
+    count += 1
+else:
+    print("Loop completed naturally!")
+```
+  - Output
+```hcl
+0
+1
+2
+Loop completed naturally!
 ```
 
 
