@@ -311,8 +311,31 @@ Enter the correct password: password
 Enter the correct password: 
 ```
 
+- **Exampe 5 - while Loop Indentation - User Input Validation**
+```hcl
+# Print numbers until the user enters 0
+number = int(input('Enter a number: '))
 
-- **Exampe 5 - while Loop Indentation - with else statement**
+# iterate until the user enters 0
+while number != 0:
+    print(f'You entered {number}.')
+    number = int(input('Enter a number: '))
+
+print('The end.')
+```
+  - Output
+```hcl
+Enter a number: 4
+You entered 4.
+Enter a number: 1
+You entered 1.
+Enter a number: 7
+You entered 7.
+Enter a number: 0
+The end.
+```
+
+- **Exampe 6 - while Loop Indentation - with else statement**
 ```hcl
 count = 0
 while count < 3:
