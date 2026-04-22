@@ -355,7 +355,7 @@ Loop completed naturally!
 
 #### 3.4.6. Indentation in Function
 
-- **Exampe 1 - whil Loop Indentation**
+- **Exampe 1 - Function Indentation**
 ```hcl
 def add_numbers(a, b):
     result = a + b
