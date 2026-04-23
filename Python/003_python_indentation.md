@@ -92,6 +92,9 @@ Negative Number
 ```
 
 #### 3.4.3. Indentation in for Loops
+ - In Python, a for loop is used to iterate over a sequence (such as a list, tuple, dictionary, set, or string) or any other iterable object.
+ - For loop executing a block of code once for each item in the sequence.
+   
  - **Exampe 1 - for Loop Indentation**
 ```hcl
 for i in range(1):                # No Indendation - Start of loop
@@ -133,6 +136,8 @@ Loop finished
 ```
 
 #### 3.4.4. Indentation in Nested for Loops
+ - In Python, a nested for loop is a loop that resides inside the body of another for loop. The "inner loop" executes completely for every single iteration of the "outer loop"
+   
 - **Exampe 1 - Nested for Loop Indentation**
 ```hcl
 for i in range(1):                # No Indendation - Start of loop
@@ -352,8 +357,57 @@ else:
 Loop completed naturally!
 ```
 
+#### 3.4.6. Indentation in nested while Loops
+ - A nested while loop in Python consists of one *while* loop placed inside the body of another *while* loop. The "inner loop" completes all its iterations for every single iteration of the "outer loop".
 
-#### 3.4.6. Indentation in Function
+- **Exampe 1 - nested while Loop Indentation**
+```hcl
+i = 1
+while i <= 2:          # Outer loop
+    j = 1
+    while j <= 2:     # Inner loop
+        print(f"{i} * {j} = {i * j}")
+        j += 1         # Increment inner counter
+    print("-" * 10)    # Separator after each table
+    i += 1             # Increment outer counter
+```
+  - Output
+```hcl
+1 * 1 = 1
+1 * 2 = 2
+----------
+2 * 1 = 2
+2 * 2 = 4
+```
+
+- **Exampe 2 - nested while Loop Indentation**
+```hcl
+i = 1
+while i <= 2:          # Outer loop
+    j = 1
+    while j <= 5:     # Inner loop
+        print(f"{i} * {j} = {i * j}")
+        j += 1         # Increment inner counter
+    print("-" * 10)    # Separator after each table
+    i += 1             # Increment outer counter
+```
+  - Output
+```hcl
+1 * 1 = 1
+1 * 2 = 2
+1 * 3 = 3
+1 * 4 = 4
+1 * 5 = 5
+----------
+2 * 1 = 2
+2 * 2 = 4
+2 * 3 = 6
+2 * 4 = 8
+2 * 5 = 10
+----------
+```
+
+#### 3.4.7. Indentation in Function
 
 - **Exampe 1 - Function Indentation**
 ```hcl
@@ -371,7 +425,7 @@ Sum of 3 and 4 is 7
 ```
 
 
-#### 3.4.6. Indentation in Class Definitions
+#### 3.4.8. Indentation in Class Definitions
 ```hcl
 class MyClass:
     def __init__(self, name):
