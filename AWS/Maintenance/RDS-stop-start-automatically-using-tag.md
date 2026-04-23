@@ -58,11 +58,11 @@
 
 #### 3.1.2. Update Lamdba Function Code as below - To Stop RDS
  - To Stop **RDS Cluster** Update the below Code
-      - [rds-cluster-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-cluster-stop.py)
+      - [rds-cluster-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Code_Lambda/rds-cluster-stop.py)
    
     
  - To Stop **RDS Instance** Update the below Code
-      - [rds-instance-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-instance-stop.py)
+      - [rds-instance-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Code_Lambda/rds-instance-stop.py)
    
 
 ### 3.2. To start the RDS instance / cluster
@@ -81,11 +81,11 @@
 
 #### 3.2.2. Update Lamdba Function Code as below - To Start RDS
   - To Start **RDS Cluster** Update the below Code
-      - [rds-cluster-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-cluster-start.py)
+      - [rds-cluster-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Code_Lambda/rds-cluster-start.py)
    
     
   - To Start **RDS Instance** Update the below Code
-      - [rds-instance-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/rds-instance-start.py)
+      - [rds-instance-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Code_Lambda/rds-instance-start.py)
    
 ## 4. Create 2 Amazon EventBridge Rule.
 ### 4.1. To stop the RDS instance / cluster
