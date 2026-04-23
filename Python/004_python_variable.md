@@ -1,15 +1,63 @@
 # 4. Python variable
  - In Python, variables are symbolic names that act as references to objects stored in memory.
 
-### 4.1. Key Concepts
- - **Dynamic Typing**: Python is dynamically typed, meaning the same variable can hold different data types (e.g., an integer, then a string) during program execution.
- - **Case Sensitivity**: Variable names are case-sensitive. For example, age, Age, and AGE are three distinct variables.
+- **Exampe 1 - variable**
+```hcl
+x = 5
+name = "Samantha"  
+print(x)
+print(name)
+```
+ - output
+```hcl
+5
+Samantha
+```
 
-### 4.2. Rules for Naming Variables
+- **Exampe 2 - variable**
+```hcl
+x = 5
+name = "Samantha"  
+print(x, name)
+```
+ - output
+```hcl
+5 Samantha
+```
+
+### 4.1. Rules for Naming Variables
  - Must start with a letter or an underscore (_).
  - Cannot start with a number.
  - Can only contain alphanumeric characters and underscores (A-z, 0-9, and _).
  - Cannot be a Python keyword such as *if*, *else*, or *while*.
+
+##### 4.1.1. Below listed variable names are valid
+```hcl
+age = 21
+_colour = "lilac"
+total_score = 90
+```
+
+##### 4.1.2. Below listed variables names are invalid
+```hcl
+1name = "Error"  # Starts with a digit
+class = 10       # 'class' is a reserved keyword
+user-name = "Doe"  # Contains a hyphen
+```
+
+### 4.2. Key Concepts
+ - **Dynamic Typing**: Python is dynamically typed, meaning the same variable can hold different data types (e.g., an integer, then a string) during program execution.
+ - Example
+   ```hcl
+   x = 10
+   x = "Now a string"
+   ```
+ - Output
+   ```hcl
+   Now a string
+   ```
+ - **Case Sensitivity**: Variable names are case-sensitive. For example, age, Age, and AGE are three distinct variables.
+
 
 ### 4.3. Common Variable Types
  - **Integers (int)**: Whole numbers (e.g., x = 5).
