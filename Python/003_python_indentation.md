@@ -378,6 +378,7 @@ while i <= 2:          # Outer loop
 ----------
 2 * 1 = 2
 2 * 2 = 4
+----------
 ```
 
 - **Exampe 2 - nested while Loop Indentation**
@@ -408,8 +409,23 @@ while i <= 2:          # Outer loop
 ```
 
 #### 3.4.7. Indentation in Function
+ - A function in Python is a reusable block of code that performs a specific task.
+ - It should be define using the *def* keyword followed by a name and parentheses. 
 
 - **Exampe 1 - Function Indentation**
+```hcl
+def greet():
+    print('Hello World!')
+    
+greet()
+```
+
+- Output
+```hcl
+Hello World!
+```
+
+- **Exampe 2 - Function Indentation with addition**
 ```hcl
 def add_numbers(a, b):
     result = a + b
@@ -422,6 +438,29 @@ add_numbers(3, 4)
 - Output
 ```hcl
 Sum of 3 and 4 is 7
+```
+
+
+- **Exampe 2 - Function Indentation with user input**
+```hcl
+def age():
+    # Capture user input as a string
+    user_age = input("Enter your current age: ")
+    
+    # Convert (typecast) the string to an integer to perform math
+    age_as_int = int(user_age)
+    
+    next_year_age = age_as_int + 1
+    print(f"Next year, you will be {next_year_age} years old.")
+
+# Call the function
+age()
+```
+
+- Output
+```hcl
+Enter your current age: 23
+Next year, you will be 24 years old.
 ```
 
 
