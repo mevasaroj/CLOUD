@@ -58,7 +58,7 @@
 
 #### 3.1.2. Update Lamdba Function Code as below - To Stop EC2
  - To Stop **EC2 instacne** Update the below Code
-      - [ec2-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/ec2-stop.py)
+      - [ec2-stop.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Code_Lambda/ec2-stop.py)
    
 
 ### 3.2. To start the RDS instance / cluster
@@ -77,7 +77,7 @@
 
 #### 3.2.2. Update Lamdba Function Code as below - To Start RDS
   - To Start **EC2 Instance** Update the below Code
-      - [ec2-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Script/ec2-start.py)
+      - [ec2-start.py](https://github.com/mevasaroj/CLOUD/blob/main/Python/Python_Code_Lambda/ec2-start.py)
    
 ## 4. Create 2 Amazon EventBridge Rule.
 ### 4.1. To stop the RDS instance / cluster
