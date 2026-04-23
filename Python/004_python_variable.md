@@ -46,7 +46,7 @@ user-name = "Doe"  # Contains a hyphen
 ```
 
 ### 4.2. Key Concepts
- - **Dynamic Typing**: Python is dynamically typed, meaning the same variable can hold different data types (e.g., an integer, then a string) during program execution.
+##### 4.2.1. **Dynamic Typing**: Python is dynamically typed, meaning the same variable can hold different data types (e.g., an integer, then a string) during program execution.
  - Example
    ```hcl
    x = 10
@@ -56,8 +56,17 @@ user-name = "Doe"  # Contains a hyphen
    ```hcl
    Now a string
    ```
- - **Case Sensitivity**: Variable names are case-sensitive. For example, age, Age, and AGE are three distinct variables.
-
+##### 4.2.2. *Case Sensitivity*: Variable names are case-sensitive. For example, age, Age, and AGE are three distinct variables.
+- **Exampe - case sensitivity**
+```hcl
+a = 4
+A = "Sally"
+print (a, A)
+```
+ - output
+```hcl
+4 Sally
+```
 
 ### 4.3. Common Variable Types
  - **Integers (int)**: Whole numbers (e.g., x = 5).
