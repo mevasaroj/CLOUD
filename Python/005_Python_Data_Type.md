@@ -1,7 +1,8 @@
 
 # 5 Python Data Types
  - In Python, the data type is set when you assign a value to a variable:
-| Example	Data | Type |
+   
+| Example	Data         | Type |
 |:---------------------|:---------:|
 |x = "Hello World" | str |
 |x = 20            | int |
