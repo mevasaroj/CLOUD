@@ -1,22 +1,31 @@
-####################################################################################################################################
-data "aws_iam_policy_document" "gateway" {
+###################################################################################################################
+############# IAM POLICY for GATEWAY ENDPOINT ####################
+#==================================================================================================================
+data "aws_iam_policy_document" "endpoint_policy" {
   statement {
-    sid = "AllowIAM"
-    actions = [ "*", ]
-    resources = [ "*", ]
-	principals {
-         type = "AWS"
-         identifiers = [
-	        "arn:aws:iam::xxxxxxxxxxxx:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
-		"arn:aws:iam::xxxxxxxxxxxx:role/secrete-manager-prod",
-		"arn:aws:iam::xxxxxxxxxxxx:role/tfe-prod",
-		"arn:aws:iam::xxxxxxxxxxxx:role/eks-cluster-prod",
-		"arn:aws:iam::xxxxxxxxxxxx:role/eks-workernode-prod"
-	  ]
+    effect    = "Allow"
+    actions   = ["*"]
+    resources = ["*"]
+
+    principals {
+      type = "AWS"
+      identifiers = ["*"]
+    }
+
+    condition {
+      test     = "StringLike"
+      variable = "aws:PrincipalArn"
+
+      values = ["arn:aws:iam::*:role/storage-access-role-prod-ap-south-1",
+                "arn:aws:iam::*"]
     }
   }
 }
-
+#========================================================================================================================
+############# END IAM POLICY for GATEWAY ENDPOINT ####################
+###########################################################################################################################
+############# START VPC ENDPOINT ####################
+#========================================================================================================================
 module "g3-gateway-endpoint" {
   source = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
 
@@ -99,4 +108,6 @@ module "g3-gateway-endpoint" {
   }
  tags = merge( var.additional_tags)  
 }
-####################################################################################################################################
+#========================================================================================================================
+############# END VPC ENDPOINT ####################
+##########################################################################################################################
