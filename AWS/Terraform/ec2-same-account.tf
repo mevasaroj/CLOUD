@@ -10,6 +10,7 @@ module "app_ec2" {
   vpc_security_group_ids = ["${var.infra-sg}", "${var.nonpcidss-CommonInfraRule-sg}"]
   subnet_id              = var.infra-subnet-azc
   #private_ip              = "10.211.212.80"
+  #disable_api_termination = true
   #iam_instance_profile   = "hbl-aws-aps1-appname-uat-terraform-role"
 
 
