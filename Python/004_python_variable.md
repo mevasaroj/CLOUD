@@ -69,6 +69,26 @@ print (a, A)
 ```
 
 ### 4.3. Data Types
+ - In Python, the data type is set when you assign a value to a variable:
+| Example	Data | Type  | 
+|:---------------------|:---------:|
+|x = "Hello World"|str|
+|x = 20|int|
+|x = 20.5	|float|
+|x = 1j	| complex|
+|x = ["apple", "banana", "cherry"]	|list|
+|x = ("apple", "banana", "cherry")	| tuple|
+|x = range(6)	 | range |
+|x = {"name" : "John", "age" : 36}	| dict |
+|x = {"apple", "banana", "cherry"} |	set|
+|x = frozenset({"apple", "banana", "cherry"})	| frozenset|
+|x = True	| bool |
+|x = b"Hello"	| bytes |
+|x = bytearray(5)	| bytearray |
+|x = memoryview(bytes(5))	| memoryview|
+|:---------------------|:---------:|
+
+
 ##### 4.3.1. Numeric Types
  - **int**: Whole numbers without decimals (e.g. *age = 25*).
  - **float**: Real numbers with decimal points or scientific notation (e.g. *price = 19.99* OR *value = 2e3*).
@@ -109,9 +129,52 @@ print (a, A)
 
 
 ### 4.4. Assignment Techniques
- - **Multiple Assignment**: You can assign values to multiple variables in one line: *x, y, z = 1, 2, 3*
- - **Chained Assignment**: You can assign the same value to multiple variables: *x = y = z = 10*
- - **Casting**: You can explicitly specify the data type of a variable using casting functions like *str()*, *int()*, or *float()*.
+
+##### 4.4.1. **Multiple Assignment**
+ - Python can assign values to multiple variables in one line.
+ - Exampe
+```hcl
+x, y, z = "Orange", "Banana", "Cherry"
+print(x)
+print(y)
+print(z)
+```
+ - output
+```hcl
+Orange
+Banana
+Cherry
+```
+
+##### 4.4.2. Chained Assignment
+ - Python can assign the same value to multiple variables
+ - Exampe
+```hcl
+x = y = z = "Orange"
+print(x)
+print(y)
+print(z)
+```
+ - output
+```hcl
+Orange
+Orange
+Orange
+```
+
+##### 4.4.2. Casting
+ - You can explicitly specify the data type of a variable using casting functions like *str()*, *int()*, or *float()*.
+ - Example
+```hcl
+age_str = input("Enter your age: ") 
+age_int = int(age_str)  # Cast to integer for math
+print(f"Next year, you will be {age_int + 1} years old.")
+```
+- Output
+```hcl
+Enter your age: 21
+Next year, you will be 22 years old.
+```
 
 ### 4.5. Variable Scope
  - **Local Variables**: Defined inside a function and accessible only within that function.
