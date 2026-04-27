@@ -91,7 +91,7 @@ module "app_eks_bottlerocket" {
   create_cloudwatch_log_group   = false
 
   vpc_id                        = var.nonpcidss-prod-vpc
-  service_ipv4_cidr             = "10.199.88.0/24"
+  service_ipv4_cidr             = "10.199.88.0/24"  # DMZ CIDR - Outside of EKS VPC CIDR
   subnet_ids              = ["${var.cp-subnet-aza}", "${var.cp-subnet-azb}", "${var.cp-subnet-azc}"]
   create_security_group = false  
   additional_security_group_ids     = ["${var.eks-cluster-sg}"]
