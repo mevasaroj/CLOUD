@@ -17,7 +17,6 @@
 |x = b"Hello"	| bytes |
 |x = bytearray(5)	| bytearray |
 |x = memoryview(bytes(5))	| memoryview|
-|:---------------------|:---------:|
 
 
 ##### 4.3.1. Numeric Types
