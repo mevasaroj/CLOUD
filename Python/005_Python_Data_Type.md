@@ -19,6 +19,12 @@
 |x = {"apple", "banana", "cherry"} |	set|
 |x = frozenset({"apple", "banana", "cherry"})	| frozenset|
 
+ - **Summary of Properties**
+
+| Feature    | Mutable (Changeable)       | Immutable (Constant)                              |
+|:-----------|:--------------------------:|:-------------------------------------------------:|
+| Data Types | list, dict, set, bytearray | int, float, complex, str, tuple, frozenset, bytes |
+
 
 
 ##### 4.3.1. Numeric Types
