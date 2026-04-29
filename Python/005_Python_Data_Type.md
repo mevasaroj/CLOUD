@@ -19,12 +19,10 @@
 |x = {"apple", "banana", "cherry"} |	set|
 |x = frozenset({"apple", "banana", "cherry"})	| frozenset|
 
- - **Summary of Properties**
-
-| Feature    | Mutable (Changeable)       | Immutable (Constant)                              |
-|:-----------|:--------------------------:|:-------------------------------------------------:|
-| Data Types | list, dict, set, bytearray | int, float, complex, str, tuple, frozenset, bytes |
-
+- **Mutability vs. Immutability**
+   - A fundamental concept in Python data is whether an object can be changed after creation
+   - **Mutable**: Values can be modified (e.g., list, dict, set, bytearray)
+   - **Immutable**: Values cannot be changed once set (e.g., int, float, complex, str, tuple, frozenset, bytes)
 
 
 ##### 4.3.1. Numeric Types
