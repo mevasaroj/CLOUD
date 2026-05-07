@@ -27,3 +27,20 @@
 ##### 3.2. Subnet diagram
 
   <img src="https://github.com/mevasaroj/CLOUD/blob/main/AWS/VPC/subnet-diagram.png" width="600" />
+
+
+### 4. How to create Subnet.
+ - Log in to the **AWS Management Console** and navigate to the **VPC Dashboard** --> Click **Subnets** under Virtual private cloud
+ - Click the **Create Subnet** button.
+ - Under **VPC**
+    - VPC ID = Select the existing vpc
+  
+ - Under **Subnet Settings**
+    - Subnet name = hbl-aws-aps1-appname-uat-infra-subnet-aza
+    - Availability Zone = Select **ap-south-1a**
+    - IPv4 VPC CIDR block = 10.211.0.0/16 - It will auto reflect
+    - IPv4 subnet CIDR block = Define the Subnet CIDR - It must within VPC CIDR Block (Example - 10.211.1.0/24, 10.211.2.0/24)
+    - Tags - optional = Define Tags
+  
+ - Click **Create Subnet**
+ 
