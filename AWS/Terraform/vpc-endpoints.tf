@@ -42,7 +42,6 @@ module "hbl-aws-aps1-appname-nonpcidss-prod-endpoints" {
     s3_gateway = {
       service         = "s3"
       service_type    = "Gateway"
-      private_dns_enabled = true
       route_table_ids = ["rtb-0f84a174b6070c656"]
       policy          = data.aws_iam_policy_document.endpoint_policy.json
       tags            = { Name = join("-", [local.org, local.csp, local.region, local.vpcname, local.env, local.account, "s3-gateway-endpoint"]) }
