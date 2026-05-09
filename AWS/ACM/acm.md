@@ -1,10 +1,17 @@
 #  AWS Certificate Manager 
-## 1. Generate the CSR File.
+## 1. Prerequisite
+- Following 4 files are require
+   - domain.key
+   - 'DigiCert Global Root G2.txt'
+   - 'GeoTrust EV RSA CA G2.txt'
+   - domain.txt
+     
+## 2. Generate the CSR File.
  - Run the Below Command to generate CSR file
-    - ]# openssl req -new -newkey rsa:2048 -keyout subdomain.domain.key -nodes -out subdomain.domain.csr
+    - # openssl req -new -newkey rsa:2048 -keyout subdomain.domain.key -nodes -out subdomain.domain.csr
     - Ex. # openssl req -new -newkey rsa:2048 -keyout meva.cloudeng.com.key -nodes -out meva.cloudeng.com.csr
    ```hcl
-   Generating a RSA private key writing new private key to 'bre.hdfcbankapps.com.key'
+   Generating a RSA private key writing new private key to 'meva.cloudeng.com.key'
    -----
    There are quite a few fields but you can leave some blank For some fields there will be a default value,
    If you enter '.', the field will be left blank.
@@ -24,7 +31,7 @@
 
    
  - Run the following command to valite the CSR file generation
-   - ]# ls -l
+   - # ls -l
    ```hcl
    total 8
    -rw-r--r--. 1 root root 1033 Jun  9 10:11 meva.cloudeng.com.csr
@@ -32,12 +39,12 @@
 
    ```
 
-## 2. Generate the Certificate
+## 3. Generate the Certificate
  - Ask Respective team to generate the certificate using csr file
 
 
-## 3.	Consolidate the Require Files
-####  3.1.  Create certificate file --> CER file
+## 4.	Consolidate the Require Files
+####  4.1.  Create certificate file --> CER file
  - Certificate Creation team will revert with zip which include 3 files as below. Download zip file and unzip it.
     - $ unzip meva.cloudeng.com
     - $ cd meva.cloudeng.com
@@ -60,7 +67,7 @@
       -rw-r--r-- 1 M19521 1049089 2518 Jun 12 04:28  meva.cloudeng_com.cer
       ```
 
-####  3.2.  Create certificate_chain file --> crt file
+####  4.2.  Create certificate_chain file --> crt file
 - Run the following command.
    - $ cd meva.cloudeng.com
    - $ ls -l 
@@ -81,7 +88,7 @@
      ```
 
 
-####  3.3.  Import Private Key file and above 2 files into ACM
+####  4.3.  Import Private Key file and above 2 files into ACM
    - $ cd meva.cloudeng.com
    - mv ../Y_CSR_Files/Private_Key/meva.cloudeng_com.key .
    - $ ls -l --> Last 3 files requrie into ACM import
@@ -93,7 +100,7 @@
      -rw-r--r-- 1 M19521 1049089 1704 Jun  9 15:39  meva.cloudeng_com.key
      ```
 
-## 4.	Import into AWS ACMx
+## 5.	Import into AWS ACMx
  - Terraform Script
    ```hcl
    module "meva.cloudeng_com" {
