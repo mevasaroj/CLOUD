@@ -14,7 +14,7 @@
  - In the navigation pane from Left Side, choose **Security groups** under Security
  - Click **Create security group** Button at Right Side Pane top.
  - Under : **Basic details**
-    - Security group name = Enter a Name (up to 255 characters, cannot start with "sg-")
+    - Security group name = Enter Name (up to 255 characters, cannot start with "sg-") Ex. hbl-aws-aps1-appname-prod-rds-sg
     - Description  = Enter the Description - such use case
     - VPC = Select the VPC in which Security need to Create from Drag Menu
   
