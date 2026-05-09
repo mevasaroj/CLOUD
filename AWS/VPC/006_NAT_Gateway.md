@@ -54,7 +54,7 @@
  - Select the route table (hbl-aws-aps1-appname-prod-public-rtb) --> Click **Action** --> Click **Edit route**
  - Click **Add route** and 2 route as below
     - 1st route - for Local **VPC CIDR**
-       - Destination = 10.211.1.0/24 --> Enter Subnet CIDR Range
+       - Destination = 10.211.0.0/16 --> Enter VPC CIDR Range
        - Target = Select **local**
   
     - 2nd route - for **NAT gateway**
