@@ -34,7 +34,7 @@
  - Click **Internet Gateways** in the left navigation pane Under **Virtual private cloud**
  - Click **Create internet gateway** Button Right Top Side pane.
  - Uner **Internet gateway settings**
-    - Name = hbl-aws-aps1-appname-igt
+    - Name = **hbl-aws-aps1-appname-igt**
   
  - Tags - optional = Enter Require Tags
  - Click **Create internet gateway**
@@ -42,14 +42,14 @@
 #### 2.3. Attach the Internet Gateway to VPC
  - Open AWS Console --> Navigate to the **VPC Dashboard**
  - Click **Internet Gateways** in the left navigation pane Under **Virtual private cloud**
- - Select the created **internet gateway** (hbl-aws-aps1-appname-igt) --> Click **Action** --> Click **Attach to VPC** --> Select **VPC**(hbl-aws-aps1-appname-prod-vpc) --> Click **Attach**
+ - Select the created internet gateway (**hbl-aws-aps1-appname-igt**) --> Click **Action** --> Click **Attach to VPC** --> Select **VPC**(hbl-aws-aps1-appname-prod-vpc) --> Click **Attach**
 
 #### 2.4. Create a Route Table for the Public Subnet 
  - Open AWS Console --> Navigate to the **VPC Dashboard**
  - Navigate to **Route Tables** in the left navigation pane Under **Virtual private cloud**
  - Click **Create route table** Button Right Top Side pane.
  - Under **Route table settings**
-    - Name - optional = hbl-aws-aps1-appname-prod-public-rtb
+    - Name - optional = **hbl-aws-aps1-appname-prod-public-rtb**
     - VPC = Select the VPC from Drag Menu in which route table need to create.
   
  - Tags  = Enter Require Tags
@@ -59,7 +59,7 @@
 #### 2.5. Update a Route Table for the Public Subnet
  - Open AWS Console --> Navigate to the **VPC Dashboard**
  - Navigate to **Route Tables** in the left navigation pane Under **Virtual private cloud**
- - Select the route table (hbl-aws-aps1-appname-prod-public-rtb) --> Click **Action** --> Click **Edit route**
+ - Select the route table (**hbl-aws-aps1-appname-prod-public-rtb**) --> Click **Action** --> Click **Edit route**
  - Click **Add route** and 2 route as below
     - 1st route - for Local **VPC CIDR**
        - Destination = 10.211.0.0/16 --> Enter **VPC CIDR Range**
