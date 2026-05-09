@@ -15,10 +15,10 @@
  - Click **Create security group** Button at Right Side Pane top.
  - Under : **Basic details**
     - Security group name = Enter Name (up to 255 characters, cannot start with "sg-") Ex. hbl-aws-aps1-appname-prod-rds-sg
-    - Description  = Enter the Description - such use case
+    - Description  = Enter the Description
     - VPC = Select the VPC in which Security need to Create from Drag Menu
   
- - Inbound rules
+ - Inbound rules - Example for Port 22 - SSH
     - Type = SSH
     - Protocol = TCP - Default as per Type Selected
     - Port Range = 22 - Default as per Type Selected
