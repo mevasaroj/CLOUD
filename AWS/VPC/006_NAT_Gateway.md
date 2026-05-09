@@ -19,7 +19,7 @@
  - Click **NAT gateways** in the left navigation pane Under **Virtual private cloud**
  - Click **Create NAT gateway** Button Right Top Side pane.
  - Under **NAT gateway settings**
-    - Name - optional = hbl-aws-aps1-appname-outbound-prod-natgw-aza
+    - Name - optional = **hbl-aws-aps1-appname-outbound-prod-natgw-aza**
     - Availability mode = **Regional - new**
     - VPC = Select the VPC
     - Connectivity type = **Public**
@@ -33,7 +33,7 @@
  - Navigate to **Route Tables** in the left navigation pane Under **Virtual private cloud**
  - Click **Create route table** Button Right Top Side pane.
  - Under **Route table settings**
-    - Name - optional = hbl-aws-aps1-appname-prod-private-rtb
+    - Name - optional = **hbl-aws-aps1-appname-prod-private-rtb**
     - VPC = Select the VPC from Drag Menu in which route table need to create.
   
  - Tags  = Enter Require Tags
@@ -42,7 +42,7 @@
 #### 2.3. Associate Private Subnet to NAT Route Table
  - Open AWS Console --> Navigate to the **VPC Dashboard**
  - Navigate to **Route Tables** in the left navigation pane Under **Virtual private cloud**
- - Select the route table (hbl-aws-aps1-appname-prod-private-rtb) --> Click **Action** --> Click **Edit subnet associations**
+ - Select the route table (**hbl-aws-aps1-appname-prod-private-rtb**) --> Click **Action** --> Click **Edit subnet associations**
  - Under **Available subnets**
     - Select the Subnet which need to attach
   
