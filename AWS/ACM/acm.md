@@ -49,7 +49,7 @@
       -rw-r--r-- 1 M19521 1049089 2518 Jun 12 04:28  meva.cloudeng_com.txt
       ```
 
- - Rename the **meva.cloudeng_com.txt** to **meva.cloudeng_com.csr**, this file can be use for certificate_body in AWS ACM inport.
+ - Rename the **meva.cloudeng_com.txt** to **meva.cloudeng_com.cer**, this file can be use for certificate_body in AWS ACM inport.
     - $ cd meva.cloudeng.com
     - $ mv meva.cloudeng_com.txt meva.cloudeng_com.cer
     - $ ls -l --> Last File
