@@ -23,7 +23,7 @@
     - Protocol = TCP - Default as per Type Selected
     - Port Range = 22 - Default as per Type Selected
     - Source = Custom - Type your IP Range of IP Address to allow
-       - Example = 10.211.1.0/24 --> For IP Range
+       - 10.211.1.0/24 --> For IP Range
        - 10.211.1.1/32 --> For Single IP.
       
  - Outbound rules = no Change - By Default it will allow all traffic
