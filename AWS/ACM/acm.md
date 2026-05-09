@@ -8,7 +8,7 @@
      
 ## 2. Generate the CSR File.
  - Run the Below Command to generate CSR file
-    - # openssl req -new -newkey rsa:2048 -keyout subdomain.domain.key -nodes -out subdomain.domain.csr
+    - ]# openssl req -new -newkey rsa:2048 -keyout subdomain.domain.key -nodes -out subdomain.domain.csr
     - Ex. # openssl req -new -newkey rsa:2048 -keyout meva.cloudeng.com.key -nodes -out meva.cloudeng.com.csr
    ```hcl
    Generating a RSA private key writing new private key to 'meva.cloudeng.com.key'
@@ -31,7 +31,7 @@
 
    
  - Run the following command to valite the CSR file generation
-   - # ls -l
+   - ]# ls -l
    ```hcl
    total 8
    -rw-r--r--. 1 root root 1033 Jun  9 10:11 meva.cloudeng.com.csr
