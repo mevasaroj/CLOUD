@@ -53,7 +53,9 @@
        - At **Conflict resolution method** = Tick **Override** --> Click **Next**
  - Review and Click **Create**
 
-### 3. Create **com.amazonaws.ap-south-1.elasticfilesystem** VPC endpoint
+### 3. Create 2 End point mentioned below
+1. **com.amazonaws.ap-south-1.elasticfilesystem-fips** endpoint
+2. **com.amazonaws.ap-south-1.elasticfilesystem** VPC endpoint
   - Open the Amazon VPC console at https://console.aws.amazon.com/vpc/
   - In the navigation pane, choose **Endpoints** under __PrivateLink and Lattice__
   - Choose **Create endpoint**
