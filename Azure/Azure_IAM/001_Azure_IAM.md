@@ -40,3 +40,15 @@
  - Enter Initial Domain Name (mydevlab.onmicrosoft.com)
  - Choose a region - **India**
  - Click Review + Create → then Create.
+
+## 5. Microsoft Entra Domain Services:
+ - Microsoft Entra Domain Services
+ - Microsoft Entra tenants come with an initial domain name like *domainname.onmicrosoft.com*. You can't change or delete the initial domain name, but you can add your organization's DNS name as a custom domain name and set it as primary.
+
+### 5.1. Add custom domain name
+ - Sign in to the Microsoft Entra admin center as at least a Domain Name Administrator.
+ - Browse to **Entra ID** --> Domain names > Add custom domain.
+ - In Custom domain name, enter your organization's domain --> Select **Add domain**.
+ - The unverified domain showing the DNS information needed to validate your domain ownership. Save this information.
+ - After you add your custom domain name, you must return to your domain registrar and add the DNS information you copied from the previous step. Creating this TXT or MX record for your domain verifies ownership of your domain name.
+ - Go back to your domain registrar and create a new TXT or MX record for your domain based on your copied DNS information. Set the time to live (TTL) to 3600 seconds (60 minutes), and then save the record
