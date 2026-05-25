@@ -1,0 +1,89 @@
+{
+ "Version": "2012-10-17",
+ "Statement": [
+  {
+   "Sid": "BlockGenAIServicesForOrg",
+   "Effect": "Deny",
+   "Action": [
+    "aws-marketplace:Subscribe"
+   ],
+   "Resource": "*",
+   "Condition": {
+    "Null": {
+     "aws-marketplace:ProductId": "true"
+    },
+    "ForAllValues:StringNotEquals": {
+     "aws-marketplace:ProductId": [
+      "1d288c71-65f9-489a-a3e2-9c7f4f6e6a85",
+      "cc0bdd50-279a-40d8-829c-4009b77a1fcc",
+      "c468b48a-84df-43a4-8c46-8870630108a7",
+      "99d90be8-b43e-49b7-91e4-752f3866c8c7",
+      "b0eb9475-3a2c-43d1-94d3-56756fd43737",
+      "d0123e8d-50d6-4dba-8a26-3fed4899f388",
+      "a61c46fe-1747-41aa-9af0-2e0ae8a9ce05",
+      "216b69fd-07d5-4c7b-866b-936456d68311",
+      "b7568428-a1ab-46d8-bab3-37def50f6f6a",
+      "38e55671-c3fe-4a44-9783-3584906e7cad",
+      "prod-ariujvyzvd2qy",
+      "prod-2c2yc2s3guhqy",
+      "prod-6dw3qvchef7zy",
+      "prod-ozonys2hmmpeu",
+      "prod-fm3feywmwerog",
+      "prod-tukx4z3hrewle",
+      "prod-nb4wqmplze2pm",
+      "prod-m5ilt4siql27k",
+      "prod-cx7ovbu5wex7g",
+      "prod-s64erzo7c5fuy"
+     ]
+    },
+    "ArnNotLike": {
+     "aws:PrincipalArn": [
+      "arn:aws:iam::354674816868:role/aws-reserved/sso.amazonaws.com/ap-south-1/AWSReservedSSO_hbl-aws-lz-cinfra-permission-set_c6e5cd2912a87c7e",
+      "arn:aws:iam::678884366072:role/aws-reserved/sso.amazonaws.com/ap-south-1/AWSReservedSSO_hbl-aws-lz-cinfra-permission-set_1426552f8af61c54"
+     ]
+    }
+   }
+  },
+  {
+   "Sid": "BlockGenAIUnsubscribeViewunlessAllowlisted",
+   "Effect": "Deny",
+   "Action": [
+    "aws-marketplace:Unsubscribe",
+    "aws-marketplace:ViewSubscriptions"
+   ],
+   "Resource": "*",
+   "Condition": {
+    "ForAnyValue:StringNotEquals": {
+     "aws-marketplace:ProductId": [
+      "1d288c71-65f9-489a-a3e2-9c7f4f6e6a85",
+      "cc0bdd50-279a-40d8-829c-4009b77a1fcc",
+      "c468b48a-84df-43a4-8c46-8870630108a7",
+      "99d90be8-b43e-49b7-91e4-752f3866c8c7",
+      "b0eb9475-3a2c-43d1-94d3-56756fd43737",
+      "d0123e8d-50d6-4dba-8a26-3fed4899f388",
+      "a61c46fe-1747-41aa-9af0-2e0ae8a9ce05",
+      "216b69fd-07d5-4c7b-866b-936456d68311",
+      "b7568428-a1ab-46d8-bab3-37def50f6f6a",
+      "38e55671-c3fe-4a44-9783-3584906e7cad",
+      "prod-ariujvyzvd2qy",
+      "prod-2c2yc2s3guhqy",
+      "prod-6dw3qvchef7zy",
+      "prod-ozonys2hmmpeu",
+      "prod-fm3feywmwerog",
+      "prod-tukx4z3hrewle",
+      "prod-nb4wqmplze2pm",
+      "prod-m5ilt4siql27k",
+      "prod-cx7ovbu5wex7g",
+      "prod-s64erzo7c5fuy"
+     ]
+    },
+    "ArnNotLike": {
+     "aws:PrincipalArn": [
+      "arn:aws:iam::354674816868:role/aws-reserved/sso.amazonaws.com/ap-south-1/AWSReservedSSO_hbl-aws-lz-cinfra-permission-set_c6e5cd2912a87c7e",
+      "arn:aws:iam::678884366072:role/aws-reserved/sso.amazonaws.com/ap-south-1/AWSReservedSSO_hbl-aws-lz-cinfra-permission-set_1426552f8af61c54"
+     ]
+    }
+   }
+  }
+ ]
+}
