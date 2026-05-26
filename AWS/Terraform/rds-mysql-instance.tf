@@ -54,7 +54,7 @@ module "mysql-instance" {
   
   #Storage
   allocated_storage     = 20
-  max_allocated_storage = 500
+  max_allocated_storage = 0 # Disables Storage Autoscaling
   storage_type          = "gp3"
   storage_encrypted     = true
   kms_key_id            = "arn:aws:kms:ap-south-1:911372318716:key/1e884af2-73cd-4132-9612-d9dd72d981e0"
