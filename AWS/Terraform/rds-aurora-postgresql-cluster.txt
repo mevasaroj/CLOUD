@@ -26,6 +26,10 @@ module "aurora-postgresql" {
   iam_database_authentication_enabled =  true
 
  # Data Encryption
+  
+# Storage
+  allocated_storage     = 50
+  storage_type          = "gp3"
   storage_encrypted = true
   kms_key_id = "arn:aws:kms:ap-south-1:911372318716:key/mrk-6385f7a780604215a3878ece22b89253"
 
