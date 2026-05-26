@@ -65,7 +65,7 @@ module "mysql-instance" {
   
   #Storage
   allocated_storage     = 20
-  max_allocated_storage = 100
+  max_allocated_storage = 0 # Disables Storage Autoscaling
   storage_type          = "gp3"
   storage_encrypted     = true
   kms_key_id            = var.kms_key_id
