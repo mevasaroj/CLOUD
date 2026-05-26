@@ -73,7 +73,7 @@ module "postgresql-instance" {
   
   #Storage
   allocated_storage     = 20
-  max_allocated_storage = 100
+  max_allocated_storage = 0 # Disables Storage Autoscaling
   storage_type          = "gp3"
   storage_encrypted     = true
   kms_key_id            = "arn:aws:kms:ap-south-1:911372318716:key/mrk-d77d91e1dca246c6a8d534a2b48b3e39"
