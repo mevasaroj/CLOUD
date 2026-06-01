@@ -21,9 +21,30 @@
  - We create a third as part of this tutorial.
 
 ### 4. Step 1: Create your organization
+ - Sign in to designated management account with administrator access --> open the **AWS Organizations console**
+ - On the introduction page, choose **Create an organization**
+ - Review the confirmation dialog box and click **Create an organization** again.
+ - **Verify your email**: Check your inbox for a verification email sent by AWS and verify it within 24 hours.
+
+### 5. Invite an existing account to join your organization
+ - Sign in to **management account** --> Navigate to the **AWS accounts** --> choose **Add an AWS account** Right Top
+ - Under **Add an AWS account** Page
+    - Select **Invite an existing AWS account**
+    - Email address or account ID of an AWS account to invite box, = enter the email address of the owner of the account that you want to invite
+    - Message to include in the invitation email message - optional = Type Message
+    - Tags = Add Tags
+    - Click **Send Invitation**
+  
+ - On Target Account
+    - Open the email that AWS sent from the management account and choose the link to accept the invitation --> Sign into AWS Console
+    - On the **AWS accounts** page, choose **Accept** and then choose **Confirm**
+  
+ - Sign out of your member account and sign in again as an administrator in **management account**
 
 
-
-
+### 6. Create a member account
+ -
+ -
+ - a
 
 https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tutorials_basic.html
