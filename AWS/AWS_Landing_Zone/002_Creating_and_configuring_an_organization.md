@@ -17,9 +17,10 @@
     - can sign in as users from each of the test accounts and see the effects that the SCPs have on the accounts.
   
 ### 3. Prerequisites
- - 
+ - This tutorial assumes that we have access to two existing AWS accounts without any resource in that and that can sign in to each as an administrator.
+ - We create a third as part of this tutorial.
 
-
+### 4. Step 1: Create your organization
 
 
 
