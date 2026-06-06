@@ -1,0 +1,47 @@
+1. how does terraform handle state lock, and what happen if the lock is lost mid-appy
+   --> Terraform prevents simultaneous state modifications by automatically acquiring a lock on your state backend before running operations like plan or apply.
+   --> If the lock is lost mid-apply (e.g., pipeline cancellation), Terraform halts, the remote lock remains, and your infrastructure state may become temporarily inconsistent
+
+2. why terraform start modifying when plan shows no changes
+
+3. how do you safely manage terraform state across multiple teams and environments
+--> To manage terraform state across multiple apply least privilege to access keys and identity bindings using IAM Role, Restrict access to S3 bucket to respective engineer.
+--> To manage multiple environment use separate workspace for each environment like 1 workspace for prod and another workspace for uat.
+      
+4. what problem arise when multiple modules reference the same resources and how do you design around it
+
+5. What is difference between count and for_each 
+--> count loops through numbers (indices) - Creates multiple instances based on an integer (e.g., N = 3). Resources are tracked by numbers.
+--> for_each loops through strings (keys) - Creates multiple instances based on a map or set of strings. Resources are tracked by unique keys.
+   
+6. why resource destroying by switching between from count to for_each
+--> Terraform is managing the lifecycle of infrastructure in immutable State Addresses and if it change then resources will destroy and re-create.
+
+7. How do you handle secrets in terraform without exposing them in state first.
+--> 
+
+11.
+12.
+13.
+14.
+15. a
+
+16. 
+17.
+18.
+19.
+20.
+21.
+22.
+23. a
+- 
+- 2. 
+  3.
+  4.
+  5.
+  6.
+  7.
+  8.
+  9.
+  10.
+  11. a
