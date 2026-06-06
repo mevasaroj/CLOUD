@@ -20,7 +20,27 @@ Q7. why resource destroying by switching between from count to for_each
 Q8. How do you handle secrets in terraform without exposing them in state first.
 --> 
 
-11.
+Q9. What is depends_on in terraform
+ - The depends_on is used in Terraform to explicitly control the execution order of resources or modules.
+ - It instructs Terraform to fully create declared dependency before processing the resource that defines the depends_on statement
+
+Q10. what is implicit dependency in terraform
+ - An implicit dependency in Terraform is a relationship that Terraform automatically discovers when one resource references an attribute of another resource
+ - Example
+   ```hcl
+   # Parent Resource
+   resource "aws_vpc" "main" {
+       cidr_block = "10.0.0.0/16"
+   }
+
+   # Dependent Resource
+   resource "aws_subnet" "public" {
+   # This reference creates the implicit dependency
+       vpc_id     = aws_vpc.main.id
+       cidr_block = "10.0.1.0/24"
+   }   
+   ```
+
 12.
 13.
 14.
