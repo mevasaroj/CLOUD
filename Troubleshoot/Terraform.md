@@ -30,7 +30,7 @@ Q9. What is depends_on in terraform
        enable_dns_support   = true
    tags = {
        Name = "main-vpc"
-   }
+     }
    }
 
    # 2. Create the Subnet with explicit dependency
@@ -46,7 +46,7 @@ Q9. What is depends_on in terraform
    map_public_ip_on_launch = true
    tags = {
       Name = "public-subnet-1a"
-   }
+     }
    }
    ```
 
